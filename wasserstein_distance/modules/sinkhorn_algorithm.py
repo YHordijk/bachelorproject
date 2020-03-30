@@ -2,9 +2,9 @@ import numpy as np
 import math
 
 
-
 ## ================================================================= ##
-# SINKHORN ALGORITHM
+# Wasserstein distance via Sinkhorn's algorithm
+
 
 def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 	'''
