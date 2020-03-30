@@ -45,7 +45,7 @@ def get_histogram(n, func, min_mass=0.02):
 ## ================================================================= ##
 # Wasserstein distance via Sinkhorn's algorithm
 
-def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-8):
+def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 	'''
 	Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
 	between two distributions a and b (in this case normalized histograms).
@@ -134,17 +134,27 @@ def func2(x):
 	return 0.5 - func(x)
 
 
-#get two histograms:
-# a = get_gaussian_histogram(500, 0.2, 0.06)
-a = get_histogram(400, lambda x: 1-x**2)
+### SETUP
+
+#choose two histograms a and b:
+a = get_gaussian_histogram(500, 0.2, 0.06)
+# a = get_histogram(400, lambda x: 1-x**2)
 # a = get_histogram(400, func, 0)
+# a = get_histogram(500, lambda x: 1-x,0)
 
-# b = get_gaussian_histogram(500, 0.5, 0.05)/2 + get_gaussian_histogram(500, 0.4, 0.2)/2
-b = get_histogram(600, lambda x: np.sin(x*10*3.14)+1)
+b = get_gaussian_histogram(500, 0.5, 0.05)
+# b = get_histogram(600, lambda x: np.sin(x*10*3.14)+1)
 # b = get_histogram(400, func2, 0)
+# b = get_histogram(500, lambda x: x,0)
 
+
+converge_thresh = 10**-8
+
+
+### PLOTTING
 
 #plot the histograms:
+plt.suptitle(f'Sinkhorn algorithm errors and coupling matrix for two histograms\n$\epsilon={converge_thresh}$')
 plt.subplot(2,2,1)
 plt.title('Histogram a')
 plt.xlabel('Bin')
@@ -161,7 +171,7 @@ P, error_a, error_b, bc_map = sinkhorn(a, b, 0.01)
 
 #Plot error
 plt.subplot(2,2,3)
-plt.title('Errors during algorithm')
+plt.title('Log errors during algorithm')
 plt.xlabel('Iteration')
 plt.ylabel('log(RMSD)')
 plt.plot(range(len(error_a)), np.log(error_a), label='log(RMSD($P\mathbb{I}  , a$))')
@@ -175,7 +185,7 @@ plt.xlabel('Bin in histogram b')
 plt.ylabel('Bin in histogram a')
 plt.imshow(np.log(P+1e-5))
 #Calculate baryocentric map:
-# plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
+plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
 
 plt.show()
 
