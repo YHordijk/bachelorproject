@@ -45,7 +45,7 @@ def get_histogram(n, func, min_mass=0.02):
 ## ================================================================= ##
 # Wasserstein distance via Sinkhorn's algorithm
 
-def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
+def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-8):
 	'''
 	Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
 	between two distributions a and b (in this case normalized histograms).
@@ -120,7 +120,7 @@ def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 
 	#calculate baryocentric map
 
-	bc_map = np.dot(K, v*np.linspace(0,1,len(a))) * u / a
+	bc_map = np.dot(K, v*np.arange(len(b))) * u / a
 
 	return P, error_a, error_b, bc_map
 
@@ -135,20 +135,25 @@ def func2(x):
 
 
 #get two histograms:
-# a = get_gaussian_histogram(300, 0.2, 0.06)
-# b = get_gaussian_histogram(300, 0.6, 0.2)
-# a = get_histogram(400, lambda x: 1-x**2)
-a = get_histogram(400, func, 0)
-# b = get_histogram(600, lambda x: np.sin(x*4*3.14)+1)
-b = get_histogram(400, func2, 0)
+# a = get_gaussian_histogram(500, 0.2, 0.06)
+a = get_histogram(400, lambda x: 1-x**2)
+# a = get_histogram(400, func, 0)
+
+# b = get_gaussian_histogram(500, 0.5, 0.05)/2 + get_gaussian_histogram(500, 0.4, 0.2)/2
+b = get_histogram(600, lambda x: np.sin(x*10*3.14)+1)
+# b = get_histogram(400, func2, 0)
 
 
 #plot the histograms:
 plt.subplot(2,2,1)
 plt.title('Histogram a')
+plt.xlabel('Bin')
+plt.ylabel('Mass')
 plt.bar(range(len(a)), a, width=1)
 plt.subplot(2,2,2)
 plt.title('Histogram b')
+plt.xlabel('Bin')
+plt.ylabel('Mass')
 plt.bar(range(len(b)), b, width=1)
 
 #get coupling matrix and errors
@@ -156,17 +161,21 @@ P, error_a, error_b, bc_map = sinkhorn(a, b, 0.01)
 
 #Plot error
 plt.subplot(2,2,3)
-plt.title('Errors during iteration')
-plt.plot(range(len(error_a)), error_a)
-plt.plot(range(len(error_b)), error_b)
+plt.title('Errors during algorithm')
+plt.xlabel('Iteration')
+plt.ylabel('log(RMSD)')
+plt.plot(range(len(error_a)), np.log(error_a), label='log(RMSD($P\mathbb{I}  , a$))')
+plt.plot(range(len(error_b)), np.log(error_b), label='log(RMSD($P^⊤\mathbb{I}, b$))')
+plt.legend()
 
 #Plot coupling matrix
 plt.subplot(2,2,4)
-plt.title('Coupling matrix')
+plt.title('Coupling matrix with barycentric map')
+plt.xlabel('Bin in histogram b')
+plt.ylabel('Bin in histogram a')
 plt.imshow(np.log(P+1e-5))
-
 #Calculate baryocentric map:
-plt.plot(range(len(a)), bc_map, 'r', linewidth=3)
+# plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
 
 plt.show()
 
