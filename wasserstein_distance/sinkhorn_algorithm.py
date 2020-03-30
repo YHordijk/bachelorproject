@@ -137,12 +137,12 @@ def func2(x):
 ### SETUP
 
 #choose two histograms a and b:
-a = get_gaussian_histogram(500, 0.2, 0.06)
+a = get_gaussian_histogram(600, 0.2, 0.06)
 # a = get_histogram(400, lambda x: 1-x**2)
 # a = get_histogram(400, func, 0)
 # a = get_histogram(500, lambda x: 1-x,0)
 
-b = get_gaussian_histogram(500, 0.5, 0.05)
+b = get_gaussian_histogram(400, 0.5, 0.05)
 # b = get_histogram(600, lambda x: np.sin(x*10*3.14)+1)
 # b = get_histogram(400, func2, 0)
 # b = get_histogram(500, lambda x: x,0)
