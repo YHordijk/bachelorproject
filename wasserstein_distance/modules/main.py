@@ -1,43 +1,16 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-import modules.histograms as hist
-import modules.sinkhorn_algorithm as sink
+import histograms as hist
+import sinkhorn_algorithm as sink
 
 
 
 ## ================================================================= ##
 # MAIN
 
-#histogram functions
-def func(x):
-	return np.where(x < 0.5, x, 1-x)
 
-def func2(x):
-	return 0.5 - func(x)
-
-### SETUP
-#choose two histograms a and b:
-# a = hist.gaussian(600, 0.2, 0.06)
-# a = hist.gaussian(600, 0.2, 0.06) + hist.gaussian(600, 0.5, 0.06)*2 + hist.gaussian(600, 0.8, 0.06)
-# a = hist.slater(600, 0.5, 30, 0)
-a = hist.from_func(400, lambda x: 1-x**2)
-# a = hist.from_func(400, func)
-# a = hist.from_func(500, lambda x: 1-x,0)
-# a = hist.from_func(600, lambda x: np.cos(x*10*3.14)+1)
-# a = hist.from_func(600, lambda x: x)
-# a = hist.dirac_delta(600, 0.5)
-
-# b = hist.gaussian(400, 0.5, 0.05, 0)
-# b = hist.gaussian(600, 0.2, 0.06)*2 + hist.gaussian(600, 0.5, 0.06) + hist.gaussian(600, 0.8, 0.06)*2
-# b = hist.from_func(600, lambda x: np.sin(x*10*3.14)+1)
-b = hist.from_func(400, func2)
-# b = hist.from_func(500, lambda x: x,0)
-# b = hist.from_func(600, lambda x: x**0)
 
 def main(a, b, epsilon=0.1, converge_thresh=10**-15, save_to=None):
-
-
-
 	### CALCULATION
 	#get coupling matrix and errors
 	W, P, error_a, error_b, bc_map = sink.sinkhorn(a, b, epsilon, converge_thresh=converge_thresh)
@@ -45,7 +18,6 @@ def main(a, b, epsilon=0.1, converge_thresh=10**-15, save_to=None):
 
 	### PLOTTING
 	fig = plt.figure(figsize=(16,9))
-
 	plt.suptitle(f'Sinkhorn algorithm errors and coupling matrix for two histograms with $\epsilon={epsilon:.3f}$\nWasserstein distance $W_\epsilon={W:.2f}$ \nConverged after {len(error_a)} iterations with threshold$={converge_thresh}$')
 
 	#plot the histograms:
@@ -61,7 +33,6 @@ def main(a, b, epsilon=0.1, converge_thresh=10**-15, save_to=None):
 	plt.xlim(0,len(a))
 	plt.ylim(0,max(max(P@b/np.sum(P@b)), max(a))*1.1)
 	plt.legend()
-
 
 	#histogram b
 	plt.subplot(2,2,2)
@@ -95,18 +66,45 @@ def main(a, b, epsilon=0.1, converge_thresh=10**-15, save_to=None):
 	#Plot baryocentric map:
 	plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
 	plt.gca().invert_yaxis()
-	# plt.xticks([])
-	# plt.yticks([])
 
-
+	#save plot if a file path is given
 	if save_to is not None:
 		plt.savefig(save_to)
 		plt.clf()
 		plt.cla()
 		plt.close()
+
+	#otherwise just show it
 	else:
 		plt.show()
 
 
 if __name__ == '__main__':
-	main()
+	#histogram functions
+	def func(x):
+		return np.where(x < 0.5, x, 1-x)
+
+	def func2(x):
+		return 0.5 - func(x)
+
+	### SETUP
+	#choose two histograms a and b:
+	# a = hist.gaussian(600, 0.2, 0.06)
+	# a = hist.gaussian(600, 0.2, 0.06) + hist.gaussian(600, 0.5, 0.06)*2 + hist.gaussian(600, 0.8, 0.06)
+	# a = hist.slater(600, 0.5, 30, 0)
+	a = hist.from_func(400, lambda x: 1-x**2)
+	# a = hist.from_func(400, func)
+	# a = hist.from_func(500, lambda x: 1-x,0)
+	# a = hist.from_func(600, lambda x: np.cos(x*10*3.14)+1)
+	# a = hist.from_func(600, lambda x: x)
+	# a = hist.dirac_delta(600, 0.5)
+
+	# b = hist.gaussian(400, 0.5, 0.05, 0)
+	# b = hist.gaussian(600, 0.2, 0.06)*2 + hist.gaussian(600, 0.5, 0.06) + hist.gaussian(600, 0.8, 0.06)*2
+	# b = hist.from_func(600, lambda x: np.sin(x*10*3.14)+1)
+	b = hist.from_func(400, func2)
+	# b = hist.from_func(500, lambda x: x,0)
+	# b = hist.from_func(600, lambda x: x**0)
+
+
+	main(a, b)
