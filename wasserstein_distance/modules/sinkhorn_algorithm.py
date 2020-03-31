@@ -31,6 +31,11 @@ def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 	#error function for two distributions x1 and x2
 	error = lambda x1, x2: np.sqrt(np.sum((x1-x2)**2))
 
+	## =========== ##
+	#make sure a and b are normalized:
+	a /= np.sum(a)
+	b /= np.sum(b)
+
 
 	## =========== ##
 	#calculate ground-cost-matrix
@@ -84,8 +89,11 @@ def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 
 	#compute wasserstein distance
 	W = 0
-	# for i in range(P.shape[0]):
-	# 	for j in range(P.shape[1]):
-	# 		W += P[i,j]*(math.log(P[i,j]/K[i,j])-1)
+	try:
+		for i in range(P.shape[0]):
+			for j in range(P.shape[1]):
+				W += P[i,j]*(math.log(P[i,j]/K[i,j])-1)
+	except:
+		pass
 
 	return W, P, error_a, error_b, bc_map
