@@ -1,0 +1,10 @@
+|modules
+|
+|--vg #vcd generation scripts
+|----jobs.py #classes used for ADF to perform jobs
+|----vcd.py #functions used to calculate spectra based on results from ADF jobs
+|
+|--wd #wasserstein distance calculation and testing scripts
+|----histograms.py #functions for generating histograms based on some function
+|----plot.py #functions for plotting results of the sinkhorn algorithm
+|----sinkhorn_algorithm.py #functions to perform the sinkhorn algorithm. Returns a container result object
