@@ -5,6 +5,7 @@ import numpy as np
 
 
 
+
 def gaussian(n, x0, sigma, min_mass=0.02):
 	'''
 	Function that returns a histogram based on a gaussian function
@@ -70,5 +71,3 @@ def from_func(n, func, min_mass=0.02):
 	h += min_mass
 	#normalize and return histogram mass
 	return h/np.sum(h)
-
-

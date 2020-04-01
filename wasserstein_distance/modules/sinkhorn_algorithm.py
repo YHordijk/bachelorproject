@@ -6,7 +6,9 @@ import math
 # Wasserstein distance via Sinkhorn's algorithm
 
 
-def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
+
+
+def sinkhorn(a, b, epsilon, cost_fn=None, error_fn=None, max_iter=10000, converge_thresh=10**-5):
 	'''
 	Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
 	between two distributions a and b (in this case normalized histograms).
@@ -25,11 +27,27 @@ def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 
 	Numpy uses * for elementwise mult and @ for matrix mult.
 	
-	The error (RMSD) is then simply given by np.sqrt(np.sum(a-a_app)**2).
+	The RMSD is given by np.sqrt(np.sum(a-a_app)**2).
+
+
+	a, b 			- histograms one dimensional arrays of sizes n and m
+	epsilon 		- value of epsilon to use, determines strength of entropic regularisation
+	cost_fn 		- function used to calculate ground cost matrix, must accept two arguments,
+					  nxm and mxn arrays. Defaults to squared euclidean distance.
+	error_fn		- function used to calculate error between two histograms of size n, must 
+					  accept two one dimensional arrays of size n. Defaults to RMSD.
+	max_iter		- maximum number of iterations allowed for the algorithm
+	converge_thresh - threshold used to determine convergence of algorithm.
+					  If error < converge_thresh it is considered converged.
 	'''
 
-	#error function for two distributions x1 and x2
-	error = lambda x1, x2: np.sqrt(np.sum((x1-x2)**2))
+
+	#default error function for two distributions x1 and x2
+	if error_fn is None:
+		error_fn = lambda x1, x2: np.sqrt(np.sum((x1-x2)**2))
+	#default cost function for a sparse matrix specified by x and y
+	if cost_fn is None:
+		cost_fn = lambda x1, x2: abs(x1-x2)**2
 
 	## =========== ##
 	#make sure a and b are normalized:
@@ -39,9 +57,10 @@ def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 
 	## =========== ##
 	#calculate ground-cost-matrix
-	#we use the square of the distance between the bins as the cost
+	#we use the function specified in the args to calculate the cost matrix
 	Y, X = np.meshgrid(np.linspace(0,1,len(a)), np.linspace(0,1,len(b)))
-	C = abs(X-Y)**2
+	print(Y.shape, X.shape)
+	C = cost_fn(X,Y)
 
 	#calculate the gibbs kernel:
 	K = np.exp(-C/epsilon).T
@@ -66,14 +85,14 @@ def sinkhorn(a, b, epsilon, max_iter=10000, converge_thresh=10**-5):
 		u = a/(K @ v)
 		#Calculate error
 		approx_b = v * (np.dot(K.T, u))
-		error_b.append(error(b, approx_b))
+		error_b.append(error_fn(b, approx_b))
 
 		## =========== ##
 		#iteration part two
 		v = b/(K.T @ u)
 		#calculate error
 		approx_a = u * (np.dot(K, v))
-		error_a.append(error(a, approx_a))
+		error_a.append(error_fn(a, approx_a))
 
 		#check if the algorithm has converged
 		converged = error_a[-1] < converge_thresh and error_b[-1] < converge_thresh
