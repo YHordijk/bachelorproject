@@ -1,0 +1,27 @@
+[22:44:55] Running PLAMS located in D:\Anaconda3\lib\site-packages\scm\plams
+[22:44:55] Using Python 3.7.3 located in D:\Anaconda3\python.exe
+[22:44:55] PLAMS defaults were loaded from D:/ADF/scripting\scm\plams\plams_defaults
+[22:44:55] PLAMS environment initialized
+[22:44:55] PLAMS working folder: C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\01-04-2020.038
+[22:44:55] JOB water STARTED
+[22:44:55] Starting water.prerun()
+[22:44:55] water.prerun() finished
+[22:44:55] JOB water RUNNING
+[22:44:55] Executing water.run
+[22:45:09] Execution of water.run finished with returncode 0
+[22:45:09] JOB water FINISHED
+[22:45:09] Starting water.postrun()
+[22:45:09] water.postrun() finished
+[22:45:09] JOB water SUCCESSFUL
+[22:45:09] JOB ammonia STARTED
+[22:45:09] Starting ammonia.prerun()
+[22:45:09] ammonia.prerun() finished
+[22:45:09] JOB ammonia RUNNING
+[22:45:09] Executing ammonia.run
+[22:45:26] Execution of ammonia.run finished with returncode 0
+[22:45:26] JOB ammonia FINISHED
+[22:45:26] Starting ammonia.postrun()
+[22:45:26] ammonia.postrun() finished
+[22:45:26] JOB ammonia SUCCESSFUL
+[22:45:26] PLAMS environment cleaned up successfully
+[22:45:26] PLAMS run finished. Goodbye

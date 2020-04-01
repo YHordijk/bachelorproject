@@ -1,0 +1,10 @@
+[22:34:41] Running PLAMS located in D:\Anaconda3\lib\site-packages\scm\plams
+[22:34:41] Using Python 3.7.3 located in D:\Anaconda3\python.exe
+[22:34:41] PLAMS defaults were loaded from D:\Anaconda3\lib\site-packages\scm\plams\plams_defaults
+[22:34:41] PLAMS environment initialized
+[22:34:41] PLAMS working folder: C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\01-04-2020.030
+[22:34:41] JOB water STARTED
+[22:34:41] Starting water.prerun()
+[22:34:41] water.prerun() finished
+[22:34:41] JOB water RUNNING
+[22:34:41] Executing water.run

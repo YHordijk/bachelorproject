@@ -8,3 +8,40 @@
 [20:41:54] l-alanine.prerun() finished
 [20:41:54] JOB l-alanine RUNNING
 [20:41:54] Executing l-alanine.run
+[20:47:40] Execution of l-alanine.run finished with returncode 0
+[20:47:40] JOB l-alanine FINISHED
+[20:47:40] Starting l-alanine.postrun()
+[20:47:40] l-alanine.postrun() finished
+[20:47:40] JOB l-alanine SUCCESSFUL
+[20:47:40] JOB water STARTED
+[20:47:40] Starting water.prerun()
+[20:47:40] water.prerun() finished
+[20:47:40] JOB water RUNNING
+[20:47:40] Executing water.run
+[20:47:54] Execution of water.run finished with returncode 0
+[20:47:54] JOB water FINISHED
+[20:47:54] Starting water.postrun()
+[20:47:54] water.postrun() finished
+[20:47:54] JOB water SUCCESSFUL
+[20:47:54] JOB benzene STARTED
+[20:47:54] Starting benzene.prerun()
+[20:47:54] benzene.prerun() finished
+[20:47:54] JOB benzene RUNNING
+[20:47:54] Executing benzene.run
+[20:50:41] Execution of benzene.run finished with returncode 0
+[20:50:41] JOB benzene FINISHED
+[20:50:41] Starting benzene.postrun()
+[20:50:41] benzene.postrun() finished
+[20:50:41] JOB benzene SUCCESSFUL
+[20:50:41] JOB ammonia STARTED
+[20:50:41] Starting ammonia.prerun()
+[20:50:41] ammonia.prerun() finished
+[20:50:41] JOB ammonia RUNNING
+[20:50:41] Executing ammonia.run
+[20:50:58] Execution of ammonia.run finished with returncode 0
+[20:50:58] JOB ammonia FINISHED
+[20:50:58] Starting ammonia.postrun()
+[20:50:58] ammonia.postrun() finished
+[20:50:58] JOB ammonia SUCCESSFUL
+[20:50:58] PLAMS environment cleaned up successfully
+[20:50:58] PLAMS run finished. Goodbye

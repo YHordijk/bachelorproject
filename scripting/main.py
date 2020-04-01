@@ -1,7 +1,7 @@
 import numpy as np
-import modules.wd.histograms as hist
-import modules.wd.sinkhorn_algorithm as sink
-import modules.wd.plot as plot
+import modules.histograms as hist
+import modules.sinkhorn_algorithm as sink
+import modules.plot as plot
 
 
 ## ================================================================= ##
@@ -32,10 +32,12 @@ a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0
 
 # b = hist.gaussian(400, 0.5, 0.05, 0)
 # b = hist.gaussian(600, 0.2, 0.06)*2 + hist.gaussian(600, 0.5, 0.06) + hist.gaussian(600, 0.8, 0.06)*2
-b = hist.from_func(600, lambda x: np.cos(x*5*3.14)+1)
+# b = hist.from_func(600, lambda x: np.cos(x*5*3.14)+1)
 # b = hist.from_func(400, func2)
 # b = hist.from_func(500, lambda x: x,0)
 # b = hist.from_func(600, lambda x: x**0)
+b = hist.lorentzian(600, 0.5, 0.05)
+
 
 
 cost_fn = lambda x1, x2: abs(x1-x2)**2 #function used for calculating ground cost matrix
