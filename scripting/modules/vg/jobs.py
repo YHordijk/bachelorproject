@@ -1,6 +1,6 @@
 import numpy as np
 import scm.plams as plams
-import os
+import os, time
 
 
 ## ================================================================= ##
@@ -9,6 +9,25 @@ import os
 
 #default settings:
 structures_folder = os.getcwd() + r'\structures\\'
+
+
+class JobQueue(list):
+	def __init__(self, jobs=[]):
+		self.jobs = jobs
+
+
+	def append(self, job):
+		self.jobs.append(job)
+
+
+	def run(self):
+		plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+
+		for job in self.jobs:
+			job.run(False)
+
+		plams.finish()
+
 
 
 class Job:
@@ -21,7 +40,6 @@ class Job:
 			self._set_std_settings()
 
 		else: self.settings = settings
-
 
 
 	def _find_mol(self, mol):
@@ -37,7 +55,6 @@ class Job:
 		if os.path.isfile(mol):
 			self.mol = plams.Molecule(mol)
 			self.name = mol.split('\\')[-1][:-4]
-
 
 		else:
 			#else look in strucutres_folder
@@ -73,19 +90,22 @@ class Job:
 					self.mol = plams.Molecule(mol)
 
 
-	def run(self):
+	def run(self, init=True):
 		'''
 		Method that runs this job
 		'''
+		if init: plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
 
-		print(self.settings)
-		job = plams.ADFJob(molecule=self.mol, name=self.name, settings=self.settings)
-
+		s = self.settings
+		job = plams.ADFJob(molecule=self.mol, name=self.name, settings=s)
 		results = job.run()
+
+		if init: plams.finish()
+
 		return results
 
 
-		
+
 
 class DFTJob(Job):
 	'''
@@ -96,14 +116,13 @@ class DFTJob(Job):
 		'''
 		Method that specifies standard settings for a DFT geometry optimization + freqs job
 		'''
-		self.settings.input.basis.type = 'TZ2P'
-		self.settings.input.basis.core = 'None'
+		self.settings.input.Basis.type = 'DZP'
+		self.settings.input.Basis.core = 'None'
 		self.settings.input.XC.GGA = 'PBE'
-		self.settings.input.VCD = True
 		self.settings.input['Relativistic Scalar'] = 'ZORA'
 		self.settings.input.Geometry
 		self.settings.input.AnalyticalFreq 
-		self.settings.input.NumericalQuality = 'Excellent'
+		# self.settings.input.NumericalQuality = 'Excellent'
 		self.settings.input.SYMMETRY = 'NOSYM'
 
 

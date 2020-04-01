@@ -1,5 +1,11 @@
 import modules.vg.jobs as jobs
+import scm.plams as plams
+import os, time
 
-j = jobs.DFTJob('l-alanine')
-res = j.run()
-print(res)
+
+q = jobs.JobQueue()
+
+for mol in ['l-alanine', 'water', 'benzene', 'ammonia']:
+	q.append(jobs.DFTJob(mol))
+
+q.run()

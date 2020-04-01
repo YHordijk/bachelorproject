@@ -1,0 +1,16 @@
+[20:28:30] Running PLAMS located in D:\Anaconda3\lib\site-packages\scm\plams
+[20:28:30] Using Python 3.7.3 located in D:\Anaconda3\python.exe
+[20:28:30] PLAMS defaults were loaded from D:/ADF/scripting\scm\plams\plams_defaults
+[20:28:30] PLAMS environment initialized
+[20:28:30] PLAMS working folder: C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\01-04-2020
+[20:28:30] JOB l-alanine STARTED
+[20:28:30] Starting l-alanine.prerun()
+[20:28:30] l-alanine.prerun() finished
+[20:28:30] JOB l-alanine RUNNING
+[20:28:30] Executing l-alanine.run
+[20:40:58] Execution of l-alanine.run finished with returncode 0
+[20:40:58] WARNING: Main KF file l-alanine.t21 not present in C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\01-04-2020\l-alanine
+[20:40:58] JOB l-alanine FINISHED
+[20:41:01] JOB l-alanine FAILED
+[20:41:01] PLAMS environment cleaned up successfully
+[20:41:01] PLAMS run finished. Goodbye
