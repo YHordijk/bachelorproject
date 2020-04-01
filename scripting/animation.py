@@ -1,8 +1,8 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-import modules.wd.histograms as hist
-import modules.wd.sinkhorn_algorithm as sink
-import modules.wd.plot as plot
+import modules.histograms as hist
+import modules.sinkhorn_algorithm as sink
+import modules.plot as plot
 import math, os
 import moviepy.editor as mvp
 
@@ -72,7 +72,7 @@ animation_folder = os.getcwd() + fr'\animation\\'
 
 
 
-for i in np.linspace(0,3, 50):
+for i in np.linspace(0,6, 75):
 	# e = (math.exp(i*0.001)-1)*4
 	e = 0.3
 	converge_thresh = 10**-15

@@ -29,10 +29,10 @@ class Results:
 		#compute wasserstein distance
 		W = 0
 		try:
-			for i in range(P.shape[0]):
-				for j in range(P.shape[1]):
-					W += P[i,j]*(math.log(P[i,j]/K[i,j])-1)
-		except: pass
+			for i in range(self.P.shape[0]):
+				for j in range(self.P.shape[1]):
+					W += self.P[i,j]*(math.log(self.P[i,j]/K[i,j])-1)
+		except: raise
 		self.W = W
 
 

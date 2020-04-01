@@ -27,9 +27,9 @@
  Licensed to: Student project account / Theoretische chemie, Vrije Universiteit / Amsterdam / NETHERLANDS
  SCM User ID: u20153
   
- DIRAC 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
+ DIRAC 2019.303  RunTime: Apr01-2020 22:59:39  Nodes: 1  Procs: 1
 
- Temporary files are created in D:\SCMTMP\/kid_0.1290624601
+ Temporary files are created in D:\SCMTMP\/kid_0.2013486499
 1
  HYDROGEN ATOM RELATIVISTIC, Point Nuc, A and c from libtc   
  N J RN H ZN XION ANUC CLIGHT
@@ -79,12 +79,12 @@
  Timing Statistics
  =================
   
- Total Used :                     CPU=        0.09      System=        0.03     Elapsed=        0.12
+ Total Used :                     CPU=        0.09      System=        0.00     Elapsed=        0.12
 
  Calls  Section                     ( Mean, Percentage )
  ---------------------------------------------------------------------------------------------------
      2  ><      ................      0.00    0.00             0.00    0.00             0.00    0.00
-     1  EXIT PROCEDURE .........      0.09  100.00             0.03  100.00             0.12  100.00
+     1  EXIT PROCEDURE .........      0.09  100.00             0.00    0.00             0.12  100.00
 
 
  Currently Open Files (EXIT00)
@@ -131,9 +131,9 @@ End
  Licensed to: Student project account / Theoretische chemie, Vrije Universiteit / Amsterdam / NETHERLANDS
  SCM User ID: u20153
   
- ADF 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
+ ADF 2019.303  RunTime: Apr01-2020 22:59:41  Nodes: 1  Procs: 1
 
- Temporary files are created in D:\SCMTMP\/kid_0.425953608
+ Temporary files are created in D:\SCMTMP\/kid_0.659944572
  Hydrogen (DZP)
 
 
@@ -549,29 +549,29 @@ End
  Timing Statistics
  =================
   
- Total Used :                     CPU=        0.44      System=        0.08     Elapsed=        0.66
+ Total Used :                     CPU=        0.38      System=        0.11     Elapsed=        0.83
 
  Calls  Section                     ( Mean, Percentage )
  ---------------------------------------------------------------------------------------------------
-     3  ><      ................      0.00    0.00             0.00    0.00             0.00    2.11
-     1  INIT    ................      0.08   17.86             0.02   20.00             0.11   17.17
-     1  GEOMET  ................      0.02    3.57             0.02   20.00             0.04    6.17
-     1  INPUTA  ................      0.02    3.57             0.00    0.00             0.01    0.90
-     1  MAINSY  ................      0.02    3.57             0.00    0.00             0.03    4.67
-     1  SYMFIT  ................      0.00    0.00             0.00    0.00             0.00    0.15
-     1  CORORT  ................      0.00    0.00             0.00    0.00             0.01    1.05
-     1  SYMORB  ................      0.00    0.00             0.00    0.00             0.00    0.30
-     1  CLSMAT  ................      0.02    3.57             0.00    0.00             0.02    2.41
-     1  ORTHON  ................      0.00    0.00             0.00    0.00             0.01    1.66
-     1  GENPT   ................      0.00    0.00             0.00    0.00             0.03    4.07
-     1  PTBAS   ................      0.00    0.00             0.00    0.00             0.01    1.96
-     7  FOCKY   ................      0.04   57.14             0.00   20.00             0.03   35.69
-     7  FOCKTR  ................      0.00    0.00             0.00    0.00             0.00    1.05
-     7  SDIIS   ................      0.00    3.57             0.00   20.00             0.01   10.54
-     1  COREPS  ................      0.02    3.57             0.00    0.00             0.02    3.31
-     1  POPAN   ................      0.02    3.57             0.00    0.00             0.01    1.81
-     1  DEBYE   ................      0.00    0.00             0.00    0.00             0.01    1.20
-     1  EXIT PROCEDURE .........      0.00    0.00             0.02   20.00             0.03    3.77
+     3  ><      ................      0.00    0.00             0.00    0.00             0.00    1.57
+     1  INIT    ................      0.08   20.83             0.00    0.00             0.30   35.84
+     1  GEOMET  ................      0.02    4.17             0.02   14.29             0.07    7.99
+     1  INPUTA  ................      0.00    0.00             0.00    0.00             0.01    0.61
+     1  MAINSY  ................      0.02    4.17             0.02   14.29             0.03    3.27
+     1  SYMFIT  ................      0.00    0.00             0.00    0.00             0.00    0.24
+     1  CORORT  ................      0.00    0.00             0.00    0.00             0.00    0.61
+     1  SYMORB  ................      0.00    0.00             0.00    0.00             0.01    0.61
+     1  CLSMAT  ................      0.00    0.00             0.00    0.00             0.01    1.45
+     1  ORTHON  ................      0.02    4.17             0.00    0.00             0.01    1.21
+     1  GENPT   ................      0.02    4.17             0.02   14.29             0.02    3.03
+     1  PTBAS   ................      0.00    0.00             0.00    0.00             0.01    1.57
+     7  FOCKY   ................      0.03   50.00             0.01   42.86             0.03   25.67
+     7  FOCKTR  ................      0.00    0.00             0.00    0.00             0.00    0.73
+     7  SDIIS   ................      0.00    0.00             0.00   14.29             0.01    7.87
+     1  COREPS  ................      0.02    4.17             0.00    0.00             0.02    2.42
+     1  POPAN   ................      0.00    0.00             0.00    0.00             0.01    1.57
+     1  DEBYE   ................      0.00    0.00             0.00    0.00             0.01    0.85
+     1  EXIT PROCEDURE .........      0.03    8.33             0.00    0.00             0.02    2.91
 
 
  Currently Open Files (EXIT00)
@@ -584,37 +584,37 @@ End
 
  ***************************************************************************************************
  (LOGFILE)
- <Apr01-2020> <20:47:41>  DIRAC 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:41>  NORMAL TERMINATION
- <Apr01-2020> <20:47:41>  END
- <Apr01-2020> <20:47:41>  ADF 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:41>  Hydrogen (DZP)
- <Apr01-2020> <20:47:41>  RunType   : CREATE
- <Apr01-2020> <20:47:41>  Net Charge: 0 (Nuclei minus Electrons)
- <Apr01-2020> <20:47:41>  Symmetry  : ATOM
+ <Apr01-2020> <22:59:39>  DIRAC 2019.303  RunTime: Apr01-2020 22:59:39  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:39>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:39>  END
+ <Apr01-2020> <22:59:41>  ADF 2019.303  RunTime: Apr01-2020 22:59:41  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:41>  Hydrogen (DZP)
+ <Apr01-2020> <22:59:41>  RunType   : CREATE
+ <Apr01-2020> <22:59:41>  Net Charge: 0 (Nuclei minus Electrons)
+ <Apr01-2020> <22:59:41>  Symmetry  : ATOM
   Coordinates
     Atom         X           Y           Z   (Angstrom)
     1.H         0.000000    0.000000    0.000000
- <Apr01-2020> <20:47:41>  >>>> CORORT
- <Apr01-2020> <20:47:41>  >>>> CLSMAT
- <Apr01-2020> <20:47:41>  >>>> ORTHON
- <Apr01-2020> <20:47:41>  >>>> GENPT
- <Apr01-2020> <20:47:41>  Block Length=  64
- <Apr01-2020> <20:47:41>  >>>> PTBAS
- <Apr01-2020> <20:47:41>  >>>> CYCLE
- <Apr01-2020> <20:47:41>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:41>      1      0.00000000      0.00000000
- <Apr01-2020> <20:47:41>      2      0.03300193      0.03300193
- <Apr01-2020> <20:47:42>      3      0.00595445      0.00595445    100.0
- <Apr01-2020> <20:47:42>      4      0.00102040      0.00102040      0.0
- <Apr01-2020> <20:47:42>      5      0.00000144      0.00000144      0.0
- <Apr01-2020> <20:47:42>      6      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:42>  SCF converged
- <Apr01-2020> <20:47:42>      7      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:42>  >>>> POPAN
- <Apr01-2020> <20:47:42>  >>>> DEBYE
- <Apr01-2020> <20:47:42>  NORMAL TERMINATION
- <Apr01-2020> <20:47:42>  END
+ <Apr01-2020> <22:59:41>  >>>> CORORT
+ <Apr01-2020> <22:59:41>  >>>> CLSMAT
+ <Apr01-2020> <22:59:41>  >>>> ORTHON
+ <Apr01-2020> <22:59:41>  >>>> GENPT
+ <Apr01-2020> <22:59:41>  Block Length=  64
+ <Apr01-2020> <22:59:41>  >>>> PTBAS
+ <Apr01-2020> <22:59:41>  >>>> CYCLE
+ <Apr01-2020> <22:59:41>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:41>      1      0.00000000      0.00000000
+ <Apr01-2020> <22:59:41>      2      0.03300193      0.03300193
+ <Apr01-2020> <22:59:41>      3      0.00595445      0.00595445    100.0
+ <Apr01-2020> <22:59:41>      4      0.00102040      0.00102040      0.0
+ <Apr01-2020> <22:59:41>      5      0.00000144      0.00000144      0.0
+ <Apr01-2020> <22:59:41>      6      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:41>  SCF converged
+ <Apr01-2020> <22:59:41>      7      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:41>  >>>> POPAN
+ <Apr01-2020> <22:59:41>  >>>> DEBYE
+ <Apr01-2020> <22:59:41>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:41>  END
 
  *******************************************************************************
  *                                                                             *
@@ -644,9 +644,9 @@ End
  Licensed to: Student project account / Theoretische chemie, Vrije Universiteit / Amsterdam / NETHERLANDS
  SCM User ID: u20153
   
- DIRAC 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
+ DIRAC 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
 
- Temporary files are created in D:\SCMTMP\/kid_0.825375691
+ Temporary files are created in D:\SCMTMP\/kid_0.1089049798
 1
  OXYGEN ATOM all electron RELATIVISTIC, Point Nuc, A and c fr
  N J RN H ZN XION ANUC CLIGHT
@@ -702,12 +702,12 @@ End
  Timing Statistics
  =================
   
- Total Used :                     CPU=        0.12      System=        0.00     Elapsed=        0.17
+ Total Used :                     CPU=        0.11      System=        0.03     Elapsed=        0.17
 
  Calls  Section                     ( Mean, Percentage )
  ---------------------------------------------------------------------------------------------------
      2  ><      ................      0.00    0.00             0.00    0.00             0.00    0.00
-     1  EXIT PROCEDURE .........      0.12  100.00             0.00    0.00             0.17  100.00
+     1  EXIT PROCEDURE .........      0.11  100.00             0.03  100.00             0.17  100.00
 
 
  Currently Open Files (EXIT00)
@@ -754,9 +754,9 @@ End
  Licensed to: Student project account / Theoretische chemie, Vrije Universiteit / Amsterdam / NETHERLANDS
  SCM User ID: u20153
   
- ADF 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
+ ADF 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
 
- Temporary files are created in D:\SCMTMP\/kid_0.1012606373
+ Temporary files are created in D:\SCMTMP\/kid_0.1054386659
  Oxygen (DZP)
 
 
@@ -1267,29 +1267,29 @@ End
  Timing Statistics
  =================
   
- Total Used :                     CPU=        0.77      System=        0.08     Elapsed=        1.05
+ Total Used :                     CPU=        0.67      System=        0.11     Elapsed=        1.26
 
  Calls  Section                     ( Mean, Percentage )
  ---------------------------------------------------------------------------------------------------
-     3  ><      ................      0.01    2.04             0.00    0.00             0.01    2.09
-     1  INIT    ................      0.09   12.24             0.00    0.00             0.12   11.39
-     1  GEOMET  ................      0.05    6.12             0.00    0.00             0.08    7.21
-     1  INPUTA  ................      0.02    2.04             0.00    0.00             0.00    0.47
-     1  MAINSY  ................      0.00    0.00             0.02   20.00             0.05    4.46
-     1  SYMFIT  ................      0.00    0.00             0.00    0.00             0.00    0.09
-     1  CORORT  ................      0.00    0.00             0.00    0.00             0.01    0.76
-     1  SYMORB  ................      0.00    0.00             0.00    0.00             0.00    0.28
-     1  CLSMAT  ................      0.02    2.04             0.00    0.00             0.02    1.52
-     1  ORTHON  ................      0.00    0.00             0.02   20.00             0.01    1.33
-     1  GENPT   ................      0.02    2.04             0.00    0.00             0.03    3.13
-     1  PTBAS   ................      0.00    0.00             0.02   20.00             0.01    1.33
-    12  FOCKY   ................      0.03   53.06             0.00   40.00             0.04   45.35
-    12  FOCKTR  ................      0.00    0.00             0.00    0.00             0.00    1.14
-    12  SDIIS   ................      0.01    8.16             0.00    0.00             0.01   11.10
-     1  COREPS  ................      0.03    4.08             0.00    0.00             0.04    3.61
-     1  POPAN   ................      0.02    2.04             0.00    0.00             0.01    1.42
-     1  DEBYE   ................      0.02    2.04             0.00    0.00             0.01    0.76
-     1  EXIT PROCEDURE .........      0.03    4.08             0.00    0.00             0.03    2.56
+     3  ><      ................      0.01    4.65             0.00    0.00             0.01    1.27
+     1  INIT    ................      0.08   11.63             0.03   28.57             0.11    8.98
+     1  GEOMET  ................      0.03    4.65             0.00    0.00             0.07    5.33
+     1  INPUTA  ................      0.00    0.00             0.00    0.00             0.01    0.48
+     1  MAINSY  ................      0.03    4.65             0.00    0.00             0.06    4.61
+     1  SYMFIT  ................      0.00    0.00             0.00    0.00             0.00    0.16
+     1  CORORT  ................      0.00    0.00             0.00    0.00             0.01    0.72
+     1  SYMORB  ................      0.00    0.00             0.00    0.00             0.00    0.24
+     1  CLSMAT  ................      0.02    2.33             0.00    0.00             0.02    1.59
+     1  ORTHON  ................      0.00    0.00             0.00    0.00             0.08    6.20
+     1  GENPT   ................      0.03    4.65             0.00    0.00             0.03    2.31
+     1  PTBAS   ................      0.00    0.00             0.00    0.00             0.01    1.03
+    12  FOCKY   ................      0.03   60.47             0.00   28.57             0.04   39.51
+    12  FOCKTR  ................      0.00    0.00             0.00    0.00             0.00    0.95
+    12  SDIIS   ................      0.00    0.00             0.00   28.57             0.02   19.32
+     1  COREPS  ................      0.02    2.33             0.02   14.29             0.03    2.46
+     1  POPAN   ................      0.00    0.00             0.00    0.00             0.03    2.23
+     1  DEBYE   ................      0.02    2.33             0.00    0.00             0.01    0.64
+     1  EXIT PROCEDURE .........      0.02    2.33             0.00    0.00             0.02    1.99
 
 
  Currently Open Files (EXIT00)
@@ -1302,73 +1302,73 @@ End
 
  ***************************************************************************************************
  (LOGFILE)
- <Apr01-2020> <20:47:41>  DIRAC 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:41>  NORMAL TERMINATION
- <Apr01-2020> <20:47:41>  END
- <Apr01-2020> <20:47:41>  ADF 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:41>  Hydrogen (DZP)
- <Apr01-2020> <20:47:41>  RunType   : CREATE
- <Apr01-2020> <20:47:41>  Net Charge: 0 (Nuclei minus Electrons)
- <Apr01-2020> <20:47:41>  Symmetry  : ATOM
+ <Apr01-2020> <22:59:39>  DIRAC 2019.303  RunTime: Apr01-2020 22:59:39  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:39>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:39>  END
+ <Apr01-2020> <22:59:41>  ADF 2019.303  RunTime: Apr01-2020 22:59:41  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:41>  Hydrogen (DZP)
+ <Apr01-2020> <22:59:41>  RunType   : CREATE
+ <Apr01-2020> <22:59:41>  Net Charge: 0 (Nuclei minus Electrons)
+ <Apr01-2020> <22:59:41>  Symmetry  : ATOM
   Coordinates
     Atom         X           Y           Z   (Angstrom)
     1.H         0.000000    0.000000    0.000000
- <Apr01-2020> <20:47:41>  >>>> CORORT
- <Apr01-2020> <20:47:41>  >>>> CLSMAT
- <Apr01-2020> <20:47:41>  >>>> ORTHON
- <Apr01-2020> <20:47:41>  >>>> GENPT
- <Apr01-2020> <20:47:41>  Block Length=  64
- <Apr01-2020> <20:47:41>  >>>> PTBAS
- <Apr01-2020> <20:47:41>  >>>> CYCLE
- <Apr01-2020> <20:47:41>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:41>      1      0.00000000      0.00000000
- <Apr01-2020> <20:47:41>      2      0.03300193      0.03300193
- <Apr01-2020> <20:47:42>      3      0.00595445      0.00595445    100.0
- <Apr01-2020> <20:47:42>      4      0.00102040      0.00102040      0.0
- <Apr01-2020> <20:47:42>      5      0.00000144      0.00000144      0.0
- <Apr01-2020> <20:47:42>      6      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:42>  SCF converged
- <Apr01-2020> <20:47:42>      7      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:42>  >>>> POPAN
- <Apr01-2020> <20:47:42>  >>>> DEBYE
- <Apr01-2020> <20:47:42>  NORMAL TERMINATION
- <Apr01-2020> <20:47:42>  END
- <Apr01-2020> <20:47:42>  DIRAC 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:42>  NORMAL TERMINATION
- <Apr01-2020> <20:47:42>  END
- <Apr01-2020> <20:47:42>  ADF 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:42>  Oxygen (DZP)
- <Apr01-2020> <20:47:42>  RunType   : CREATE
- <Apr01-2020> <20:47:42>  Net Charge: 0 (Nuclei minus Electrons)
- <Apr01-2020> <20:47:42>  Symmetry  : ATOM
+ <Apr01-2020> <22:59:41>  >>>> CORORT
+ <Apr01-2020> <22:59:41>  >>>> CLSMAT
+ <Apr01-2020> <22:59:41>  >>>> ORTHON
+ <Apr01-2020> <22:59:41>  >>>> GENPT
+ <Apr01-2020> <22:59:41>  Block Length=  64
+ <Apr01-2020> <22:59:41>  >>>> PTBAS
+ <Apr01-2020> <22:59:41>  >>>> CYCLE
+ <Apr01-2020> <22:59:41>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:41>      1      0.00000000      0.00000000
+ <Apr01-2020> <22:59:41>      2      0.03300193      0.03300193
+ <Apr01-2020> <22:59:41>      3      0.00595445      0.00595445    100.0
+ <Apr01-2020> <22:59:41>      4      0.00102040      0.00102040      0.0
+ <Apr01-2020> <22:59:41>      5      0.00000144      0.00000144      0.0
+ <Apr01-2020> <22:59:41>      6      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:41>  SCF converged
+ <Apr01-2020> <22:59:41>      7      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:41>  >>>> POPAN
+ <Apr01-2020> <22:59:41>  >>>> DEBYE
+ <Apr01-2020> <22:59:41>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:41>  END
+ <Apr01-2020> <22:59:42>  DIRAC 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:42>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:42>  END
+ <Apr01-2020> <22:59:42>  ADF 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:42>  Oxygen (DZP)
+ <Apr01-2020> <22:59:42>  RunType   : CREATE
+ <Apr01-2020> <22:59:42>  Net Charge: 0 (Nuclei minus Electrons)
+ <Apr01-2020> <22:59:42>  Symmetry  : ATOM
   Coordinates
     Atom         X           Y           Z   (Angstrom)
     1.O         0.000000    0.000000    0.000000
- <Apr01-2020> <20:47:43>  >>>> CORORT
- <Apr01-2020> <20:47:43>  >>>> CLSMAT
- <Apr01-2020> <20:47:43>  >>>> ORTHON
- <Apr01-2020> <20:47:43>  >>>> GENPT
- <Apr01-2020> <20:47:43>  Block Length=  68
- <Apr01-2020> <20:47:43>  >>>> PTBAS
- <Apr01-2020> <20:47:43>  >>>> CYCLE
- <Apr01-2020> <20:47:43>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:43>      1      0.00000000      0.00000000
- <Apr01-2020> <20:47:43>      2      5.97226838      4.42037532
- <Apr01-2020> <20:47:43>      3      2.82488776      2.02229401    100.0
- <Apr01-2020> <20:47:43>      4      0.81888656      0.45987420    100.0
- <Apr01-2020> <20:47:43>      5      0.89807529      0.54294788    100.0
- <Apr01-2020> <20:47:43>      6      0.01917167      0.01182613     10.9
- <Apr01-2020> <20:47:43>      7      0.00067434      0.00041526      0.0
- <Apr01-2020> <20:47:43>      8      0.00004941      0.00003093      0.0
- <Apr01-2020> <20:47:43>      9      0.00000137      0.00000077      0.0
- <Apr01-2020> <20:47:43>     10      0.00000003      0.00000002      0.0
- <Apr01-2020> <20:47:43>     11      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:43>  SCF converged
- <Apr01-2020> <20:47:43>     12      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:43>  >>>> POPAN
- <Apr01-2020> <20:47:43>  >>>> DEBYE
- <Apr01-2020> <20:47:43>  NORMAL TERMINATION
- <Apr01-2020> <20:47:43>  END
+ <Apr01-2020> <22:59:42>  >>>> CORORT
+ <Apr01-2020> <22:59:42>  >>>> CLSMAT
+ <Apr01-2020> <22:59:42>  >>>> ORTHON
+ <Apr01-2020> <22:59:43>  >>>> GENPT
+ <Apr01-2020> <22:59:43>  Block Length=  68
+ <Apr01-2020> <22:59:43>  >>>> PTBAS
+ <Apr01-2020> <22:59:43>  >>>> CYCLE
+ <Apr01-2020> <22:59:43>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:43>      1      0.00000000      0.00000000
+ <Apr01-2020> <22:59:43>      2      5.97226838      4.42037532
+ <Apr01-2020> <22:59:43>      3      2.82488776      2.02229401    100.0
+ <Apr01-2020> <22:59:43>      4      0.81888656      0.45987420    100.0
+ <Apr01-2020> <22:59:43>      5      0.89807529      0.54294788    100.0
+ <Apr01-2020> <22:59:43>      6      0.01917167      0.01182613     10.9
+ <Apr01-2020> <22:59:43>      7      0.00067434      0.00041526      0.0
+ <Apr01-2020> <22:59:43>      8      0.00004941      0.00003093      0.0
+ <Apr01-2020> <22:59:43>      9      0.00000137      0.00000077      0.0
+ <Apr01-2020> <22:59:43>     10      0.00000003      0.00000002      0.0
+ <Apr01-2020> <22:59:43>     11      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:43>  SCF converged
+ <Apr01-2020> <22:59:43>     12      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:43>  >>>> POPAN
+ <Apr01-2020> <22:59:43>  >>>> DEBYE
+ <Apr01-2020> <22:59:43>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:43>  END
 
 
  Parallel Execution: Process Information
@@ -1436,12 +1436,12 @@ End
  Licensed to: Student project account / Theoretische chemie, Vrije Universiteit / Amsterdam / NETHERLANDS
  SCM User ID: u20153
   
- ADF 2019.303  RunTime: Apr01-2020 20:47:44  Nodes: 1  Procs: 4
+ ADF 2019.303  RunTime: Apr01-2020 22:59:44  Nodes: 1  Procs: 4
 
- Temporary files are created in D:\SCMTMP\/kid_0.1552250215
+ Temporary files are created in D:\SCMTMP\/kid_0.75857327
 
-Communication costs MPI_COMM_WORLD:      1.443 usec per message,   0.0062 usec per 8-byte item
-Communication costs for intra-node:      1.311 usec per message,   0.0066 usec per 8-byte item
+Communication costs MPI_COMM_WORLD:      1.189 usec per message,   0.0038 usec per 8-byte item
+Communication costs for intra-node:      1.186 usec per message,   0.0038 usec per 8-byte item
 
  *** (NO TITLE) ***
 
@@ -1479,11 +1479,11 @@ Communication costs for intra-node:      1.311 usec per message,   0.0066 usec p
  ----------------
  O:
          file : t21.O
-         jobid: ADF 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
+         jobid: ADF 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
          title: Oxygen (DZP)
  H:
          file : t21.H
-         jobid: ADF 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
+         jobid: ADF 2019.303  RunTime: Apr01-2020 22:59:41  Nodes: 1  Procs: 1
          title: Hydrogen (DZP)
 
 
@@ -1822,7 +1822,7 @@ Communication costs for intra-node:      1.311 usec per message,   0.0066 usec p
   SDIIS (wt  0.000):  0.0042 -0.1734  1.1692
  A-DIIS (wt  1.000):  0.1840  0.0000  0.8160
   DIIS coefficients:  0.1840  0.0000  0.8160
- SCF Error: norm([F,P])=      0.125129457719, max([F,P])=      0.046871846775
+ SCF Error: norm([F,P])=      0.125129457720, max([F,P])=      0.046871846775
  orbitals (Q,E):
  ---------------
  A :1...6            ( 2.00   -18.7786)  ( 2.00    -0.9403)  ( 2.00    -0.4896)  ( 2.00    -0.3488)
@@ -1842,7 +1842,7 @@ Communication costs for intra-node:      1.311 usec per message,   0.0066 usec p
   SDIIS (wt  0.966):  0.0092 -0.0424  0.2057  0.8275
  A-DIIS (wt  0.034):  0.0000  0.0000  0.0000  1.0000
   DIIS coefficients:  0.0089 -0.0410  0.1988  0.8333
- SCF Error: norm([F,P])=      0.011418041044, max([F,P])=      0.004325777712
+ SCF Error: norm([F,P])=      0.011418041045, max([F,P])=      0.004325777712
  orbitals (Q,E):
  ---------------
  A :1...6            ( 2.00   -18.8003)  ( 2.00    -0.9373)  ( 2.00    -0.4860)  ( 2.00    -0.3462)
@@ -2001,7 +2001,7 @@ cart. step rms                      0.00321649     0.00666667    T
  Initial density matrix is taken from previous geometry
 
  CYCLE    1
- SCF Error: norm([F,P])=      0.030435836261, max([F,P])=      0.014067947015
+ SCF Error: norm([F,P])=      0.030435836260, max([F,P])=      0.014067947015
  orbitals (Q,E):
  ---------------
  A :1...15           ( 2.00   -18.8050)  ( 2.00    -0.9378)  ( 2.00    -0.4861)  ( 2.00    -0.3492)
@@ -2032,7 +2032,7 @@ cart. step rms                      0.00321649     0.00666667    T
  CYCLE    4
   SDIIS (wt  1.000):  0.2060  0.1310  0.6630
   DIIS coefficients:  0.2060  0.1310  0.6630
- SCF Error: norm([F,P])=      0.000870241940, max([F,P])=      0.000269982421
+ SCF Error: norm([F,P])=      0.000870241967, max([F,P])=      0.000269982420
  orbitals (Q,E):
  ---------------
  A :1...6            ( 2.00   -18.8019)  ( 2.00    -0.9339)  ( 2.00    -0.4826)  ( 2.00    -0.3460)
@@ -2360,9 +2360,7 @@ cart. step rms                      0.00045670     0.00666667    T
                      ( 0.00     0.8422)  ( 0.00     0.8532)  ( 0.00     1.0116)
 
  CYCLE    2
-  SDIIS (wt  0.000):  0.5820  0.4180
- A-DIIS (wt  1.000):  0.0000  1.0000
-  DIIS coefficients:  0.0000  1.0000
+   MIX coefficients:  0.8000  0.2000
  SCF Error: norm([F,P])=      0.000000030132, max([F,P])=      0.000000010047
  orbitals (Q,E):
  ---------------
@@ -2382,34 +2380,34 @@ cart. step rms                      0.00045670     0.00666667    T
                                                 *******************
   
  *** Using FIT density in Focky
-  SDIIS (wt  0.000):  0.2620  0.5290  0.2089
- A-DIIS (wt  1.000):  0.0000  0.0000  1.0000
-  DIIS coefficients:  0.0000  0.0000  1.0000
- SCF Error: norm([F,P])=      0.000000054242, max([F,P])=      0.000000020199
+  SDIIS (wt  0.000): -0.7738  1.7738
+ A-DIIS (wt  1.000):  0.9683  0.0317
+  DIIS coefficients:  0.9683  0.0317
+ SCF Error: norm([F,P])=      0.000000013936, max([F,P])=      0.000000004749
 
  Scaled ZORA Orbital Energies, per Irrep and Spin:
  =================================================
                         Occup              E (au)              E (eV)       Diff (eV) with prev. cycle
                         -----      --------------------        ------       --------------------------
  A
-               1        2.000     -0.18801926353095E+02      -511.626               1.45E-06
-               2        2.000     -0.93440122139985E+00       -25.426               5.16E-07
-               3        2.000     -0.48226699900312E+00       -13.123               4.06E-07
-               4        2.000     -0.34669384075548E+00        -9.434               5.34E-07
-               5        2.000     -0.26593613731297E+00        -7.236               5.47E-07
-               6        0.000     -0.90865696539490E-02        -0.247
-               7        0.000      0.81500873852138E-01         2.218
-               8        0.000      0.36476272990359E+00         9.926
-               9        0.000      0.37707390957154E+00        10.261
-              10        0.000      0.41698772767655E+00        11.347
-              11        0.000      0.49716967730611E+00        13.529
-              12        0.000      0.54389785026426E+00        14.800
-              13        0.000      0.84217672434525E+00        22.917
-              14        0.000      0.85323537829618E+00        23.218
-              15        0.000      0.10115889638118E+01        27.527
+               1        2.000     -0.18801926405971E+02      -511.626              -5.57E-07
+               2        2.000     -0.93440124023810E+00       -25.426              -1.96E-07
+               3        2.000     -0.48226701383806E+00       -13.123              -1.53E-07
+               4        2.000     -0.34669386024273E+00        -9.434              -2.15E-07
+               5        2.000     -0.26593615728084E+00        -7.236              -2.16E-07
+               6        0.000     -0.90865734550824E-02        -0.247
+               7        0.000      0.81500868141798E-01         2.218
+               8        0.000      0.36476272678371E+00         9.926
+               9        0.000      0.37707390595234E+00        10.261
+              10        0.000      0.41698772090458E+00        11.347
+              11        0.000      0.49716966983582E+00        13.529
+              12        0.000      0.54389784754465E+00        14.800
+              13        0.000      0.84217671443877E+00        22.917
+              14        0.000      0.85323537047665E+00        23.218
+              15        0.000      0.10115889482410E+01        27.527
   
- HOMO :        5 A                -0.26593613731297E+00
- LUMO :        6 A                -0.90865696539490E-02
+ HOMO :        5 A                -0.26593615728084E+00
+ LUMO :        6 A                -0.90865734550824E-02
   
 
 
@@ -2419,7 +2417,7 @@ cart. step rms                      0.00045670     0.00666667    T
  Fit test: (difference of exact and fit density, squared integrated, result summed over spins)
          Sum-of-Fragments:                             0.00000000019136
          Orthogonalized Fragments:                     0.00002631724792
-         SCF:                                          0.00010384890885
+         SCF:                                          0.00010384890802
 
 
 
@@ -2563,7 +2561,7 @@ cart. step rms                      0.00045670     0.00666667    T
  --------------------------------------------------------------------------------------------------------------------
     1 O     -0.179783     0.312660  0.231562 -0.163596    -0.289646  0.109567 -0.388328  0.365166  0.424729 -0.075520
     2 H      0.089608     0.010882  0.084983  0.039036    -0.085945  0.053431 -0.024498  0.156979  0.077084 -0.071033
-    3 H      0.090174     0.047320 -0.041176 -0.068992    -0.012017 -0.013614 -0.110866 -0.032014  0.068103  0.044031
+    3 H      0.090175     0.047320 -0.041176 -0.068992    -0.012017 -0.013614 -0.110866 -0.032014  0.068103  0.044031
 
  --------------------------------------- 
  Multipole derived atomic charges (a.u.)
@@ -2575,9 +2573,9 @@ cart. step rms                      0.00045670     0.00666667    T
 
         Atom    Level:     MDC-m        MDC-d        MDC-q
  ---------------------------------------------------------
-     1     O           -0.179783    -0.617874    -0.387037
+     1     O           -0.179783    -0.617875    -0.387037
      2     H            0.089608     0.308947     0.206850
-     3     H            0.090174     0.308928     0.180187
+     3     H            0.090175     0.308928     0.180187
 
  ------------------------------------------------ 
  Average absolute deviations in atomic multipoles
@@ -2618,8 +2616,8 @@ Fit.Dens.     0.0000        1.3301    0.9849   -0.6957         -0.6328    0.1850
  Dipole Moment  ***  (Debye)  ***
  =============
   
- Vector   :         1.33173821      0.98576044     -0.69683039
- Magnitude:         1.79744899
+ Vector   :         1.33173840      0.98576052     -0.69683053
+ Magnitude:         1.79744923
 
  This molecular dipole moment is calculated with analytic integration
 
@@ -2630,7 +2628,7 @@ Fit.Dens.     0.0000        1.3301    0.9849   -0.6957         -0.6328    0.1850
  =========================================
   
       quad-xx        quad-xy        quad-xz        quad-yy        quad-yz        quad-zz
-     -0.63320084     0.25964631    -1.13834442     0.75293169     1.34388869    -0.11973085
+     -0.63320085     0.25964633    -1.13834449     0.75293171     1.34388873    -0.11973086
 
  This molecular quadrupole moment is calculated with analytic integration
 1
@@ -2668,52 +2666,52 @@ on the meaning of the various terms.
                                       --------------------     -----------       ----------      -----------
 
 Pauli Repulsion
-  Kinetic (Delta T^0):                   3.749719795080575        102.0351          2352.98          9844.89
-  Delta V^Pauli Coulomb:                -2.012943225996270        -54.7750         -1263.14         -5284.98
-  Delta V^Pauli LDA-XC:                 -0.462910093068768        -12.5964          -290.48         -1215.37
-  Delta V^Pauli GGA-Exchange:            0.019356161574236          0.5267            12.15            50.82
+  Kinetic (Delta T^0):                   3.749719795080509        102.0351          2352.98          9844.89
+  Delta V^Pauli Coulomb:                -2.012943225996226        -54.7750         -1263.14         -5284.98
+  Delta V^Pauli LDA-XC:                 -0.462910093068761        -12.5964          -290.48         -1215.37
+  Delta V^Pauli GGA-Exchange:            0.019356161574237          0.5267            12.15            50.82
   Delta V^Pauli GGA-Correlation:        -0.004441015121914         -0.1208            -2.79           -11.66
                                       --------------------     -----------       ----------      -----------
-  Total Pauli Repulsion:                 1.288781622467859         35.0695           808.72          3383.70
+  Total Pauli Repulsion:                 1.288781622467845         35.0695           808.72          3383.70
  (Total Pauli Repulsion =
   Delta E^Pauli in BB paper)
 
 Steric Interaction
-  Pauli Repulsion (Delta E^Pauli):       1.288781622467859         35.0695           808.72          3383.70
-  Electrostatic Interaction:            -0.238453794382803         -6.4887          -149.63          -626.06
+  Pauli Repulsion (Delta E^Pauli):       1.288781622467845         35.0695           808.72          3383.70
+  Electrostatic Interaction:            -0.238453794382801         -6.4887          -149.63          -626.06
  (Electrostatic Interaction =
   Delta V_elstat in the BB paper)
                                       --------------------     -----------       ----------      -----------
-  Total Steric Interaction:              1.050327828085056         28.5809           659.09          2757.64
+  Total Steric Interaction:              1.050327828085044         28.5809           659.09          2757.64
  (Total Steric Interaction =
   Delta E^0 in the BB paper)
 
 Orbital Interactions
-  A:                                    -1.562981470702151        -42.5309          -980.79         -4103.61
+  A:                                    -1.562981470931040        -42.5309          -980.79         -4103.61
                                       --------------------     -----------       ----------      -----------
-  Total Orbital Interactions:           -1.564170940565570        -42.5633          -981.53         -4106.73
+  Total Orbital Interactions:           -1.564170940691333        -42.5633          -981.53         -4106.73
 
 Alternative Decomposition Orb.Int.
-  Kinetic:                              -3.279046596508030        -89.2274         -2057.63         -8609.14
-  Coulomb:                               1.719957751496532         46.8024          1079.29          4515.75
-  XC:                                   -0.005082095554072         -0.1383            -3.19           -13.34
+  Kinetic:                              -3.279046163450722        -89.2274         -2057.63         -8609.13
+  Coulomb:                               1.719957378453077         46.8024          1079.29          4515.75
+  XC:                                   -0.005082155693689         -0.1383            -3.19           -13.34
                                       --------------------     -----------       ----------      -----------
-  Total Orbital Interactions:           -1.564170940565570        -42.5633          -981.53         -4106.73
+  Total Orbital Interactions:           -1.564170940691333        -42.5633          -981.53         -4106.73
 
-  Residu (E=Steric+OrbInt+Res):          0.000005422871517          0.0001             0.00             0.01
+  Residu (E=Steric+OrbInt+Res):          0.000005422864880          0.0001             0.00             0.01
 
-Total Bonding Energy:                   -0.513837689608997        -13.9822          -322.44         -1349.08
+Total Bonding Energy:                   -0.513837689741409        -13.9822          -322.44         -1349.08
 
 
 Summary of Bonding Energy (energy terms are taken from the energy decomposition above)
 ======================================================================================
 
-  Electrostatic Energy:                 -0.238453794382803         -6.4887          -149.63          -626.06
-  Kinetic Energy:                        0.470673198572545         12.8077           295.35          1235.75
-  Coulomb (Steric+OrbInt) Energy:       -0.292980051628221         -7.9724          -183.85          -769.22
-  XC Energy:                            -0.453077042170518        -12.3289          -284.31         -1189.55
+  Electrostatic Energy:                 -0.238453794382801         -6.4887          -149.63          -626.06
+  Kinetic Energy:                        0.470673631629787         12.8077           295.35          1235.75
+  Coulomb (Steric+OrbInt) Energy:       -0.292980424678269         -7.9724          -183.85          -769.22
+  XC Energy:                            -0.453077102310127        -12.3289          -284.31         -1189.55
                                       --------------------     -----------       ----------      -----------
-  Total Bonding Energy:                 -0.513837689608997        -13.9822          -322.44         -1349.08
+  Total Bonding Energy:                 -0.513837689741409        -13.9822          -322.44         -1349.08
 
 
 Correction terms (incorporated in energies above; only for test purposes):
@@ -2721,7 +2719,7 @@ Correction terms (incorporated in energies above; only for test purposes):
 1. Indication of fit-quality: 1st-order fit-correction used in the energy (hartree):   0.0001390990
 2. Electrostatic (Fit correction):   0.0000000000
 
-Scaled ZORA energy correction, not included in bonding energy (hartree):           -0.0000001239
+Scaled ZORA energy correction, not included in bonding energy (hartree):           -0.0000001238
  NOTE: This scaled ZORA energy correction should only be used to compare two calculations
  in which the only difference in the calculation is the electron configuration.
  Then the difference in energy of this term should be added to the difference in energy of
@@ -2740,12 +2738,12 @@ The energy terms below are (parts of) the Total Energy of the fragments from whi
  is built.
 
 Exchange and Correlation
-  Exchange LDA:                         -7.629806443825187       -207.6176         -4787.78        -20032.05
+  Exchange LDA:                         -7.629806443825188       -207.6176         -4787.78        -20032.05
   Exchange GGA:                         -0.859362599578314        -23.3844          -539.26         -2256.26
   Correlation LDA:                      -0.625003928262174        -17.0072          -392.20         -1640.95
   Correlation GGA:                       0.353542643795854          9.6204           221.85           928.23
                                       --------------------     -----------       ----------      -----------
-  Total XC:                             -8.760630327869819       -238.3889         -5497.38        -23001.03
+  Total XC:                             -8.760630327869821       -238.3889         -5497.38        -23001.03
 
 
 
@@ -2755,9 +2753,9 @@ Exchange and Correlation
   
          Atom                  Potential
          ----                  ---------
-     1)   O                  22.34277373
+     1)   O                  22.34277384
      2)   H                   0.98277621
-     3)   H                   0.98316647
+     3)   H                   0.98316646
 
 =============================================================
 === CALCULATE ANALYTICAL SECOND DERIVATIVES OF THE ENERGY ===
@@ -2840,25 +2838,25 @@ Exchange and Correlation
 
 NUCLEUS  COORD.    ITERATION   ACCURACY
 -------  ------    ---------   --------
-    1       1          1       0.33860756D-01
-    1       1          2       0.27047690D-02
-    1       1          3       0.49068742D-03
-    1       1          4       0.59009160D-04
-    1       1          5       0.81293550D-05
+    1       1          1       0.33860759D-01
+    1       1          2       0.27047686D-02
+    1       1          3       0.49068733D-03
+    1       1          4       0.59009152D-04
+    1       1          5       0.81293506D-05
 *** CPKS converged.
 ----------------------------------------------
-    1       2          1       0.25609582D-01
-    1       2          2       0.47142041D-02
-    1       2          3       0.46509553D-03
-    1       2          4       0.78129120D-04
-    1       2          5       0.55874233D-05
+    1       2          1       0.25609584D-01
+    1       2          2       0.47142037D-02
+    1       2          3       0.46509549D-03
+    1       2          4       0.78129109D-04
+    1       2          5       0.55874295D-05
 *** CPKS converged.
 ----------------------------------------------
-    1       3          1       0.18690347D-01
-    1       3          2       0.39888358D-02
-    1       3          3       0.73092597D-03
-    1       3          4       0.57321826D-04
-    1       3          5       0.65965690D-05
+    1       3          1       0.18690348D-01
+    1       3          2       0.39888356D-02
+    1       3          3       0.73092579D-03
+    1       3          4       0.57321807D-04
+    1       3          5       0.65965626D-05
 *** CPKS converged.
 ----------------------------------------------
 
@@ -2872,25 +2870,25 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
 
 NUCLEUS  COORD.    ITERATION   ACCURACY
 -------  ------    ---------   --------
-    2       1          1       0.11394516D-01
-    2       1          2       0.13684324D-02
-    2       1          3       0.27430731D-03
-    2       1          4       0.21618057D-04
-    2       1          5       0.34305973D-05
+    2       1          1       0.11394518D-01
+    2       1          2       0.13684326D-02
+    2       1          3       0.27430733D-03
+    2       1          4       0.21618056D-04
+    2       1          5       0.34305942D-05
 *** CPKS converged.
 ----------------------------------------------
-    2       2          1       0.31516275D-01
-    2       2          2       0.40891365D-02
-    2       2          3       0.52774531D-03
-    2       2          4       0.95882178D-04
-    2       2          5       0.80543930D-05
+    2       2          1       0.31516277D-01
+    2       2          2       0.40891362D-02
+    2       2          3       0.52774523D-03
+    2       2          4       0.95882160D-04
+    2       2          5       0.80543916D-05
 *** CPKS converged.
 ----------------------------------------------
-    2       3          1       0.74021212D-02
-    2       3          2       0.18977283D-02
-    2       3          3       0.31828779D-03
+    2       3          1       0.74021209D-02
+    2       3          2       0.18977282D-02
+    2       3          3       0.31828777D-03
     2       3          4       0.40912901D-04
-    2       3          5       0.32595154D-05
+    2       3          5       0.32595143D-05
 *** CPKS converged.
 ----------------------------------------------
 
@@ -2904,25 +2902,25 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
 
 NUCLEUS  COORD.    ITERATION   ACCURACY
 -------  ------    ---------   --------
-    3       1          1       0.22369780D-01
-    3       1          2       0.27079023D-02
-    3       1          3       0.30949355D-03
-    3       1          4       0.60930648D-04
-    3       1          5       0.47052984D-05
+    3       1          1       0.22369781D-01
+    3       1          2       0.27079026D-02
+    3       1          3       0.30949359D-03
+    3       1          4       0.60930640D-04
+    3       1          5       0.47052972D-05
 *** CPKS converged.
 ----------------------------------------------
-    3       2          1       0.64493302D-02
-    3       2          2       0.19519724D-02
-    3       2          3       0.21828184D-03
-    3       2          4       0.33678952D-04
-    3       2          5       0.38819608D-05
+    3       2          1       0.64493299D-02
+    3       2          2       0.19519725D-02
+    3       2          3       0.21828185D-03
+    3       2          4       0.33678941D-04
+    3       2          5       0.38819612D-05
 *** CPKS converged.
 ----------------------------------------------
-    3       3          1       0.25050481D-01
-    3       3          2       0.32300259D-02
-    3       3          3       0.45661690D-03
-    3       3          4       0.74024804D-04
-    3       3          5       0.69987939D-05
+    3       3          1       0.25050483D-01
+    3       3          2       0.32300257D-02
+    3       3          3       0.45661685D-03
+    3       3          4       0.74024792D-04
+    3       3          5       0.69987924D-05
 *** CPKS converged.
 ----------------------------------------------
 
@@ -2969,11 +2967,11 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
 
              1           2           3
 
-         1603.0408   3620.2873   3722.0552
+         1603.0408   3620.2874   3722.0553
         ----------  ----------  ----------
-   1   -0.79458816  0.56182237  0.23018534
-   2   -0.18562767  0.13617252 -0.97313895
-   3    0.57807614  0.81597345  0.00391130
+   1   -0.79458814  0.56182237  0.23018537
+   2   -0.18562767  0.13617258 -0.97313894
+   3    0.57807616  0.81597344  0.00391134
 
 
  Intensities
@@ -2982,9 +2980,9 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
                Frequency       Dipole Strength        Absorption Intensity (degeneracy not counted)
                  cm-1           1e-40 esu2 cm2          km/mole
               ----------          ----------          ----------
-             1603.040809          194.118680           77.999170
-             3620.287320            5.993029            5.438354
-             3722.055165           85.488366           79.756831
+             1603.040843          194.118743           77.999197
+             3620.287400            5.993041            5.438365
+             3722.055265           85.488384           79.756850
 
 
 
@@ -2992,9 +2990,9 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
  ===================      0.554543 eV
                                                    hartree              eV         kcal/mol           kJ/mol
                                       --------------------     -----------       ----------      -----------
-              Bond Energy:              -0.513837689608997        -13.9822          -322.44         -1349.08
-              Zero-Point Energy:         0.020379083196673          0.5545            12.79            53.51
-              Enthalpy (T=0K):          -0.493458606412324        -13.4277          -309.65         -1295.58
+              Bond Energy:              -0.513837689741409        -13.9822          -322.44         -1349.08
+              Zero-Point Energy:         0.020379083684367          0.5545            12.79            53.51
+              Enthalpy (T=0K):          -0.493458606057043        -13.4277          -309.65         -1295.58
 
 
 
@@ -3008,9 +3006,9 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
 
                       1603.041                      3620.287                      3722.055
               ------------------------      ------------------------      ------------------------
-    1.O         -0.053  -0.039   0.028        -0.037  -0.027   0.019        -0.015   0.052   0.044
-    2.H          0.509  -0.005  -0.488         0.165   0.653   0.223        -0.203  -0.647  -0.182
-    3.H          0.326   0.623   0.051         0.415  -0.219  -0.523         0.445  -0.172  -0.524
+    1.O         -0.053  -0.039   0.028        -0.037  -0.027   0.019         0.015  -0.052  -0.044
+    2.H          0.509  -0.005  -0.488         0.165   0.653   0.223         0.203   0.647   0.182
+    3.H          0.326   0.623   0.051         0.415  -0.219  -0.523        -0.445   0.172   0.524
 
 
 
@@ -3024,9 +3022,9 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
                Frequency       Dipole Strength        Absorption Intensity (degeneracy not counted)
                  cm-1           1e-40 esu2 cm2          km/mole
               ----------          ----------          ----------
-             1603.040809          194.118680           77.999170
-             3620.287320            5.993029            5.438354
-             3722.055165           85.488366           79.756831
+             1603.040843          194.118743           77.999197
+             3620.287400            5.993041            5.438365
+             3722.055265           85.488384           79.756850
 
 
 
@@ -3070,12 +3068,12 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
               Summary of energy terms
                                                    hartree              eV         kcal/mol           kJ/mol
                                       --------------------     -----------       ----------      -----------
-              Bond Energy:              -0.513837689608997        -13.9822          -322.44         -1349.08
-              Internal Energy:           0.023214834013744          0.6317            14.57            60.95
+              Bond Energy:              -0.513837689741409        -13.9822          -322.44         -1349.08
+              Internal Energy:           0.023214834500986          0.6317            14.57            60.95
               pV/n = RT:                 0.000944186013486          0.0257             0.59             2.48
-              Enthalpy H:               -0.489678669581768        -13.3248          -307.28         -1285.65
-              -T*S:                     -0.021471728334557         -0.5843           -13.47           -56.37
-              Gibbs free energy:        -0.511150397916325        -13.9091          -320.75         -1342.03
+              Enthalpy H:               -0.489678669226938        -13.3248          -307.28         -1285.65
+              -T*S:                     -0.021471728334039         -0.5843           -13.47           -56.37
+              Gibbs free energy:        -0.511150397560977        -13.9091          -320.75         -1342.03
  
 
  ***************************************************************************************************
@@ -3105,40 +3103,40 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
  Timing Statistics
  =================
   
- Total Used :                     CPU=        8.17      System=        0.83     Elapsed=       10.32
+ Total Used :                     CPU=        8.08      System=        1.02     Elapsed=       18.66
 
  Calls  Section                     ( Mean, Percentage )
  ---------------------------------------------------------------------------------------------------
-     3  ><      ................      0.01    0.19             0.00    0.00             0.01    0.15
-     1  INIT    ................      0.58    7.07             0.03    3.77             0.63    6.11
-     1  GEOMET  ................      0.06    0.76             0.05    5.66             0.12    1.18
-     1  FRAGM   ................      0.03    0.38             0.00    0.00             0.06    0.58
-     1  INPUTA  ................      0.00    0.00             0.00    0.00             0.00    0.03
-     1  ATDEN   ................      0.02    0.19             0.00    0.00             0.01    0.10
-     4  MAINSY  ................      0.03    1.34             0.02    7.55             0.14    5.28
-     4  SYMFIT  ................      0.01    0.38             0.00    0.00             0.00    0.17
-     4  CORORT  ................      0.00    0.00             0.00    1.89             0.01    0.34
-     4  SYMORB  ................      0.00    0.19             0.00    1.89             0.00    0.17
-     4  CLSMAT  ................      0.02    0.76             0.00    1.89             0.02    0.76
-     4  ORTHON  ................      0.01    0.38             0.00    1.89             0.01    0.52
-     4  GENPT   ................      0.04    1.91             0.01    5.66             0.07    2.56
-     4  PTBAS   ................      0.02    1.15             0.01    3.77             0.04    1.71
-    26  FOCKY   ................      0.07   22.75             0.00   15.09             0.09   21.54
-    26  FOCKTR  ................      0.00    1.34             0.00    0.00             0.00    0.86
-    26  SDIIS   ................      0.00    1.53             0.00    5.66             0.01    3.47
-     4  TOTEN   ................      0.27   13.00             0.01    3.77             0.29   11.10
-     4  POPAN   ................      0.01    0.57             0.00    0.00             0.01    0.56
-     4  DEBYE   ................      0.01    0.38             0.00    0.00             0.01    0.52
-     4  INPUTE  ................      0.00    0.00             0.00    0.00             0.00    0.04
-     4  SYMORE  ................      0.00    0.00             0.00    0.00             0.00    0.07
-     7  ELNRGY  ................      0.04    3.25             0.00    0.00             0.04    2.65
-     3  ENGRAD  ................      0.00    0.00             0.00    0.00             0.00    0.05
-     1  COREPS  ................      0.06    0.76             0.00    0.00             0.07    0.65
-     1  METS    ................      0.00    0.00             0.00    0.00             0.01    0.10
-     1  CETS    ................      0.02    0.19             0.00    0.00             0.01    0.09
-     1  POPUL   ................      0.00    0.00             0.00    0.00             0.02    0.17
-     1  ENHESS  ................      3.39   41.49             0.33   39.62             3.94   38.21
-     1  EXIT PROCEDURE .........      0.00    0.00             0.02    1.89             0.02    0.24
+     3  ><      ................      0.00    0.00             0.00    0.00             0.01    0.09
+     1  INIT    ................      0.50    6.19             0.02    1.54             0.57    3.06
+     1  GEOMET  ................      0.06    0.77             0.02    1.54             0.32    1.73
+     1  FRAGM   ................      0.00    0.00             0.03    3.08             0.11    0.59
+     1  INPUTA  ................      0.00    0.00             0.00    0.00             0.00    0.01
+     1  ATDEN   ................      0.02    0.19             0.00    0.00             0.01    0.04
+     4  MAINSY  ................      0.05    2.32             0.02    6.15             0.28    5.94
+     4  SYMFIT  ................      0.00    0.00             0.00    0.00             0.01    0.20
+     4  CORORT  ................      0.01    0.39             0.00    0.00             0.01    0.19
+     4  SYMORB  ................      0.00    0.00             0.00    0.00             0.01    0.16
+     4  CLSMAT  ................      0.02    0.77             0.00    0.00             0.02    0.46
+     4  ORTHON  ................      0.02    0.77             0.00    0.00             0.06    1.20
+     4  GENPT   ................      0.03    1.35             0.01    3.08             0.08    1.81
+     4  PTBAS   ................      0.03    1.35             0.00    0.00             0.05    1.09
+    26  FOCKY   ................      0.06   18.76             0.01   13.85             0.07   10.05
+    26  FOCKTR  ................      0.00    0.97             0.00    1.54             0.00    0.39
+    26  SDIIS   ................      0.00    1.16             0.00    6.15             0.02    2.15
+     4  TOTEN   ................      0.23   11.22             0.01    3.08             0.37    7.98
+     4  POPAN   ................      0.00    0.19             0.00    1.54             0.03    0.68
+     4  DEBYE   ................      0.00    0.19             0.00    1.54             0.03    0.69
+     4  INPUTE  ................      0.00    0.00             0.00    0.00             0.03    0.55
+     4  SYMORE  ................      0.00    0.19             0.00    0.00             0.01    0.17
+     7  ELNRGY  ................      0.02    2.13             0.00    1.54             0.05    2.02
+     3  ENGRAD  ................      0.00    0.00             0.01    1.54             0.01    0.11
+     1  COREPS  ................      0.09    1.16             0.00    0.00             0.09    0.48
+     1  METS    ................      0.00    0.00             0.02    1.54             0.07    0.35
+     1  CETS    ................      0.00    0.00             0.00    0.00             0.02    0.10
+     1  POPUL   ................      0.02    0.19             0.02    1.54             0.02    0.13
+     1  ENHESS  ................      4.00   49.52             0.52   50.77            10.72   57.44
+     1  EXIT PROCEDURE .........      0.02    0.19             0.00    0.00             0.03    0.17
 
 
  Currently Open Files (EXIT00)
@@ -3151,214 +3149,214 @@ NUCLEUS  COORD.    ITERATION   ACCURACY
 
  ***************************************************************************************************
  (LOGFILE)
- <Apr01-2020> <20:47:41>  DIRAC 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:41>  NORMAL TERMINATION
- <Apr01-2020> <20:47:41>  END
- <Apr01-2020> <20:47:41>  ADF 2019.303  RunTime: Apr01-2020 20:47:41  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:41>  Hydrogen (DZP)
- <Apr01-2020> <20:47:41>  RunType   : CREATE
- <Apr01-2020> <20:47:41>  Net Charge: 0 (Nuclei minus Electrons)
- <Apr01-2020> <20:47:41>  Symmetry  : ATOM
+ <Apr01-2020> <22:59:39>  DIRAC 2019.303  RunTime: Apr01-2020 22:59:39  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:39>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:39>  END
+ <Apr01-2020> <22:59:41>  ADF 2019.303  RunTime: Apr01-2020 22:59:41  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:41>  Hydrogen (DZP)
+ <Apr01-2020> <22:59:41>  RunType   : CREATE
+ <Apr01-2020> <22:59:41>  Net Charge: 0 (Nuclei minus Electrons)
+ <Apr01-2020> <22:59:41>  Symmetry  : ATOM
   Coordinates
     Atom         X           Y           Z   (Angstrom)
     1.H         0.000000    0.000000    0.000000
- <Apr01-2020> <20:47:41>  >>>> CORORT
- <Apr01-2020> <20:47:41>  >>>> CLSMAT
- <Apr01-2020> <20:47:41>  >>>> ORTHON
- <Apr01-2020> <20:47:41>  >>>> GENPT
- <Apr01-2020> <20:47:41>  Block Length=  64
- <Apr01-2020> <20:47:41>  >>>> PTBAS
- <Apr01-2020> <20:47:41>  >>>> CYCLE
- <Apr01-2020> <20:47:41>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:41>      1      0.00000000      0.00000000
- <Apr01-2020> <20:47:41>      2      0.03300193      0.03300193
- <Apr01-2020> <20:47:42>      3      0.00595445      0.00595445    100.0
- <Apr01-2020> <20:47:42>      4      0.00102040      0.00102040      0.0
- <Apr01-2020> <20:47:42>      5      0.00000144      0.00000144      0.0
- <Apr01-2020> <20:47:42>      6      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:42>  SCF converged
- <Apr01-2020> <20:47:42>      7      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:42>  >>>> POPAN
- <Apr01-2020> <20:47:42>  >>>> DEBYE
- <Apr01-2020> <20:47:42>  NORMAL TERMINATION
- <Apr01-2020> <20:47:42>  END
- <Apr01-2020> <20:47:42>  DIRAC 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:42>  NORMAL TERMINATION
- <Apr01-2020> <20:47:42>  END
- <Apr01-2020> <20:47:42>  ADF 2019.303  RunTime: Apr01-2020 20:47:42  Nodes: 1  Procs: 1
- <Apr01-2020> <20:47:42>  Oxygen (DZP)
- <Apr01-2020> <20:47:42>  RunType   : CREATE
- <Apr01-2020> <20:47:42>  Net Charge: 0 (Nuclei minus Electrons)
- <Apr01-2020> <20:47:42>  Symmetry  : ATOM
+ <Apr01-2020> <22:59:41>  >>>> CORORT
+ <Apr01-2020> <22:59:41>  >>>> CLSMAT
+ <Apr01-2020> <22:59:41>  >>>> ORTHON
+ <Apr01-2020> <22:59:41>  >>>> GENPT
+ <Apr01-2020> <22:59:41>  Block Length=  64
+ <Apr01-2020> <22:59:41>  >>>> PTBAS
+ <Apr01-2020> <22:59:41>  >>>> CYCLE
+ <Apr01-2020> <22:59:41>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:41>      1      0.00000000      0.00000000
+ <Apr01-2020> <22:59:41>      2      0.03300193      0.03300193
+ <Apr01-2020> <22:59:41>      3      0.00595445      0.00595445    100.0
+ <Apr01-2020> <22:59:41>      4      0.00102040      0.00102040      0.0
+ <Apr01-2020> <22:59:41>      5      0.00000144      0.00000144      0.0
+ <Apr01-2020> <22:59:41>      6      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:41>  SCF converged
+ <Apr01-2020> <22:59:41>      7      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:41>  >>>> POPAN
+ <Apr01-2020> <22:59:41>  >>>> DEBYE
+ <Apr01-2020> <22:59:41>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:41>  END
+ <Apr01-2020> <22:59:42>  DIRAC 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:42>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:42>  END
+ <Apr01-2020> <22:59:42>  ADF 2019.303  RunTime: Apr01-2020 22:59:42  Nodes: 1  Procs: 1
+ <Apr01-2020> <22:59:42>  Oxygen (DZP)
+ <Apr01-2020> <22:59:42>  RunType   : CREATE
+ <Apr01-2020> <22:59:42>  Net Charge: 0 (Nuclei minus Electrons)
+ <Apr01-2020> <22:59:42>  Symmetry  : ATOM
   Coordinates
     Atom         X           Y           Z   (Angstrom)
     1.O         0.000000    0.000000    0.000000
- <Apr01-2020> <20:47:43>  >>>> CORORT
- <Apr01-2020> <20:47:43>  >>>> CLSMAT
- <Apr01-2020> <20:47:43>  >>>> ORTHON
- <Apr01-2020> <20:47:43>  >>>> GENPT
- <Apr01-2020> <20:47:43>  Block Length=  68
- <Apr01-2020> <20:47:43>  >>>> PTBAS
- <Apr01-2020> <20:47:43>  >>>> CYCLE
- <Apr01-2020> <20:47:43>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:43>      1      0.00000000      0.00000000
- <Apr01-2020> <20:47:43>      2      5.97226838      4.42037532
- <Apr01-2020> <20:47:43>      3      2.82488776      2.02229401    100.0
- <Apr01-2020> <20:47:43>      4      0.81888656      0.45987420    100.0
- <Apr01-2020> <20:47:43>      5      0.89807529      0.54294788    100.0
- <Apr01-2020> <20:47:43>      6      0.01917167      0.01182613     10.9
- <Apr01-2020> <20:47:43>      7      0.00067434      0.00041526      0.0
- <Apr01-2020> <20:47:43>      8      0.00004941      0.00003093      0.0
- <Apr01-2020> <20:47:43>      9      0.00000137      0.00000077      0.0
- <Apr01-2020> <20:47:43>     10      0.00000003      0.00000002      0.0
- <Apr01-2020> <20:47:43>     11      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:43>  SCF converged
- <Apr01-2020> <20:47:43>     12      0.00000000      0.00000000      0.0
- <Apr01-2020> <20:47:43>  >>>> POPAN
- <Apr01-2020> <20:47:43>  >>>> DEBYE
- <Apr01-2020> <20:47:43>  NORMAL TERMINATION
- <Apr01-2020> <20:47:43>  END
- <Apr01-2020> <20:47:44>  ADF 2019.303  RunTime: Apr01-2020 20:47:44  Nodes: 1  Procs: 4
- <Apr01-2020> <20:47:44>  *** (NO TITLE) ***
- <Apr01-2020> <20:47:44>  RunType   : GEOMETRY OPTIMIZATION
- <Apr01-2020> <20:47:44>  Net Charge: 0 (Nuclei minus Electrons)
- <Apr01-2020> <20:47:44>  Symmetry  : NOSYM
- <Apr01-2020> <20:47:44>  >>>> FRAGM
+ <Apr01-2020> <22:59:42>  >>>> CORORT
+ <Apr01-2020> <22:59:42>  >>>> CLSMAT
+ <Apr01-2020> <22:59:42>  >>>> ORTHON
+ <Apr01-2020> <22:59:43>  >>>> GENPT
+ <Apr01-2020> <22:59:43>  Block Length=  68
+ <Apr01-2020> <22:59:43>  >>>> PTBAS
+ <Apr01-2020> <22:59:43>  >>>> CYCLE
+ <Apr01-2020> <22:59:43>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:43>      1      0.00000000      0.00000000
+ <Apr01-2020> <22:59:43>      2      5.97226838      4.42037532
+ <Apr01-2020> <22:59:43>      3      2.82488776      2.02229401    100.0
+ <Apr01-2020> <22:59:43>      4      0.81888656      0.45987420    100.0
+ <Apr01-2020> <22:59:43>      5      0.89807529      0.54294788    100.0
+ <Apr01-2020> <22:59:43>      6      0.01917167      0.01182613     10.9
+ <Apr01-2020> <22:59:43>      7      0.00067434      0.00041526      0.0
+ <Apr01-2020> <22:59:43>      8      0.00004941      0.00003093      0.0
+ <Apr01-2020> <22:59:43>      9      0.00000137      0.00000077      0.0
+ <Apr01-2020> <22:59:43>     10      0.00000003      0.00000002      0.0
+ <Apr01-2020> <22:59:43>     11      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:43>  SCF converged
+ <Apr01-2020> <22:59:43>     12      0.00000000      0.00000000      0.0
+ <Apr01-2020> <22:59:43>  >>>> POPAN
+ <Apr01-2020> <22:59:43>  >>>> DEBYE
+ <Apr01-2020> <22:59:43>  NORMAL TERMINATION
+ <Apr01-2020> <22:59:43>  END
+ <Apr01-2020> <22:59:44>  ADF 2019.303  RunTime: Apr01-2020 22:59:44  Nodes: 1  Procs: 4
+ <Apr01-2020> <22:59:45>  *** (NO TITLE) ***
+ <Apr01-2020> <22:59:45>  RunType   : GEOMETRY OPTIMIZATION
+ <Apr01-2020> <22:59:45>  Net Charge: 0 (Nuclei minus Electrons)
+ <Apr01-2020> <22:59:45>  Symmetry  : NOSYM
+ <Apr01-2020> <22:59:45>  >>>> FRAGM
   Coordinates in Geometry Cycle 1
     Atom         X           Y           Z   (Angstrom)
     1.O         0.000000    0.000000    0.000000
     2.H         0.277400    0.892900    0.254400
     3.H         0.606800   -0.238300   -0.716900
- <Apr01-2020> <20:47:45>  >>>> CORORT
- <Apr01-2020> <20:47:45>  >>>> CLSMAT
- <Apr01-2020> <20:47:45>  >>>> ORTHON
- <Apr01-2020> <20:47:45>  >>>> GENPT
- <Apr01-2020> <20:47:45>  Block Length= 128
- <Apr01-2020> <20:47:45>  >>>> PTBAS
- <Apr01-2020> <20:47:45>  >>>> CYCLE
- <Apr01-2020> <20:47:45>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:45>      1      2.19119985      1.13995089
- <Apr01-2020> <20:47:45>      2      0.76762134      0.31396300    100.0
- <Apr01-2020> <20:47:45>      3      0.12512946      0.04687185    100.0
- <Apr01-2020> <20:47:45>      4      0.05695975      0.02187694     21.1
- <Apr01-2020> <20:47:45>      5      0.01141804      0.00432578      3.4
- <Apr01-2020> <20:47:45>      6      0.00112579      0.00041647      0.0
- <Apr01-2020> <20:47:45>      7      0.00007972      0.00002786      0.0
- <Apr01-2020> <20:47:46>      8      0.00000181      0.00000066      0.0
- <Apr01-2020> <20:47:46>  SCF converged
- <Apr01-2020> <20:47:46>      9      0.00000021      0.00000006      0.0
- <Apr01-2020> <20:47:46>  >>>> TOTEN
- <Apr01-2020> <20:47:46>  >>>> POPAN
- <Apr01-2020> <20:47:46>  >>>> DEBYE
- <Apr01-2020> <20:47:46>  >>>> ENGRAD
- <Apr01-2020> <20:47:46>  current energy                               -0.51376088 Hartree
- <Apr01-2020> <20:47:46>  energy change                      -0.51376088     0.00100000    F
- <Apr01-2020> <20:47:46>  constrained gradient max            0.01293659     0.00100000    F
- <Apr01-2020> <20:47:46>  constrained gradient rms            0.00851907     0.00066667    F
- <Apr01-2020> <20:47:46>  gradient max                        0.01293659
- <Apr01-2020> <20:47:46>  gradient rms                        0.00851907
- <Apr01-2020> <20:47:46>  cart. step max                      0.00542526     0.01000000    T
- <Apr01-2020> <20:47:46>  cart. step rms                      0.00321649     0.00666667    T
+ <Apr01-2020> <22:59:46>  >>>> CORORT
+ <Apr01-2020> <22:59:46>  >>>> CLSMAT
+ <Apr01-2020> <22:59:46>  >>>> ORTHON
+ <Apr01-2020> <22:59:46>  >>>> GENPT
+ <Apr01-2020> <22:59:46>  Block Length= 128
+ <Apr01-2020> <22:59:46>  >>>> PTBAS
+ <Apr01-2020> <22:59:46>  >>>> CYCLE
+ <Apr01-2020> <22:59:46>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:46>      1      2.19119985      1.13995089
+ <Apr01-2020> <22:59:46>      2      0.76762134      0.31396300    100.0
+ <Apr01-2020> <22:59:46>      3      0.12512946      0.04687185    100.0
+ <Apr01-2020> <22:59:47>      4      0.05695975      0.02187694     21.1
+ <Apr01-2020> <22:59:47>      5      0.01141804      0.00432578      3.4
+ <Apr01-2020> <22:59:47>      6      0.00112579      0.00041647      0.0
+ <Apr01-2020> <22:59:47>      7      0.00007972      0.00002786      0.0
+ <Apr01-2020> <22:59:47>      8      0.00000181      0.00000066      0.0
+ <Apr01-2020> <22:59:47>  SCF converged
+ <Apr01-2020> <22:59:47>      9      0.00000021      0.00000006      0.0
+ <Apr01-2020> <22:59:47>  >>>> TOTEN
+ <Apr01-2020> <22:59:47>  >>>> POPAN
+ <Apr01-2020> <22:59:48>  >>>> DEBYE
+ <Apr01-2020> <22:59:48>  >>>> ENGRAD
+ <Apr01-2020> <22:59:48>  current energy                               -0.51376088 Hartree
+ <Apr01-2020> <22:59:48>  energy change                      -0.51376088     0.00100000    F
+ <Apr01-2020> <22:59:48>  constrained gradient max            0.01293659     0.00100000    F
+ <Apr01-2020> <22:59:48>  constrained gradient rms            0.00851907     0.00066667    F
+ <Apr01-2020> <22:59:48>  gradient max                        0.01293659
+ <Apr01-2020> <22:59:48>  gradient rms                        0.00851907
+ <Apr01-2020> <22:59:48>  cart. step max                      0.00542526     0.01000000    T
+ <Apr01-2020> <22:59:48>  cart. step rms                      0.00321649     0.00666667    T
   Coordinates in Geometry Cycle 2
     Atom         X           Y           Z   (Angstrom)
     1.O        -0.003240   -0.002434    0.001674
     2.H         0.277808    0.898325    0.257163
     3.H         0.609632   -0.241291   -0.721337
- <Apr01-2020> <20:47:46>  >>>> CORORT
- <Apr01-2020> <20:47:46>  >>>> CLSMAT
- <Apr01-2020> <20:47:46>  >>>> ORTHON
- <Apr01-2020> <20:47:46>  >>>> GENPT
- <Apr01-2020> <20:47:46>  Block Length= 128
- <Apr01-2020> <20:47:46>  >>>> PTBAS
- <Apr01-2020> <20:47:46>  >>>> CYCLE
- <Apr01-2020> <20:47:47>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:47>      1      0.03043584      0.01406795
- <Apr01-2020> <20:47:47>      2      0.00490154      0.00145858    100.0
- <Apr01-2020> <20:47:47>      3      0.00744115      0.00290790    100.0
- <Apr01-2020> <20:47:47>      4      0.00087024      0.00026998      0.0
- <Apr01-2020> <20:47:47>      5      0.00018248      0.00006751      0.0
- <Apr01-2020> <20:47:47>      6      0.00000189      0.00000066      0.0
- <Apr01-2020> <20:47:47>  SCF converged
- <Apr01-2020> <20:47:47>      7      0.00000053      0.00000017      0.0
- <Apr01-2020> <20:47:47>  >>>> TOTEN
- <Apr01-2020> <20:47:47>  >>>> POPAN
- <Apr01-2020> <20:47:47>  >>>> DEBYE
- <Apr01-2020> <20:47:47>  >>>> ENGRAD
- <Apr01-2020> <20:47:48>  current energy                               -0.51383407 Hartree
- <Apr01-2020> <20:47:48>  energy change                      -0.00007319     0.00100000    T
- <Apr01-2020> <20:47:48>  constrained gradient max            0.00159026     0.00100000    F
- <Apr01-2020> <20:47:48>  constrained gradient rms            0.00097718     0.00066667    F
- <Apr01-2020> <20:47:48>  gradient max                        0.00159026
- <Apr01-2020> <20:47:48>  gradient rms                        0.00097718
- <Apr01-2020> <20:47:48>  cart. step max                      0.00187821     0.01000000    T
- <Apr01-2020> <20:47:48>  cart. step rms                      0.00110072     0.00666667    T
+ <Apr01-2020> <22:59:48>  >>>> CORORT
+ <Apr01-2020> <22:59:48>  >>>> CLSMAT
+ <Apr01-2020> <22:59:48>  >>>> ORTHON
+ <Apr01-2020> <22:59:48>  >>>> GENPT
+ <Apr01-2020> <22:59:48>  Block Length= 128
+ <Apr01-2020> <22:59:48>  >>>> PTBAS
+ <Apr01-2020> <22:59:48>  >>>> CYCLE
+ <Apr01-2020> <22:59:48>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:48>      1      0.03043584      0.01406795
+ <Apr01-2020> <22:59:48>      2      0.00490154      0.00145858    100.0
+ <Apr01-2020> <22:59:48>      3      0.00744115      0.00290790    100.0
+ <Apr01-2020> <22:59:49>      4      0.00087024      0.00026998      0.0
+ <Apr01-2020> <22:59:49>      5      0.00018248      0.00006751      0.0
+ <Apr01-2020> <22:59:49>      6      0.00000189      0.00000066      0.0
+ <Apr01-2020> <22:59:49>  SCF converged
+ <Apr01-2020> <22:59:49>      7      0.00000053      0.00000017      0.0
+ <Apr01-2020> <22:59:49>  >>>> TOTEN
+ <Apr01-2020> <22:59:49>  >>>> POPAN
+ <Apr01-2020> <22:59:49>  >>>> DEBYE
+ <Apr01-2020> <22:59:49>  >>>> ENGRAD
+ <Apr01-2020> <22:59:49>  current energy                               -0.51383407 Hartree
+ <Apr01-2020> <22:59:49>  energy change                      -0.00007319     0.00100000    T
+ <Apr01-2020> <22:59:49>  constrained gradient max            0.00159026     0.00100000    F
+ <Apr01-2020> <22:59:49>  constrained gradient rms            0.00097718     0.00066667    F
+ <Apr01-2020> <22:59:49>  gradient max                        0.00159026
+ <Apr01-2020> <22:59:49>  gradient rms                        0.00097718
+ <Apr01-2020> <22:59:49>  cart. step max                      0.00187821     0.01000000    T
+ <Apr01-2020> <22:59:49>  cart. step rms                      0.00110072     0.00666667    T
   Coordinates in Geometry Cycle 3
     Atom         X           Y           Z   (Angstrom)
     1.O        -0.004072   -0.003036    0.002118
     2.H         0.278678    0.897049    0.255592
     3.H         0.609594   -0.239413   -0.720210
- <Apr01-2020> <20:47:48>  >>>> CORORT
- <Apr01-2020> <20:47:48>  >>>> CLSMAT
- <Apr01-2020> <20:47:48>  >>>> ORTHON
- <Apr01-2020> <20:47:48>  >>>> GENPT
- <Apr01-2020> <20:47:48>  Block Length= 128
- <Apr01-2020> <20:47:48>  >>>> PTBAS
- <Apr01-2020> <20:47:48>  >>>> CYCLE
- <Apr01-2020> <20:47:48>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:48>      1      0.00260612      0.00077788
- <Apr01-2020> <20:47:48>      2      0.00088243      0.00030003    100.0
- <Apr01-2020> <20:47:48>      3      0.00045709      0.00012169    100.0
- <Apr01-2020> <20:47:48>      4      0.00063455      0.00024726      0.0
- <Apr01-2020> <20:47:48>      5      0.00001132      0.00000278      0.0
- <Apr01-2020> <20:47:48>      6      0.00000033      0.00000011      0.0
- <Apr01-2020> <20:47:48>  SCF converged
- <Apr01-2020> <20:47:48>      7      0.00000010      0.00000003      0.0
- <Apr01-2020> <20:47:49>  >>>> TOTEN
- <Apr01-2020> <20:47:49>  >>>> POPAN
- <Apr01-2020> <20:47:49>  >>>> DEBYE
- <Apr01-2020> <20:47:49>  >>>> ENGRAD
- <Apr01-2020> <20:47:49>  current energy                               -0.51383769 Hartree
- <Apr01-2020> <20:47:49>  energy change                      -0.00000362     0.00100000    T
- <Apr01-2020> <20:47:49>  constrained gradient max            0.00040550     0.00100000    T
- <Apr01-2020> <20:47:49>  constrained gradient rms            0.00027393     0.00066667    T
- <Apr01-2020> <20:47:49>  gradient max                        0.00040550
- <Apr01-2020> <20:47:49>  gradient rms                        0.00027393
- <Apr01-2020> <20:47:49>  cart. step max                      0.00075884     0.01000000    T
- <Apr01-2020> <20:47:49>  cart. step rms                      0.00045670     0.00666667    T
- <Apr01-2020> <20:47:49>  GEOMETRY CONVERGED
- <Apr01-2020> <20:47:49>  Calculating Energy Terms for Final Geometry
+ <Apr01-2020> <22:59:49>  >>>> CORORT
+ <Apr01-2020> <22:59:49>  >>>> CLSMAT
+ <Apr01-2020> <22:59:49>  >>>> ORTHON
+ <Apr01-2020> <22:59:49>  >>>> GENPT
+ <Apr01-2020> <22:59:49>  Block Length= 128
+ <Apr01-2020> <22:59:49>  >>>> PTBAS
+ <Apr01-2020> <22:59:49>  >>>> CYCLE
+ <Apr01-2020> <22:59:50>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:50>      1      0.00260612      0.00077788
+ <Apr01-2020> <22:59:50>      2      0.00088243      0.00030003    100.0
+ <Apr01-2020> <22:59:50>      3      0.00045709      0.00012169    100.0
+ <Apr01-2020> <22:59:50>      4      0.00063455      0.00024726      0.0
+ <Apr01-2020> <22:59:50>      5      0.00001132      0.00000278      0.0
+ <Apr01-2020> <22:59:50>      6      0.00000033      0.00000011      0.0
+ <Apr01-2020> <22:59:50>  SCF converged
+ <Apr01-2020> <22:59:50>      7      0.00000010      0.00000003      0.0
+ <Apr01-2020> <22:59:50>  >>>> TOTEN
+ <Apr01-2020> <22:59:50>  >>>> POPAN
+ <Apr01-2020> <22:59:50>  >>>> DEBYE
+ <Apr01-2020> <22:59:50>  >>>> ENGRAD
+ <Apr01-2020> <22:59:50>  current energy                               -0.51383769 Hartree
+ <Apr01-2020> <22:59:50>  energy change                      -0.00000362     0.00100000    T
+ <Apr01-2020> <22:59:50>  constrained gradient max            0.00040550     0.00100000    T
+ <Apr01-2020> <22:59:50>  constrained gradient rms            0.00027393     0.00066667    T
+ <Apr01-2020> <22:59:50>  gradient max                        0.00040550
+ <Apr01-2020> <22:59:50>  gradient rms                        0.00027393
+ <Apr01-2020> <22:59:50>  cart. step max                      0.00075884     0.01000000    T
+ <Apr01-2020> <22:59:50>  cart. step rms                      0.00045670     0.00666667    T
+ <Apr01-2020> <22:59:50>  GEOMETRY CONVERGED
+ <Apr01-2020> <22:59:50>  Calculating Energy Terms for Final Geometry
   Coordinates in Geometry Cycle 3
     Atom         X           Y           Z   (Angstrom)
     1.O        -0.004072   -0.003036    0.002118
     2.H         0.278678    0.897049    0.255592
     3.H         0.609594   -0.239413   -0.720210
- <Apr01-2020> <20:47:49>  >>>> CORORT
- <Apr01-2020> <20:47:49>  >>>> CLSMAT
- <Apr01-2020> <20:47:49>  >>>> ORTHON
- <Apr01-2020> <20:47:49>  >>>> GENPT
- <Apr01-2020> <20:47:49>  Block Length= 128
- <Apr01-2020> <20:47:49>  >>>> PTBAS
- <Apr01-2020> <20:47:49>  >>>> CYCLE
- <Apr01-2020> <20:47:49>              |Error|         MaxErr       Wt(A-DIIS)
- <Apr01-2020> <20:47:49>      1      0.00000002      0.00000001
- <Apr01-2020> <20:47:49>      2      0.00000003      0.00000001    100.0
- <Apr01-2020> <20:47:50>  SCF converged
- <Apr01-2020> <20:47:50>      3      0.00000005      0.00000002    100.0
- <Apr01-2020> <20:47:50>  >>>> TOTEN
- <Apr01-2020> <20:47:50>  >>>> POPAN
- <Apr01-2020> <20:47:50>  >>>> DEBYE
- <Apr01-2020> <20:47:50>  >>>> AMETS
- <Apr01-2020> <20:47:50>  >>>> POPUL
- <Apr01-2020> <20:47:50>   Bond Energy          -0.51383769 a.u.
- <Apr01-2020> <20:47:50>   Bond Energy         -13.98223496 eV
- <Apr01-2020> <20:47:50>   Bond Energy        -322.44       kcal/mol
- <Apr01-2020> <20:47:50>  >>>> ENHESS
- <Apr01-2020> <20:47:50>  === NUCLEUS:     1
- <Apr01-2020> <20:47:51>  === NUCLEUS:     2
- <Apr01-2020> <20:47:53>  === NUCLEUS:     3
- <Apr01-2020> <20:47:54>  >>>> CALC_HESS_PMAT
- <Apr01-2020> <20:47:54>  >>>> CALC_HESS_WMAT
- <Apr01-2020> <20:47:54>  Internal error in SymmetryUtils: NO INDEPENDENT BASIS. PNTGRP
- <Apr01-2020> <20:47:54>  Failed to detect system symmetry. Falling back to NOSYM ...
- <Apr01-2020> <20:47:54>  NORMAL TERMINATION
- <Apr01-2020> <20:47:54>  END
+ <Apr01-2020> <22:59:50>  >>>> CORORT
+ <Apr01-2020> <22:59:50>  >>>> CLSMAT
+ <Apr01-2020> <22:59:51>  >>>> ORTHON
+ <Apr01-2020> <22:59:51>  >>>> GENPT
+ <Apr01-2020> <22:59:51>  Block Length= 128
+ <Apr01-2020> <22:59:51>  >>>> PTBAS
+ <Apr01-2020> <22:59:51>  >>>> CYCLE
+ <Apr01-2020> <22:59:51>              |Error|         MaxErr       Wt(A-DIIS)
+ <Apr01-2020> <22:59:51>      1      0.00000002      0.00000001
+ <Apr01-2020> <22:59:51>      2      0.00000003      0.00000001    100.0
+ <Apr01-2020> <22:59:51>  SCF converged
+ <Apr01-2020> <22:59:51>      3      0.00000001      0.00000000    100.0
+ <Apr01-2020> <22:59:51>  >>>> TOTEN
+ <Apr01-2020> <22:59:52>  >>>> POPAN
+ <Apr01-2020> <22:59:52>  >>>> DEBYE
+ <Apr01-2020> <22:59:52>  >>>> AMETS
+ <Apr01-2020> <22:59:52>  >>>> POPUL
+ <Apr01-2020> <22:59:52>   Bond Energy          -0.51383769 a.u.
+ <Apr01-2020> <22:59:52>   Bond Energy         -13.98223496 eV
+ <Apr01-2020> <22:59:52>   Bond Energy        -322.44       kcal/mol
+ <Apr01-2020> <22:59:52>  >>>> ENHESS
+ <Apr01-2020> <22:59:53>  === NUCLEUS:     1
+ <Apr01-2020> <22:59:59>  === NUCLEUS:     2
+ <Apr01-2020> <23:00:00>  === NUCLEUS:     3
+ <Apr01-2020> <23:00:02>  >>>> CALC_HESS_PMAT
+ <Apr01-2020> <23:00:02>  >>>> CALC_HESS_WMAT
+ <Apr01-2020> <23:00:03>  Internal error in SymmetryUtils: NO INDEPENDENT BASIS. PNTGRP
+ <Apr01-2020> <23:00:03>  Failed to detect system symmetry. Falling back to NOSYM ...
+ <Apr01-2020> <23:00:03>  NORMAL TERMINATION
+ <Apr01-2020> <23:00:03>  END

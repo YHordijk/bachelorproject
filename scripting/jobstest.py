@@ -21,6 +21,6 @@ b = ir.get_spectrum(results[1])
 
 
 #perform wasserstein distance and plot the spectra
-res = sink.sinkhorn(a, b, epsilon=0.4)
-plot.plot(res)
+res = sink.sinkhorn(a, b, epsilon=0.1)
+plot.plot(res, save_to=fr'{results[0].dir}\plot.png')
 

@@ -106,6 +106,7 @@ class Job:
 		s = self.settings
 		job = plams.ADFJob(molecule=self.mol, name=self.name, settings=s)
 		results = job.run()
+		results.dir = '\\'.join(results._kfpath().split('\\')[:-2])
 
 		if init: plams.finish()
 
