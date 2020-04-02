@@ -7,8 +7,57 @@ import matplotlib.pyplot as plt
 
 
 
+def plot_transport(a, b, bc_map, weight=0.5, save_to=None, show_plot=True, plot_subtitle=None):
+	'''
+	Function that plots transport between a and b using some barycentric map
 
-def plot(res, save_to=None, show_plot=True, plot_subtitle=None):
+	a, b - histograms
+	bc_map - barycentric mapping (n-sized ndarray)
+	weight - weight given to barycentric mapping
+	'''
+
+	a /= np.sum(a)
+	b /= np.sum(b)
+
+	plt.figure(figsize=(16,9))
+	plt.title(f'Transport of histogram $a$ to $b$ using barycentric mapping with weighting $w={weight:.2f}$')
+	plt.xlabel('Bin')
+	plt.ylabel('Mass')
+	plt.xticks([])
+	plt.yticks([])
+
+	plt.plot(np.linspace(0,1,len(a)), a, 'blue', linewidth=1, label='$a$')
+	# plt.fill_between(np.linspace(0,1,len(a)), a, facecolor='lightblue')
+
+	plt.plot(np.linspace(0,1,len(b)), b, 'green', linewidth=1, label='$b$')
+	# plt.fill_between(np.linspace(0,1,len(b)), b, facecolor='lightgreen')
+
+	#calculate transport histogram:
+	t = weight*a*bc_map + (1-weight)*b*bc_map
+	# t = weight*a + (1-weight)*b
+	t /= np.sum(t)
+
+	plt.plot(np.linspace(0,1,len(t)), t, 'black', linewidth=3, label='Transported histogram')
+
+	plt.legend()
+
+	#save plot if a file path is given
+	if save_to is not None:
+		plt.savefig(save_to)
+
+	#show plot if needed
+	if show_plot:
+		plt.show()
+	#otherwise clear and close plot to save memory
+	else:
+		plt.clf()
+		plt.cla()
+		plt.close()
+
+
+
+
+def plot_results(res, save_to=None, show_plot=True, plot_subtitle=None):
 	#get results
 	a, b = res.a, res.b
 	P = res.P

@@ -23,7 +23,7 @@ def func2(x):
 # a = hist.gaussian(600, 0.2, 0.06)
 # a = hist.gaussian(600, 0.2, 0.06) + hist.gaussian(600, 0.5, 0.06)*2 + hist.gaussian(600, 0.8, 0.06)
 # a = hist.slater(600, 0.5, 30, 0)
-a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
+a = hist.from_func(600, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(600, 0.7, 0.1)
 # a = hist.from_func(400, func)
 # a = hist.from_func(500, lambda x: 1-x,0)
 # a = hist.from_func(600, lambda x: np.cos(x*10*3.14)+1)
@@ -51,4 +51,8 @@ converge_thresh = 10**-15
 #get coupling matrix and errors
 res = sink.sinkhorn(a, b, epsilon, converge_thresh=converge_thresh, cost_fn=cost_fn, error_fn=error_fn)
 
-plot.plot(res, save_to=save_to, plot_subtitle=plot_subtitle)
+bc_map = res.bc_map
+
+plot.plot_transport(a,b,bc_map, 0)
+
+plot.plot_results(res, save_to=save_to, plot_subtitle=plot_subtitle)
