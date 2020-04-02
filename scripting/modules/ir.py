@@ -19,7 +19,9 @@ def get_freqs_intens(result):
 	results - plams.Results object
 	'''
 
+	#load kffile
 	kff = plams.KFFile(result._kfpath())
+	#read freqs and intens from kffile
 	freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
 	intens = kff.read_section('Vibrations')['Intensities[km/mol]']
 
@@ -28,11 +30,14 @@ def get_freqs_intens(result):
 
 def get_spectrum(result, n=600, width=50, xlim=(0,4000)):
 	'''
-	Function to generate a spectrum histogram from results.
+	Function to generate a spectrum histogram from results using
+	lorentzian line shape.
 
 	results - plams.Results object
 	n - size of spectrum
-	width - width of lorentzian peaks
+	width - width of lorentzian peaks, defaults to 50cm-1 (same as in ADF)
+
+	I will try to add support for gaussian line shape as well
 	'''
 
 	freqs, intens = get_freqs_intens(result)
@@ -40,7 +45,6 @@ def get_spectrum(result, n=600, width=50, xlim=(0,4000)):
 
 	#project width onto new range
 	width = (width-xlim[0])/(xlim[1]-xlim[0])
-
 
 	for f, i in zip(freqs, intens):
 		#we must project f from [xlim[0], xlim[1]] onto the range [0,1] since the histograms 
