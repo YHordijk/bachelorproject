@@ -1,5 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
+import matplotlib.colors as clr
+from itertools import zip_longest
 
 
 ## ================================================================= ##
@@ -7,7 +9,92 @@ import matplotlib.pyplot as plt
 
 
 
-def plot_transport(a, b, bc_map, weight=0.5, save_to=None, show_plot=True, plot_subtitle=None):
+def plot_hists(hists, labels=None, axislabels=('Bins', 'Mass'), xlim=None,
+			   title='Histogram h', invert_xaxis=False, invert_yaxis=False,
+			   save_to=None, show_plot=True, shade=False):
+	'''
+	Function that plots multiple histograms
+
+	hists - histograms
+	'''
+
+	for h in hists:
+		h /= np.sum(np.absolute(h))
+
+
+	plt.figure(figsize=(16,9))
+	plt.title(title)
+	plt.xlabel(axislabels[0])
+	plt.ylabel(axislabels[1])
+	if xlim is None: plt.xticks([]); xlim=(0,1)
+	plt.yticks([])
+
+	if invert_xaxis: plt.gca().invert_xaxis()
+	if invert_yaxis: plt.gca().invert_yaxis()
+
+	# color_array = clr.makeMappingArray(len(h), np.linspace(0,1,len(h)))
+
+	for h, l in zip_longest(hists, labels):
+		plt.plot(np.linspace(xlim[0],xlim[1],len(h)), h, linewidth=2, label=l)
+		if shade: plt.fill_between(np.linspace(xlim[0],xlim[1],len(h)), h)
+
+	plt.legend()
+
+	#save plot if a file path is given
+	if save_to is not None:
+		plt.savefig(save_to)
+
+	#show plot if needed
+	if show_plot:
+		plt.show()
+	#otherwise clear and close plot to save memory
+	else:
+		plt.clf()
+		plt.cla()
+		plt.close()
+
+
+def plot_hist(h, axislabels=('Bins', 'Mass'), xlim=None, title='Histogram h',
+			  invert_xaxis=False, invert_yaxis=False, save_to=None, show_plot=True):
+	'''
+	Function that plots a single histogram
+
+	h - histogram
+	'''
+
+	h /= abs(np.sum(h))
+
+
+	plt.figure(figsize=(16,9))
+	plt.title(title)
+	plt.xlabel(axislabels[0])
+	plt.ylabel(axislabels[1])
+	if xlim is None: plt.xticks([]); xlim=(0,1)
+	plt.yticks([])
+
+	if invert_xaxis: plt.gca().invert_xaxis()
+	if invert_yaxis: plt.gca().invert_yaxis()
+
+	plt.plot(np.linspace(xlim[0],xlim[1],len(h)), h, 'blue', linewidth=1)
+	plt.fill_between(np.linspace(xlim[0],xlim[1],len(h)), h, facecolor='lightblue')
+
+	#save plot if a file path is given
+	if save_to is not None:
+		plt.savefig(save_to)
+
+	#show plot if needed
+	if show_plot:
+		plt.show()
+	#otherwise clear and close plot to save memory
+	else:
+		plt.clf()
+		plt.cla()
+		plt.close()
+
+
+
+def plot_transport(a, b, bc_map, labels=('Bins', 'Mass'), xlim=None, 
+				   weight=0.5, save_to=None, show_plot=True, plot_subtitle=None):
 	'''
 	Function that plots transport between a and b using some barycentric map
 
@@ -21,9 +108,9 @@ def plot_transport(a, b, bc_map, weight=0.5, save_to=None, show_plot=True, plot_
 
 	plt.figure(figsize=(16,9))
 	plt.title(f'Transport of histogram $a$ to $b$ using barycentric mapping with weighting $w={weight:.2f}$')
-	plt.xlabel('Bin')
-	plt.ylabel('Mass')
-	plt.xticks([])
+	plt.xlabel(labels[0])
+	plt.ylabel(labels[1])
+	if xlim is None: plt.xticks([]); xlim=(0,1)
 	plt.yticks([])
 
 	plt.plot(np.linspace(0,1,len(a)), a, 'blue', linewidth=1, label='$a$')
@@ -57,7 +144,7 @@ def plot_transport(a, b, bc_map, weight=0.5, save_to=None, show_plot=True, plot_
 
 
 
-def plot_results(res, save_to=None, show_plot=True, plot_subtitle=None):
+def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plot=True, plot_subtitle=None):
 	#get results
 	a, b = res.a, res.b
 	P = res.P
@@ -81,8 +168,8 @@ def plot_results(res, save_to=None, show_plot=True, plot_subtitle=None):
 	#histogram a
 	plt.subplot(2,2,1)
 	plt.title(f'Histogram $a$ and $P_\epsilon b$, $n={len(a)}$')
-	plt.xlabel('Bin')
-	plt.ylabel('Mass')
+	plt.xlabel(labels[0])
+	plt.ylabel(labels[1])
 	plt.plot(range(len(a)), a, 'blue', linewidth=2, label='$a$')
 	plt.plot(range(len(a)), P@b/np.sum(P@b), 'red', linewidth=1, label='$P_\epsilon b$')
 	plt.fill_between(range(len(a)), a, facecolor='lightblue')

@@ -11,7 +11,7 @@ import numpy as np
 
 
 
-def gaussian(n, x0, sigma, min_mass=0.02):
+def gaussian(n, x0, sigma, min_mass=0):
 	'''
 	Function that returns a histogram based on a gaussian function
 	exp(-(bins-x0)**2/(2*sigma**2))
@@ -42,7 +42,7 @@ def lorentzian(n, x0, w, min_mass=0):
 
 
 
-def slater(n, x0, chi, min_mass=0.02):
+def slater(n, x0, chi, min_mass=0):
 	'''
 	Function that returns a histogram based on a slater function
 	exp(-abs(bins-x0)*chi)
@@ -74,7 +74,7 @@ def dirac_delta(n, x0):
 	
 
 
-def from_func(n, func, min_mass=0.02):
+def from_func(n, func, min_mass=0):
 	'''
 	Function that returns a histogram based on any function
 

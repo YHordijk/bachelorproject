@@ -20,7 +20,7 @@ def get_freqs_intens(result):
 	'''
 
 	#load kffile
-	kff = plams.KFFile(result._kfpath())
+	kff = plams.KFFile(result.KFPATH)
 	#read freqs and intens from kffile
 	freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
 	intens = kff.read_section('Vibrations')['Intensities[km/mol]']
