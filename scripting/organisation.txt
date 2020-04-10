@@ -6,3 +6,4 @@
 |--histograms.py #functions for generating histograms based on some function
 |--plot.py #functions for plotting results of the sinkhorn algorithm
 |--sinkhorn_algorithm.py #functions to perform the sinkhorn algorithm. Returns a container result object
+|--molecule_funcs.py #function for manipulating molecular structures, including mirroring molecules and downloading structures from pubchem
