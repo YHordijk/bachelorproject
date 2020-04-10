@@ -154,6 +154,8 @@ def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plo
 	bc_map = res.bc_map
 	epsilon = res.epsilon
 	converge_thresh = res.converge_thresh
+	In = np.ones((len(a),1))
+	Im = np.ones((len(b),1))
 
 	### PLOTTING
 	fig = plt.figure(figsize=(16,9))
@@ -167,11 +169,11 @@ def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plo
 	#plot the histograms:
 	#histogram a
 	plt.subplot(2,2,1)
-	plt.title(f'Histogram $a$ and $P_\epsilon b$, $n={len(a)}$')
+	plt.title(f'Histogram $a$ and $P_\epsilon a$, $n={len(a)}$')
 	plt.xlabel(labels[0])
 	plt.ylabel(labels[1])
 	plt.plot(range(len(a)), a, 'blue', linewidth=2, label='$a$')
-	plt.plot(range(len(a)), P@b/np.sum(P@b), 'red', linewidth=1, label='$P_\epsilon b$')
+	plt.plot(range(len(a)), P@b/np.sum(P@b), 'red', linewidth=1, label='$P_\epsilon I_n$')
 	plt.fill_between(range(len(a)), a, facecolor='lightblue')
 	plt.yticks([])
 	plt.xlim(0,len(a))
@@ -180,11 +182,11 @@ def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plo
 
 	#histogram b
 	plt.subplot(2,2,2)
-	plt.title(f'Histogram $b$ and $P_\epsilon^⊤ a$, $n={len(b)}$')
+	plt.title(f'Histogram $b$ and $P_\epsilon^⊤ b$, $n={len(b)}$')
 	plt.xlabel('Bin')
 	plt.ylabel('Mass')
 	plt.plot(range(len(b)), b, 'blue', linewidth=2, label='$b$')
-	plt.plot(range(len(b)), P.T@a/np.sum(P.T@a), 'red', linewidth=1, label='$P_\epsilon^⊤ a$')
+	plt.plot(range(len(b)), P.T@a/np.sum(P.T@a), 'red', linewidth=1, label='$P_\epsilon^⊤ I_m$')
 	plt.fill_between(range(len(b)), b, facecolor='lightblue')
 	plt.yticks([])
 	plt.xlim(0,len(b))
@@ -196,8 +198,8 @@ def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plo
 	plt.title('Log errors during algorithm')
 	plt.xlabel('Iteration')
 	plt.ylabel('$log_{10}(Err)$')
-	plt.plot(range(len(error_a)), np.log(error_a)/np.log(10), label='$log_{10}(Err(P\mathbb{I}  , a$))')
-	plt.plot(range(len(error_b)), np.log(error_b)/np.log(10), label='$log_{10}(Err(P^⊤\mathbb{I}, b$))')
+	plt.plot(range(len(error_a)), np.log(error_a)/np.log(10), label='$log_{10}(Err(P_\epsilon I  , a$))')
+	plt.plot(range(len(error_b)), np.log(error_b)/np.log(10), label='$log_{10}(Err(P_\epsilon ^⊤I, b$))')
 	plt.legend()
 
 	#Plot coupling matrix

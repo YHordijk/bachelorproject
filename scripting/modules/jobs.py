@@ -36,12 +36,18 @@ class JobQueue(list):
 
 		return results
 
+	def clear(self):
+		self.jobs = []
+
 
 
 class Job:
 	def __init__(self, mol, settings=None, job_name=None):
 		self.mol, self.name = mf.find_mol(mol)
-		self._job_name = job_name
+		if job_name is None:
+			self._job_name = self.name
+		else:
+			self._job_name = job_name
 
 		if settings is None:
 			self.settings = plams.Settings()
@@ -79,7 +85,7 @@ class DFTJob(Job):
 		if init: plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
 
 		s = self.settings
-		job = plams.ADFJob(molecule=self.mol, name=self.name, settings=s)
+		job = plams.ADFJob(molecule=self.mol, name=self._job_name, settings=s)
 		results = job.run()
 		results.dir = '\\'.join(results._kfpath().split('\\')[:-2])
 		results.KFPATH = results._kfpath()
@@ -118,7 +124,7 @@ class DFTBJob(Job):
 		if init: plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
 
 		s = self.settings
-		job = plams.AMSJob(molecule=self.mol, name=self.name, settings=s)
+		job = plams.AMSJob(molecule=self.mol, name=self._job_name, settings=s)
 		results = job.run()
 		results.dir = '\\'.join(results.rkfpath('dftb').split('\\')[:-2])
 		results.KFPATH = results.rkfpath('dftb')

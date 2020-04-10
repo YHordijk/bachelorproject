@@ -6,39 +6,37 @@ import math
 # Wasserstein distance via Sinkhorn's algorithm
 
 
+def ip(a,b):
+	#inner product
+	return np.sum(a*b)
+
+def entropy(a):
+	return -np.sum(a*(np.log(a))-1)
+
 
 
 class Results:
-	def __init__(self, a, b, K, v, u, error_a, error_b, epsilon, converge_thresh):
+	def __init__(self, a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh):
 		self.a = a 
 		self.b = b
 		self.K = K
 		self.v = v
 		self.u = u
+		self.P = P
+		self.W = W
 		self.error_a = error_a
 		self.error_b = error_b
 		self.epsilon = epsilon
 		self.converge_thresh = converge_thresh
 
-		#calculate P
-		self.P = np.diag(u) @ K @ np.diag(v)
-
 		#calculate barycentric map
 		self.bc_map = np.dot(K, v*np.arange(len(b))) * u / a
 
-		#compute wasserstein distance
-		W = 0
-		try:
-			for i in range(self.P.shape[0]):
-				for j in range(self.P.shape[1]):
-					W += self.P[i,j]*(math.log(self.P[i,j]/K[i,j])-1)
-		except: raise
-		self.W = W
 
 
 
 
-def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=10000, converge_thresh=10**-5):
+def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-5):
 	'''
 	Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
 	between two distributions a and b (in this case normalized histograms).
@@ -113,6 +111,8 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=10000, con
 		#iteration part one
 		u = a/(K @ v)
 		#Calculate error
+		P = np.diag(u) @ K @ np.diag(v)
+		
 		approx_b = v * (np.dot(K.T, u))
 		error_b.append(error_fn(b, approx_b))
 
@@ -128,4 +128,8 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=10000, con
 
 		i += 1
 
-	return Results(a, b, K, v, u, error_a, error_b, epsilon, converge_thresh)
+
+	P = np.diag(u) @ K @ np.diag(v)
+	W = np.sqrt(ip(C,P)-epsilon*entropy(P))
+
+	return Results(a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh)

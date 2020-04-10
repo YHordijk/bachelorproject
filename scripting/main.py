@@ -42,7 +42,7 @@ b = hist.from_func(600, lambda x: np.cos(x*5*3.14)+1)
 
 cost_fn = lambda x1, x2: abs(x1-x2)**10 #function used for calculating ground cost matrix
 error_fn = lambda x1, x2: np.sqrt(np.sum((x1-x2)**2)) #function used for calculating errors
-epsilon = 0.2
+epsilon = 0.05
 save_to = None
 plot_subtitle = None
 converge_thresh = 10**-15
@@ -51,8 +51,10 @@ converge_thresh = 10**-15
 #get coupling matrix and errors
 res = sink.sinkhorn(a, b, epsilon, converge_thresh=converge_thresh, cost_fn=cost_fn, error_fn=error_fn)
 
-bc_map = res.bc_map
+# bc_map = res.bc_map
 
-plot.plot_transport(a,b,bc_map, 0)
+# plot.plot_transport(a,b,bc_map, 0)
 
 plot.plot_results(res, save_to=save_to, plot_subtitle=plot_subtitle)
+
+# print(np.sum(res.P))
