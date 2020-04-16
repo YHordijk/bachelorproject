@@ -6,12 +6,14 @@ import math
 # Wasserstein distance via Sinkhorn's algorithm
 
 
-def ip(a,b):
+def inner_prod(a,b):
 	#inner product
 	return np.sum(a*b)
 
 def entropy(a):
-	return -np.sum(a*(np.log(a))-1)
+	#entropy calculations
+	return -np.sum(a*(np.log(a)-1))
+
 
 
 
@@ -36,7 +38,7 @@ class Results:
 
 
 
-def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-5):
+def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-10):
 	'''
 	Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
 	between two distributions a and b (in this case normalized histograms).
@@ -47,7 +49,7 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 	u <- a/np.dot(K, v)
 	v <- b/np.dot(K.T, u)
 
-	We can check our progress by calculating the RMSD between the current approximate 
+	We can check our progress by calculating the error between the current approximate 
 	distributions a_app and b_app and our original a and b. We obtain a_app and b_app as 
 	follows:
 	a_app = u * (K@v)
@@ -55,7 +57,7 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 
 	Numpy uses * for elementwise mult and @ for matrix mult.
 	
-	The RMSD is given by np.sqrt(np.sum(a-a_app)**2).
+	The error is given by np.max(abs(a-a_app)).
 
 
 	a, b 			- histograms one dimensional arrays of sizes n and m
@@ -63,7 +65,7 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 	cost_fn 		- function used to calculate ground cost matrix, must accept two arguments,
 					  nxm and mxn arrays. Defaults to squared euclidean distance.
 	error_fn		- function used to calculate error between two histograms of size n, must 
-					  accept two one dimensional arrays of size n. Defaults to RMSD.
+					  accept two one dimensional arrays of size n. Defaults to error.
 	max_iter		- maximum number of iterations allowed for the algorithm
 	converge_thresh - threshold used to determine convergence of algorithm.
 					  If error < converge_thresh it is considered converged.
@@ -72,7 +74,7 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 
 	#default error function for two distributions x1 and x2
 	if error_fn is None:
-		error_fn = lambda x1, x2: np.sqrt(np.sum((x1-x2)**2))
+		error_fn = lambda x1, x2: np.max(abs(x1-x2))
 	#default cost function for a sparse matrix specified by x and y
 	if cost_fn is None:
 		cost_fn = lambda x1, x2: abs(x1-x2)**2
@@ -111,7 +113,7 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 		#iteration part one
 		u = a/(K @ v)
 		#Calculate error
-		P = np.diag(u) @ K @ np.diag(v)
+		# P = np.diag(u) @ K @ np.diag(v)
 		
 		approx_b = v * (np.dot(K.T, u))
 		error_b.append(error_fn(b, approx_b))
@@ -130,6 +132,6 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 
 
 	P = np.diag(u) @ K @ np.diag(v)
-	W = np.sqrt(ip(C,P)-epsilon*entropy(P))
+	W = math.sqrt(inner_prod(C,P))
 
 	return Results(a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh)

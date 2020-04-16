@@ -93,8 +93,8 @@ def plot_hist(h, axislabels=('Bins', 'Mass'), xlim=None, title='Histogram h',
 
 
 
-def plot_transport(a, b, bc_map, labels=('Bins', 'Mass'), xlim=None, 
-				   weight=0.5, save_to=None, show_plot=True, plot_subtitle=None):
+def plot_transport(a, b, bc_map, weight=0.5, labels=('Bins', 'Mass'), xlim=None, 
+				   save_to=None, show_plot=True, plot_subtitle=None):
 	'''
 	Function that plots transport between a and b using some barycentric map
 
@@ -114,13 +114,10 @@ def plot_transport(a, b, bc_map, labels=('Bins', 'Mass'), xlim=None,
 	plt.yticks([])
 
 	plt.plot(np.linspace(0,1,len(a)), a, 'blue', linewidth=1, label='$a$')
-	# plt.fill_between(np.linspace(0,1,len(a)), a, facecolor='lightblue')
-
 	plt.plot(np.linspace(0,1,len(b)), b, 'green', linewidth=1, label='$b$')
-	# plt.fill_between(np.linspace(0,1,len(b)), b, facecolor='lightgreen')
 
 	#calculate transport histogram:
-	t = weight*a*bc_map + (1-weight)*b*bc_map
+	t = weight*a*bc_map + (1-weight)*a
 	# t = weight*a + (1-weight)*b
 	t /= np.sum(t)
 
@@ -225,5 +222,3 @@ def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plo
 		plt.clf()
 		plt.cla()
 		plt.close()
-
-	
