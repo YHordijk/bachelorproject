@@ -31,14 +31,14 @@ a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0
 # a = hist.from_func(400, lambda x: x)
 # a = hist.dirac_delta(400, 0.5)
 
-# b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
+b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
 # b = hist.gaussian(400, 0.2, 0.06)*2 + hist.gaussian(400, 0.5, 0.06) + hist.gaussian(400, 0.8, 0.06)*2
-b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
+# b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
 # b = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
 # b = hist.from_func(400, func2)
 # b = hist.from_func(400, lambda x: x,0)
 # b = hist.from_func(400, lambda x: x**0)
-# b = hist.lorentzian(400, 0.5, 0.05)
+# b = hist.lorentzian(400, 0.5, 0.1)
 
 
 

@@ -12,7 +12,7 @@ import modules.histograms as hist
 
 
 
-def get_freqs_intens(result):
+def get_freqs_intens(kf):
 	'''
 	Function to get frequencies and intensities from result objects
 
@@ -20,7 +20,7 @@ def get_freqs_intens(result):
 	'''
 
 	#load kffile
-	kff = plams.KFFile(result.KFPATH)
+	kff = plams.KFFile(kf)
 	#read freqs and intens from kffile
 	freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
 	intens = kff.read_section('Vibrations')['Intensities[km/mol]']
@@ -40,7 +40,25 @@ def get_spectrum(result, n=600, width=50, xlim=(0,4000)):
 	I will try to add support for gaussian line shape as well
 	'''
 
-	freqs, intens = get_freqs_intens(result)
+	freqs, intens = get_freqs_intens(result.KFPATH)
+	spectrum = np.zeros(n)
+
+	#project width onto new range
+	width = (width-xlim[0])/(xlim[1]-xlim[0])
+
+	for f, i in zip(freqs, intens):
+		#we must project f from [xlim[0], xlim[1]] onto the range [0,1] since the histograms 
+		#are calculated on that range
+		spectrum += hist.lorentzian(n, (f-xlim[0])/(xlim[1]-xlim[0]), width) * i
+
+	return spectrum
+
+
+def get_spectrum_from_kf(kf, n=400, width=50, xlim=(0,4000)):
+	'''
+	Same function as above but for paths to kf files.
+	'''
+	freqs, intens = get_freqs_intens(kf)
 	spectrum = np.zeros(n)
 
 	#project width onto new range

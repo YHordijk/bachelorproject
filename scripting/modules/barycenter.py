@@ -7,7 +7,7 @@ import modules.sinkhorn_algorithm as sink
 # Barycenter calculation based on input histograms and 
 
 
-def barycenter(a, weights, epsilon=0.05, cost_fn=None, error_fn=None, max_iter=100, converge_thresh=10**-5):
+def barycenter(a, weights, epsilon=0.05, cost_fn=None, error_fn=None, max_iter=10, converge_thresh=10**-10):
 	'''
 	Method that finds a barycenter b of hists a to solve the following:
 	min_b \sum^R_{k=1} c_k W_2(a_k,b)
@@ -76,8 +76,10 @@ def barycenter(a, weights, epsilon=0.05, cost_fn=None, error_fn=None, max_iter=1
 		P = np.empty((N,N,R))
 		for k in range(R):
 			P[:,:,k] = np.diag(u[k]) @ K(np.diag(v[k]))
-			converged *= error_fn(a[k], P[:,:,k]@In) < converge_thresh and error_fn(b, P[:,:,k].T@In) < converge_thresh
+			error = (error_fn(a[k], P[:,:,k]@In), error_fn(b, P[:,:,k].T@In))
+			converged *= error[0] < converge_thresh and error[1] < converge_thresh
 
+			print(error)
 		i += 1
 
 	return b
