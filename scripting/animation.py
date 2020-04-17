@@ -20,28 +20,40 @@ import modules.ir as ir
 
 
 ## ======== SETUP ======== ##
-name = 'interpolations'
-animation_folder = os.getcwd() + r'\animation\\'
+def setup(name):
+	global animation_folder
+	animation_folder = os.getcwd() + r'\animation\\'
 
-#get files named the same as name
-animation_files = os.listdir(animation_folder)
-animation_files = [f for f in animation_files if f.startswith(name)]
-if len(animation_files) > 0:
-	#get index of folders:
-	animation_files_indices = [int(f.split('_')[-1].strip('.gif')) for f in animation_files]
-	#index for new folder is then the max index plus one
-	index = max(animation_files_indices) + 1
+	#get files named the same as name
+	animation_files = os.listdir(animation_folder)
+	animation_files = [f for f in animation_files if f.startswith(name)]
+	global index
 
-else:
-	index = 1
+	if len(animation_files) > 0:
+		#get index of folders:
+		animation_files_indices = [int(f.split('_')[-1].strip('.gif')) for f in animation_files]
+		#index for new folder is then the max index plus one
+		index = max(animation_files_indices) + 1
 
-frames_folder = os.getcwd() + r'\animation_frames\\'
-#specify target frames_folder
-frames_folder = frames_folder + name + rf'_{index}\\'
-#create folder if it does not exist yet
-if not os.path.exists(frames_folder): os.mkdir(frames_folder)
+	else:
+		index = 1
 
-	
+	global frames_folder
+	frames_folder = os.getcwd() + r'\animation_frames\\'
+	#specify target frames_folder
+	frames_folder = frames_folder + name + rf'_{index}\\'
+	#create folder if it does not exist yet
+	if not os.path.exists(frames_folder): os.mkdir(frames_folder)
+
+
+
+## ======== FRAME COMBINATION ======== ##
+def make_gif(name):
+	frames = [frames_folder + f for f in os.listdir(frames_folder)]
+	clip = mvp.ImageSequenceClip(frames, fps=14)
+	clip.write_gif(animation_folder + f'{name}_{index}.gif', fps=14)
+
+
 
 ## ======== HIST SELECTION ======== ##
 #some histogram functions
@@ -53,7 +65,7 @@ def func2(x):
 
 #choose two histograms a and b:
 
-# a = hist.gaussian(400, 0.5, 0.05, 0)
+a = hist.gaussian(400, 0.4, 0.045, 0)
 # a = hist.gaussian(400, 0.2, 0.06) + hist.gaussian(400, 0.5, 0.06)*2 + hist.gaussian(400, 0.8, 0.06)
 # a = hist.slater(400, 0.5, 30, 0)
 # a = hist.from_func(400, lambda x: 1-x**2)
@@ -63,9 +75,10 @@ def func2(x):
 # a = hist.from_func(400, lambda x: x)
 # a = hist.dirac_delta(400, 0.5)
 # a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
-r = jobs.DFTJob('l-alanine', job_name='l-alanine_DFT').run(); a = ir.get_spectrum(r, xlim=(0,2000), n=400)
+# r = jobs.DFTJob('l-alanine', job_name='l-alanine_DFT').run(); a = ir.get_spectrum(r, xlim=(0,2000), n=400)
 
 
+b = hist.gaussian(400, 0.7, 0.08, 0)
 # b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
 # b = hist.gaussian(400, 0.5, 0.05, 0)
 # b = hist.gaussian(400, 0.2, 0.06)*2 + hist.gaussian(400, 0.5, 0.06) + hist.gaussian(400, 0.8, 0.06)*2
@@ -74,7 +87,7 @@ r = jobs.DFTJob('l-alanine', job_name='l-alanine_DFT').run(); a = ir.get_spectru
 # b = hist.from_func(400, lambda x: x,0)
 # b = hist.from_func(400, lambda x: x**0)
 # b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
-r = jobs.DFTBJob('l-alanine', job_name='l-alanine_DFT').run(); b = ir.get_spectrum(r, xlim=(0,2000), n=400)
+# r = jobs.DFTBJob('l-alanine', job_name='l-alanine_DFT').run(); b = ir.get_spectrum(r, xlim=(0,2000), n=400)
 
 
 
@@ -114,26 +127,24 @@ r = jobs.DFTBJob('l-alanine', job_name='l-alanine_DFT').run(); b = ir.get_spectr
 
 # 	plot.plot_transport(a, b, bc_map, weight=i, show_plot=False, save_to=save_to)
 
+# setup('interpolations')
+# for i in np.linspace(0, 1, 50):
+# 	save_to = frames_folder + f'{i:.3f}.png'
+
+# 	bc_map = bc.barycenter(np.vstack((a,b)), (i, 1-i))
+
+# 	plot.plot_hists((a, b, bc_map), labels=('a', 'b', 'barycenter interp'), title=rf'Interpolations with $\alpha={i:.3f}$', show_plot=False, save_to=save_to)
+# make_gif()
+
+
+setup('analytical_interp')
 for i in np.linspace(0, 1, 50):
 	save_to = frames_folder + f'{i:.3f}.png'
 
 	bc_map = bc.barycenter(np.vstack((a,b)), (i, 1-i))
-	c = i*a + (1-i)*b
+	analytical = hist.gaussian(400, 0.7-0.3*i, 0.08-0.035*i)
 
-	plot.plot_hists((a, b, c, bc_map), labels=('a', 'b', 'L2 interp', 'barycenter interp'), title=rf'Interpolations with $\alpha={i:.3f}$', show_plot=False, save_to=save_to)
+	plot.plot_hists((a, b, analytical, bc_map), labels=('a', 'b', 'analytical interp', 'barycenter interp'), title=rf'Interpolations with $\alpha={i:.3f}$', show_plot=False, save_to=save_to)
+make_gif('analytical_interp')
 
-
-# for i in np.linspace(0, 1, 50):
-# 	save_to = frames_folder + f'{i:.3f}.png'
-
-# 	c = i*a + (1-i)*b
-# 	plot.plot_hists((a, b, c), labels=('a', 'b', 'interp'), title=rf'L2 interpolation with $\alpha={i:.3f}$', show_plot=False, save_to=save_to)
-
-
-
-
-## ======== FRAME COMBINATION ======== ##
-frames = [frames_folder + f for f in os.listdir(frames_folder)]
-clip = mvp.ImageSequenceClip(frames, fps=14)
-clip.write_gif(animation_folder + f'{name}_{index}.gif', fps=14)
 

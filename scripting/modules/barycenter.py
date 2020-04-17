@@ -62,7 +62,7 @@ def barycenter(a, weights, epsilon=0.05, cost_fn=None, error_fn=None, max_iter=1
 		#iteration part two
 		logb = np.zeros(N).astype(float)
 		for k in range(R):
-			logb += weights[k] * np.log(u[k] * K(v[k]))
+			logb += weights[k] * np.log(u[k]*K(v[k]))
 		b = np.exp(logb)
 
 		## =========== ##
