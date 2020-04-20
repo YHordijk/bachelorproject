@@ -207,7 +207,7 @@ def plot_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plo
 	plt.imshow(np.log(P+1e-5), aspect='auto')
 
 	#Plot baryocentric map:
-	plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
+	# plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
 	plt.gca().invert_yaxis()
 
 	#save plot if a file path is given
