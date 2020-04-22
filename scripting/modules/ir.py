@@ -1,6 +1,9 @@
 import numpy as np
 import scm.plams as plams
-import modules.histograms as hist
+try:
+	import modules.histograms as hist
+except:
+	import histograms as hist
 
 
 
@@ -16,7 +19,7 @@ def get_freqs_intens(kf):
 	'''
 	Function to get frequencies and intensities from result objects
 
-	results - plams.Results object
+	kf - path to KF file
 	'''
 
 	#load kffile

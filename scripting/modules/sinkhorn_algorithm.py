@@ -18,7 +18,7 @@ def entropy(a):
 
 
 class Results:
-	def __init__(self, a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh):
+	def __init__(self, a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh, C):
 		self.a = a 
 		self.b = b
 		self.K = K
@@ -30,6 +30,7 @@ class Results:
 		self.error_b = error_b
 		self.epsilon = epsilon
 		self.converge_thresh = converge_thresh
+		self.C = C
 
 		#calculate barycentric map
 		self.bc_map = np.dot(K, v*np.arange(len(b))) * u / a
@@ -101,6 +102,7 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 	Im = np.ones(len(a))
 	In = np.ones(len(b))
 	v = In
+	u = Im
 
 	#follow deviations during iterations
 	error_a = []
@@ -134,4 +136,4 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 	P = np.diag(u) @ K @ np.diag(v)
 	W = math.sqrt(inner_prod(C,P))
 
-	return Results(a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh)
+	return Results(a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh, C)

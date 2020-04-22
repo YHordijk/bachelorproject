@@ -11,7 +11,7 @@ import numpy as np
 
 
 
-def gaussian(n, x0, sigma, min_mass=0):
+def gaussian(n, x0, sigma, min_mass=0, xlim=(0,1)):
 	'''
 	Function that returns a histogram based on a gaussian function
 	exp(-(bins-x0)**2/(2*sigma**2))
@@ -23,11 +23,11 @@ def gaussian(n, x0, sigma, min_mass=0):
 	'''
 
 	f = lambda bins: np.exp(-(bins-x0)**2/(2*sigma**2))
-	return from_func(n, f, min_mass)
+	return from_func(n, f, min_mass, xlim)
 
 
 
-def lorentzian(n, x0, w, min_mass=0):
+def lorentzian(n, x0, w, min_mass=0, xlim=(0,1)):
 	'''
 	Function that returns a histogram based on a lorentzian function
 	(x0-x)/(w/2), used for spectrum generation.
@@ -38,11 +38,11 @@ def lorentzian(n, x0, w, min_mass=0):
 	'''
 
 	f = lambda bins: 1/(1+((x0-bins)/(w/2))**2)
-	return from_func(n, f, min_mass)
+	return from_func(n, f, min_mass, xlim)
 
 
 
-def slater(n, x0, chi, min_mass=0):
+def slater(n, x0, chi, min_mass=0, xlim=(0,1)):
 	'''
 	Function that returns a histogram based on a slater function
 	exp(-abs(bins-x0)*chi)
@@ -54,11 +54,11 @@ def slater(n, x0, chi, min_mass=0):
 	'''
 
 	f = lambda bins: np.exp(-abs(bins-x0)*chi)
-	return from_func(n, f, min_mass)
+	return from_func(n, f, min_mass, xlim)
 
 
 
-def dirac_delta(n, x0):
+def dirac_delta(n, x0, xlim=(0,1)):
 	'''
 	Function that returns a histogram where only one bin is filled
 
@@ -66,7 +66,7 @@ def dirac_delta(n, x0):
 	x0 - position of filled bin
 	'''
 
-	bins = np.linspace(0,1,n)
+	bins = np.linspace(xlim[0],xlim[1],n)
 	index = np.argsort(np.abs(bins-x0))[0]
 	h = np.zeros(n)
 	h[index] = 1
@@ -74,7 +74,7 @@ def dirac_delta(n, x0):
 	
 
 
-def from_func(n, func, min_mass=0):
+def from_func(n, func, min_mass=0, xlim=(0,1)):
 	'''
 	Function that returns a histogram based on any function
 
@@ -84,7 +84,7 @@ def from_func(n, func, min_mass=0):
 	'''
 
 	#get the x-values of the bins first
-	bins = np.linspace(0,1,n) 
+	bins = np.linspace(xlim[0],xlim[1],n) 
 	#apply function to get histogram
 	h = func(bins)
 	#add min_mass
