@@ -1,9 +1,12 @@
 |modules
 |
-|--jobs.py #classes used for ADF to perform jobs
+|--jobs.py #classes used for ADF and AMS to perform jobs
 |--vcd.py #functions used to calculate VCD spectra based on results from ADF jobs
 |--ir.py #function used to calculate infra-red spectra based on results from ADF jobs
 |--histograms.py #functions for generating histograms based on some function
 |--plot.py #functions for plotting results of the sinkhorn algorithm
 |--sinkhorn_algorithm.py #functions to perform the sinkhorn algorithm. Returns a container result object
 |--molecule_funcs.py #function for manipulating molecular structures, including mirroring molecules and downloading structures from pubchem
+|--barycenter.py #function that calculates barycenters between histograms
+|--cumulative_algorithm.py #function that uses the CFD method for calculating Wasserstein distance and barycenters
+

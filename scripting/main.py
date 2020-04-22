@@ -62,13 +62,13 @@ converge_thresh = 10**-10
 
 ### CALCULATION
 #get coupling matrix and errors
-res = sink.sinkhorn(a, b, epsilon, converge_thresh=converge_thresh, max_iter=1000)
+# res = sink.sinkhorn(a, b, epsilon, converge_thresh=converge_thresh, max_iter=1000)
 
 # bc_map = res.bc_map
 
 # plot.plot_transport(a,b,bc_map, 0.5)
 
-plot.plot_sink_results(res, save_to=save_to, plot_subtitle=plot_subtitle)
+# plot.plot_sink_results(res, save_to=save_to, plot_subtitle=plot_subtitle)
 
 import math
 import matplotlib.pyplot as plt
@@ -80,32 +80,32 @@ W2 = []
 
 
 
-# d = 0.8
-# a = hist.gaussian(400, 0, 0.03, 0, xlim=(-.3,1.3))
-# b = hist.gaussian(400, d, 0.03, 0, xlim=(-.3,1.3))
-# a /= np.sum(a)
-# b /= np.sum(b)
-# plot.plot_hists((a,b), labels=('a', 'b'))
+d = 0.8
+a = hist.gaussian(400, 0, 0.03, 0, xlim=(-.3,1.3))
+b = hist.gaussian(400, d, 0.03, 0, xlim=(-.3,1.3))
+a /= np.sum(a)
+b /= np.sum(b)
+plot.plot_hists((a,b), labels=('a', 'b'))
 
-# for d in np.linspace(0,0.8,100):
-# 	a = hist.gaussian(400, 0, 0.03, 0, xlim=(-0.3,1.3))
-# 	b = hist.gaussian(400, d, 0.03, 0, xlim=(-0.3,1.3))
+for d in np.linspace(0,0.8,100):
+	a = hist.gaussian(400, 0, 0.03, 0, xlim=(-0.3,1.3))
+	b = hist.gaussian(400, d, 0.03, 0, xlim=(-0.3,1.3))
 
-# 	a /= np.sum(a)
-# 	b /= np.sum(b)
+	a /= np.sum(a)
+	b /= np.sum(b)
 
-# 	print(np.sum(np.abs(a-b)))
-# 	l2.append((np.sum((np.abs(a-b))**2)))
-# 	W2.append(sink.sinkhorn(a, b, 10**-2).W)
+	print(np.sum(np.abs(a-b)))
+	l2.append((np.sum((np.abs(a-b))**2)))
+	W2.append(sink.sinkhorn(a, b, 10**-2).W)
 
-# print(math.sqrt(np.sum(a)**2+np.sum(b)**2))
+print(math.sqrt(np.sum(a)**2+np.sum(b)**2))
 
-# plt.plot(np.linspace(0,0.8,100), l2, label='L2-distance')
-# plt.plot(np.linspace(0,0.8,100), W2, label='W2-distance')
-# plt.xlabel('$m_b - m_a$')
-# plt.ylabel('Distance metric')
-# plt.legend()
-# plt.show()
+plt.plot(np.linspace(0,0.8,100), l2, label='L2-distance')
+plt.plot(np.linspace(0,0.8,100), W2, label='W2-distance')
+plt.xlabel('$m_b - m_a$')
+plt.ylabel('Distance metric')
+plt.legend()
+plt.show()
 
 
 
