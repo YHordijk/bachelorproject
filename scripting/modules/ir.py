@@ -31,7 +31,7 @@ def get_freqs_intens(kf):
 	return freqs, intens
 
 
-def get_spectrum(result, n=600, width=50, xlim=(0,4000)):
+def get_spectrum(result, n=600, xlim=(0,4000), width=50):
 	'''
 	Function to generate a spectrum histogram from results using
 	lorentzian line shape.
@@ -47,7 +47,7 @@ def get_spectrum(result, n=600, width=50, xlim=(0,4000)):
 	spectrum = np.zeros(n)
 
 	#project width onto new range
-	width = (width-xlim[0])/(xlim[1]-xlim[0])
+	width = width/(xlim[1]-xlim[0])
 
 	for f, i in zip(freqs, intens):
 		#we must project f from [xlim[0], xlim[1]] onto the range [0,1] since the histograms 
@@ -57,7 +57,7 @@ def get_spectrum(result, n=600, width=50, xlim=(0,4000)):
 	return spectrum
 
 
-def get_spectrum_from_kf(kf, n=400, width=50, xlim=(0,4000)):
+def get_spectrum_from_kf(kf, n=400, xlim=(0,4000), width=50):
 	'''
 	Same function as above but for paths to kf files.
 	'''
@@ -65,7 +65,7 @@ def get_spectrum_from_kf(kf, n=400, width=50, xlim=(0,4000)):
 	spectrum = np.zeros(n)
 
 	#project width onto new range
-	width = (width-xlim[0])/(xlim[1]-xlim[0])
+	width = width/(xlim[1]-xlim[0])
 
 	for f, i in zip(freqs, intens):
 		#we must project f from [xlim[0], xlim[1]] onto the range [0,1] since the histograms 

@@ -77,7 +77,7 @@ def func2(x):
 # a = hist.dirac_delta(400, 0.5)
 # a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
 # r = jobs.DFTJob('l-alanine', job_name='l-alanine_DFT').run(); a = ir.get_spectrum(r, xlim=(0,2000), n=400)
-a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\l-alanine.t21", xlim=(0,2000), n=400)
+a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
 
 
 # b = hist.gaussian(400, 0.3, 0.1, 0)
@@ -91,7 +91,7 @@ a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorprojec
 # b = hist.slater(400, 0.8, 30, 0)
 # b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
 # r = jobs.DFTBJob('l-alanine', job_name='l-alanine_DFT').run(); b = ir.get_spectrum(r, xlim=(0,2000), n=400)
-b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\l-alanine.rkf", xlim=(0,2000), n=400)
+b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
 
 
 ## ======== FRAME GENERATION ======== ##
@@ -111,17 +111,27 @@ b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorprojec
 # 	plot.plot_results(res, show_plot=False, save_to=save_to, plot_subtitle=plot_subtitle)
 
 
-setup('varying_epsilon')
-for i in np.linspace(0,3, 100):
-	e = 10**-i
+setup('increasing_water')
+r = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=800)
+w = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=800)
+ran = (1,0)
+for i in np.linspace(*ran,50):
+	e = 0.0004
+	res = sink.sinkhorn(r/np.sum(r), (r+w*i)/np.sum(r+w*i), e, converge_thresh=10**-6)
+	plot.plot_sink_results(res, show_plot=False, save_to=frames_folder + f'{i/max(ran):.3f}.png')
+make_gif('increasing_water')
 
-	converge_thresh = 10**-10
+# setup('varying_epsilon')
+# for i in np.linspace(0,3, 100):
+# 	e = 10**-i
 
-	save_to = frames_folder + f'{i/3:.3f}.png'
+# 	converge_thresh = 10**-10
 
-	res = sink.sinkhorn(a, b, e, converge_thresh=10**-10)
-	plot.plot_sink_results(res, show_plot=False, save_to=save_to)
-make_gif('varying_epsilon')
+# 	save_to = frames_folder + f'{i/3:.3f}.png'
+
+# 	res = sink.sinkhorn(a, b, e, converge_thresh=10**-10)
+# 	plot.plot_sink_results(res, show_plot=False, save_to=save_to)
+# make_gif('varying_epsilon')
 
 # for i in np.linspace(0, 1, 50):
 # 	# e = (math.exp(i*0.001)-1)*4

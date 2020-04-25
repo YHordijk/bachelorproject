@@ -13,8 +13,9 @@ structures_folder = os.getcwd() + r'\structures\\'
 
 
 class JobQueue(list):
-	def __init__(self, jobs=[]):
+	def __init__(self, jobs=[], run_path=os.getcwd()+r'\RUNS'):
 		self.jobs = jobs
+		self.run_path = run_path
 
 
 	def append(self, job):
@@ -22,19 +23,19 @@ class JobQueue(list):
 
 
 	def run(self):
-		path = os.getcwd()+r'\RUNS'
 		folder = time.strftime("%d-%m-%Y", time.localtime())
 
-		plams.init(path=path, folder=folder)
+		plams.init(path=self.run_path, folder=folder)
 
-		results = []
+		kffiles = []
 		for job in self.jobs:
 			res = job.run(False)
-			results.append(res)
+			kffiles.append(res.KFPATH)
 
 		plams.finish()
 
-		return results
+		return kffiles
+
 
 	def clear(self):
 		self.jobs = []
@@ -42,18 +43,15 @@ class JobQueue(list):
 
 
 class Job:
-	def __init__(self, mol, settings=None, job_name=None):
-		self.mol, self.name = mf.find_mol(mol)
-		if job_name is None:
-			self._job_name = self.name
-		else:
-			self._job_name = job_name
+	def __init__(self, mol_file, job_name, settings=None):
+		self.job_name = job_name
+		self.mol = plams.Molecule(mol_file)
 
-		if settings is None:
-			self.settings = plams.Settings()
-			self._set_std_settings()
+		self.settings = plams.Settings()
+		self._set_std_settings()
 
-		else: self.settings = settings
+		if settings is not None:
+			self.settings.update(settings)
 
 
 
@@ -78,14 +76,18 @@ class DFTJob(Job):
 		self.settings.input.VCD = 'Yes'
 
 
-	def run(self, init=True):
+	def run(self, init=True, path=None):
 		'''
 		Method that runs this job
 		'''
-		if init: plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+		if init: 
+			if path is None:
+				plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+			else:
+				plams.init(path=path)
 
 		s = self.settings
-		job = plams.ADFJob(molecule=self.mol, name=self._job_name, settings=s)
+		job = plams.ADFJob(molecule=self.mol, name=self.job_name, settings=s)
 		results = job.run()
 		results.dir = '\\'.join(results._kfpath().split('\\')[:-2])
 		results.KFPATH = results._kfpath()
@@ -117,14 +119,18 @@ class DFTBJob(Job):
 		self.settings.input.DFTB.Properties.VCD = 'Yes'	
 
 
-	def run(self, init=True):
+	def run(self, init=True, path=None):
 		'''
 		Method that runs this job
 		'''
-		if init: plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+		if init: 
+			if path is None:
+				plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+			else:
+				plams.init(path=path)
 
 		s = self.settings
-		job = plams.AMSJob(molecule=self.mol, name=self._job_name, settings=s)
+		job = plams.AMSJob(molecule=self.mol, name=self.job_name, settings=s)
 		results = job.run()
 		results.dir = '\\'.join(results.rkfpath('dftb').split('\\')[:-2])
 		results.KFPATH = results.rkfpath('dftb')

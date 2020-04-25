@@ -10,56 +10,122 @@ import scm.plams as plams
 structures_folder = os.getcwd() + r'\structures\\'
 
 
-def find_mol(mol):
-		'''
-		Method that loads a given molecule. Must be either a path to
-		a file, if it is not found it will search in structures_folder,
-		otherwise it will search pubchem for the structure
+# def find_mol(mol):
+# 		'''
+# 		Method that loads a given molecule. Must be either a path to
+# 		a file, if it is not found it will search in structures_folder,
+# 		otherwise it will search pubchem for the structure
 
-		mol - string specifying desired molecule
-		'''
+# 		mol - string specifying desired molecule
+# 		'''
 
-		
+# 		#check if the file exists on disk
+# 		if os.path.isfile(mol):
+# 			molecule = plams.Molecule(mol)
+# 			name = mol.split('\\')[-1][:-4]
 
-		#check if the file exists on disk
-		if os.path.isfile(mol):
-			molecule = plams.Molecule(mol)
-			name = mol.split('\\')[-1][:-4]
+# 		else:
+# 			#else look in strucutres_folder
+# 			if os.path.isfile(structures_folder + mol + '.xyz'):
+# 				molecule = plams.Molecule(structures_folder + mol + '.xyz')
+# 				name = mol
 
-		else:
-			#else look in strucutres_folder
-			if os.path.isfile(structures_folder + mol + '.xyz'):
-				molecule = plams.Molecule(structures_folder + mol + '.xyz')
-				name = mol
+# 			#if still not found search pubchem
+# 			else:
+# 				import pubchempy as pcp
 
-			#if still not found search pubchem
-			else:
-				import pubchempy as pcp
+# 				mols = pcp.get_compounds(mol, 'name', record_type='3d')
 
-				mols = pcp.get_compounds(mol, 'name', record_type='3d')
+# 				#check if there was a match
+# 				if len(mols) == 0:
+# 					raise Exception(f'Molecule {mol} not found on PubChem or on disk.')
 
-				#check if there was a match
-				if len(mols) == 0:
-					raise Exception(f'Molecule {mol} not found on PubChem or on disk.')
+# 				#save xyz file to disk
+# 				else:
+# 					coords = np.asarray([[a.x, a.y, a.z] for a in mols[0].atoms])
+# 					coords = np.where(coords == None, 0, coords).astype(float)
+# 					elements = np.asarray([a.element for a in mols[0].atoms])
 
-				#save xyz file to disk
+# 					name = mol
+# 					mol = structures_folder + f'{name}.xyz'
+
+# 					with open(mol, 'w+') as f:
+# 						f.write(f'{len(elements)}\n')
+# 						f.write('Downloaded from PubChem using PucbChemPy\n')
+# 						for i, e in enumerate(elements):
+# 							f.write(f'{e: <2} \t {coords[i][0]: >8.5f} \t {coords[i][1]: >8.5f} \t {coords[i][2]: >8.5f}\n')
+
+# 					molecule = plams.Molecule(mol)
+
+# 		return molecule
+
+
+
+def get_from_pubchem(name, path=structures_folder):
+	'''
+	Function that downloads a molecule from pubchem
+	Save the molecule to path
+
+	name - name of molecule
+	path - path to save molecule to
+	'''
+
+	import pubchempy as pcp
+
+	mols = pcp.get_compounds(name, 'name', record_type='3d')
+	#check if there was a match
+	if len(mols) == 0:
+		raise Exception(f'Molecule {mol} not found on PubChem or on disk.')
+
+	#save xyz file to disk
+	else:
+		coords = np.asarray([[a.x, a.y, a.z] for a in mols[0].atoms])
+		coords = np.where(coords == None, 0, coords).astype(float)
+		elements = np.asarray([a.element for a in mols[0].atoms])
+
+		mol_path = path + '\\' + name + '.xyz'
+
+		with open(mol_path, 'w+') as f:
+			f.write(f'{len(elements)}\n')
+			f.write('Downloaded from PubChem\n')
+			for i, e in enumerate(elements):
+				f.write(f'{e: <2} \t {coords[i][0]: >8.5f} \t {coords[i][1]: >8.5f} \t {coords[i][2]: >8.5f}\n')
+
+		return mol_path
+
+
+
+def get_mol_paths(name, root=structures_folder, exact=True):
+	'''
+	Function that returns the path to a file in a folder in root or on pubchem
+	If found on pubchem, save to root
+
+	name - name of molecule (str)
+	root - path to root folder (str)
+	exact - specify if file should exactly match name
+	'''
+
+	#search root
+	paths = []
+	for d, _, files in os.walk(root):
+		for file in files:
+			if file.endswith('.xyz'):
+				if exact:
+					if name == file.strip('.xyz'):
+						paths.append(d + '\\' + file)
 				else:
-					coords = np.asarray([[a.x, a.y, a.z] for a in mols[0].atoms])
-					coords = np.where(coords == None, 0, coords).astype(float)
-					elements = np.asarray([a.element for a in mols[0].atoms])
+					if name in file.strip('.xyz'):
+						paths.append(d + '\\' + file)
 
-					name = mol.lower()
-					mol = structures_folder + f'{name}.xyz'
+	if len(paths) > 0:
+		return paths
 
-					with open(mol, 'w+') as f:
-						f.write(f'{len(elements)}\n')
-						f.write('Downloaded from PubChem using PucbChemPy\n')
-						for i, e in enumerate(elements):
-							f.write(f'{e: <2} \t {coords[i][0]: >8.5f} \t {coords[i][1]: >8.5f} \t {coords[i][2]: >8.5f}\n')
+	#if not found, search pubchem
+	return [get_from_pubchem(name, root)]
 
-					molecule = plams.Molecule(mol)
 
-		return molecule, name
+
+# print(get_mol_pats('water', r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\structures"))
 
 
 
