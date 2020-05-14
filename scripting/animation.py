@@ -9,6 +9,7 @@ import modules.ir as ir
 import math, os
 import moviepy.editor as mvp
 import modules.ir as ir
+import ot
 
 
 ## ================================================================= ##
@@ -48,8 +49,8 @@ def setup(name):
 
 
 ## ======== FRAME COMBINATION ======== ##
-def make_gif(name):
-	frames = [frames_folder + f for f in os.listdir(frames_folder)]
+def make_gif(name, frames):
+	# frames = [frames_folder + f for f in os.listdir(frames_folder)]
 	clip = mvp.ImageSequenceClip(frames, fps=14)
 	clip.write_gif(animation_folder + f'{name}_{index}.gif', fps=14)
 
@@ -65,7 +66,7 @@ def func2(x):
 
 #choose two histograms a and b:
 
-# a = hist.gaussian(400, 0.7, 0.1, 0)
+a = hist.gaussian(400, 0.7, 0.1, 0)
 # a = hist.gaussian(400, 0.7, 0.1, 0) + 0.1 * hist.gaussian(400, 0.5,0.03)
 # a = hist.gaussian(400, 0.2, 0.06) + hist.gaussian(400, 0.5, 0.06)*2 + hist.gaussian(400, 0.8, 0.06)
 # a = hist.slater(400, 0.5, 30, 0)
@@ -77,10 +78,10 @@ def func2(x):
 # a = hist.dirac_delta(400, 0.5)
 # a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
 # r = jobs.DFTJob('l-alanine', job_name='l-alanine_DFT').run(); a = ir.get_spectrum(r, xlim=(0,2000), n=400)
-a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
+# a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
 
 
-# b = hist.gaussian(400, 0.3, 0.1, 0)
+b = hist.gaussian(400, 0.3, 0.1, 0)
 # b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
 # b = hist.gaussian(400, 0.5, 0.05, 0)
 # b = hist.gaussian(400, 0.2, 0.06)*2 + hist.gaussian(400, 0.5, 0.06) + hist.gaussian(400, 0.8, 0.06)*2
@@ -91,7 +92,7 @@ a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorprojec
 # b = hist.slater(400, 0.8, 30, 0)
 # b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
 # r = jobs.DFTBJob('l-alanine', job_name='l-alanine_DFT').run(); b = ir.get_spectrum(r, xlim=(0,2000), n=400)
-b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
+# b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
 
 
 ## ======== FRAME GENERATION ======== ##
@@ -111,16 +112,62 @@ b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorprojec
 # 	plot.plot_results(res, show_plot=False, save_to=save_to, plot_subtitle=plot_subtitle)
 
 
-setup('increasing_water')
-r = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=800)
-w = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=800)
-ran = (1,0)
-for i in np.linspace(*ran,50):
-	e = 0.0004
-	res = sink.sinkhorn(r/np.sum(r), (r+w*i)/np.sum(r+w*i), e, converge_thresh=10**-6)
-	plot.plot_sink_results(res, show_plot=False, save_to=frames_folder + f'{i/max(ran):.3f}.png')
-make_gif('increasing_water')
+# setup('increasing_water_pentane')
+# r = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\pentane_DFT.t21", xlim=(0,4000), n=800)
+# w = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=800)
+# ran = (1,0)
+# for i in np.linspace(*ran,50):
+# 	e = 0.0004
+# 	res = sink.sinkhorn(r/np.sum(r), (r+w*i)/np.sum(r+w*i), e, converge_thresh=10**-6)
+# 	plot.plot_sink_results(res, show_plot=False, save_to=frames_folder + f'{i/max(ran):.3f}.png')
+# make_gif('increasing_water_pentane')
 
+
+
+setup('varying_reg_m')
+# a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFT.t21", xlim=(0,4000), n=800)
+# b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFTB.rkf", xlim=(0,4000), n=800)
+ran = (3,-3)
+frames = []
+for i in np.linspace(*ran,100):
+	e = 0.004
+	res = sink.sinkhorn_test(a, b, e, converge_thresh=10**-6, reg_m=10**i)
+	save_path = frames_folder + f'{(i+min(ran))/(max(ran)-min(ran)):.3f}.png'
+	frames.append(save_path)
+	plot.plot_sink_results(res, show_plot=False, save_to=save_path, title=f'Unbalanced sinkhorn of aminoindan conformers\n$\epsilon =$ {e:.4f}, $reg_m = 10$^{i:.3f}')
+	print(save_path)
+make_gif('varying_reg_m', frames)
+
+
+# setup('increasing_water_hexane')
+# r = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\hexane_DFT.t21", xlim=(0,4000), n=800)
+# w = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=800)
+# ran = (1,0)
+# for i in np.linspace(*ran,50):
+# 	e = 0.0004
+# 	res = sink.sinkhorn(r/np.sum(r), (r+w*i)/np.sum(r+w*i), e, converge_thresh=10**-6)
+# 	plot.plot_sink_results(res, show_plot=False, save_to=frames_folder + f'{i/max(ran):.3f}.png')
+# make_gif('increasing_water_hexane')
+
+# setup('increasing_water_heptane')
+# r = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\heptane_DFT.t21", xlim=(0,4000), n=800)
+# w = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=800)
+# ran = (1,0)
+# for i in np.linspace(*ran,50):
+# 	e = 0.0004
+# 	res = sink.sinkhorn(r/np.sum(r), (r+w*i)/np.sum(r+w*i), e, converge_thresh=10**-6)
+# 	plot.plot_sink_results(res, show_plot=False, save_to=frames_folder + f'{i/max(ran):.3f}.png')
+# make_gif('increasing_water_heptane')
+
+# setup('increasing_water_octane')
+# r = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\octane_DFT.t21", xlim=(0,4000), n=800)
+# w = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=800)
+# ran = (1,0)
+# for i in np.linspace(*ran,50):
+# 	e = 0.0004
+# 	res = sink.sinkhorn(r/np.sum(r), (r+w*i)/np.sum(r+w*i), e, converge_thresh=10**-6)
+# 	plot.plot_sink_results(res, show_plot=False, save_to=frames_folder + f'{i/max(ran):.3f}.png')
+# make_gif('increasing_water_octane')
 # setup('varying_epsilon')
 # for i in np.linspace(0,3, 100):
 # 	e = 10**-i

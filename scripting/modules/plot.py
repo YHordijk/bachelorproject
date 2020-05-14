@@ -146,7 +146,7 @@ def plot_transport(a, b, bc_map, weight=0.5, labels=('Bins', 'Mass'), xlim=None,
 
 
 
-def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plot=True, plot_subtitle=None):
+def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, show_plot=True, title=None, plot_subtitle=None):
 	#get results
 	a, b = res.a, res.b
 	P = res.P
@@ -161,7 +161,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 
 	### PLOTTING
 	fig = plt.figure(figsize=(16,9))
-	title = f'Sinkhorn algorithm errors and coupling matrix for two histograms with $\epsilon={epsilon:.3f}$\nWasserstein distance $W_\epsilon={W:.2f}$; Converged after {len(error_a)} iterations with threshold$={converge_thresh}$'
+	if title is None: title = f'Sinkhorn algorithm errors and coupling matrix for two histograms with $\epsilon={epsilon:.3f}$\nWasserstein distance $W_\epsilon={W:.2f}$; Converged after {len(error_a)} iterations with threshold$={converge_thresh}$'
 	if plot_subtitle is None:
 		plt.suptitle(title)
 	else:
@@ -176,6 +176,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	plt.ylabel(labels[1])
 	plt.plot(range(len(a)), a, 'blue', linewidth=2, label='$a$')
 	plt.plot(range(len(a)), P@In/np.sum(P@In), 'red', linewidth=1, label='$P_\epsilon I_n$')
+	# plt.plot(range(len(a)), P@b/np.sum(P@b), 'red', linewidth=1, label='$P_\epsilon b$')
 	plt.fill_between(range(len(a)), a, facecolor='lightblue')
 	plt.yticks([])
 	plt.xlim(0,len(a))

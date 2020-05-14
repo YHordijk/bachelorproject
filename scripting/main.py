@@ -22,7 +22,7 @@ def func2(x):
 
 ### SETUP
 #choose two histograms a and b:
-a = hist.gaussian(400, 0.7, 0.04, 0)
+# a = hist.gaussian(400, 0.7, 0.04, 0)
 # a = hist.gaussian(400, 0.2, 0.06) + hist.gaussian(400, 0.5, 0.06)*2 + hist.gaussian(400, 0.8, 0.06)
 # a = hist.slater(400, 0.5, 30, 0)
 # a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
@@ -31,9 +31,10 @@ a = hist.gaussian(400, 0.7, 0.04, 0)
 # a = hist.from_func(400, lambda x: np.cos(x*7*3.14)+1)
 # a = hist.from_func(400, lambda x: x)
 # a = hist.dirac_delta(400, 0.5)
-a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21", xlim=(0,4000), n=400)
+# a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\lactic acid.t21", xlim=(0,4000), n=600)
+a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\[21-05](13-05-2020)\hydrocarbons_ethane_DFTB.rkf", xlim=(0,4000), n=600)
 
-b = hist.gaussian(400, 0.3, 0.04, 0)
+# b = hist.gaussian(400, 0.3, 0.04, 0)
 # b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
 # b = hist.gaussian(400, 0.2, 0.06)*2 + hist.gaussian(400, 0.5, 0.06) + hist.gaussian(400, 0.8, 0.06)*2
 # b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
@@ -42,16 +43,17 @@ b = hist.gaussian(400, 0.3, 0.04, 0)
 # b = hist.from_func(400, lambda x: x,0)
 # b = hist.from_func(400, lambda x: x**0)
 # b = hist.lorentzian(400, 0.5, 0.1)
-b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf", xlim=(0,4000), n=400)
+# b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf", xlim=(0,4000), n=400)
+b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\[21-05](13-05-2020)\hydrocarbons_ethane_DFT.t21", xlim=(0,4000), n=600)
 
 
 
 cost_fn = lambda x1, x2: abs(x1-x2)**2 #function used for calculating ground cost matrix
 error_fn = lambda x1, x2: np.sqrt(np.sum((x1-x2)**2)) #function used for calculating errors
-epsilon = 0.00001
+epsilon = 0.001
 save_to = None
 plot_subtitle = None
-converge_thresh = 10**-10
+converge_thresh = 10**-6
 
 
 
@@ -62,7 +64,7 @@ converge_thresh = 10**-10
 
 ### CALCULATION
 #get coupling matrix and errors
-res = sink.sinkhorn(a, a, epsilon, converge_thresh=converge_thresh, max_iter=10000)
+res = sink.sinkhorn_test(a, b, epsilon, converge_thresh=converge_thresh, max_iter=10000)
 
 # bc_map = res.bc_map
 

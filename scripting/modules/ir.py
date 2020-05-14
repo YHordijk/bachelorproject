@@ -27,7 +27,7 @@ def get_freqs_intens(kf):
 	#read freqs and intens from kffile
 	freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
 	intens = kff.read_section('Vibrations')['Intensities[km/mol]']
-
+	
 	return freqs, intens
 
 
@@ -41,6 +41,9 @@ def get_spectrum(result, n=600, xlim=(0,4000), width=50):
 	width - width of lorentzian peaks, defaults to 50cm-1 (same as in ADF)
 
 	I will try to add support for gaussian line shape as well
+
+
+	##DEPRECATED##
 	'''
 
 	freqs, intens = get_freqs_intens(result.KFPATH)
@@ -57,10 +60,11 @@ def get_spectrum(result, n=600, xlim=(0,4000), width=50):
 	return spectrum
 
 
-def get_spectrum_from_kf(kf, n=400, xlim=(0,4000), width=50):
+def get_spectrum_from_kf(kf, n=600, xlim=(0,4000), width=50):
 	'''
 	Same function as above but for paths to kf files.
 	'''
+	
 	freqs, intens = get_freqs_intens(kf)
 	spectrum = np.zeros(n)
 
@@ -71,5 +75,6 @@ def get_spectrum_from_kf(kf, n=400, xlim=(0,4000), width=50):
 		#we must project f from [xlim[0], xlim[1]] onto the range [0,1] since the histograms 
 		#are calculated on that range
 		spectrum += hist.lorentzian(n, (f-xlim[0])/(xlim[1]-xlim[0]), width) * i
+		# spectrum += hist.dirac_delta(n, (f-xlim[0])/(xlim[1]-xlim[0])) * i
 
 	return spectrum

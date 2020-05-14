@@ -1,0 +1,27 @@
+4ot-0-i-pbeh3c 0 1
+4ot-0-p-pbeh3c 0 1
+4ot-0-r-pbeh3c 0 1
+4ot-0-ts1-pbeh3c 0 1
+aspdc-0-p-pbeh3c 0 1
+aspdc-0-r-pbeh3c 0 1
+aspdc-0-ts-pbeh3c 0 1
+aspdc-1-p-pbeh3c 0 1
+aspdc-1-r-pbeh3c 0 1
+aspdc-2-p-pbeh3c 0 1
+aspdc-2-r-pbeh3c 0 1
+hhec-0-p-pbeh3c 0 1
+hhec-0-r-pbeh3c 0 1
+hhec-1-p-pbeh3c 0 1
+hhec-1-r-pbeh3c 0 1
+hhec-1-ts-pbeh3c 0 1
+hkmt-0-p-pbeh3c 1 1
+hkmt-0-r-pbeh3c 1 1
+hkmt-0-ts-pbeh3c 1 1
+hkmt-1-p-pbeh3c 1 1
+hkmt-1-r-pbeh3c 1 1
+hkmt-1-ts-pbeh3c 1 1
+hkmt-2-p-pbeh3c 1 1
+hkmt-2-r-pbeh3c 1 1
+hkmt-2-ts-pbeh3c 1 1
+
+

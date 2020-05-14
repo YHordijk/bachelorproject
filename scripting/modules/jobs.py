@@ -23,7 +23,7 @@ class JobQueue(list):
 
 
 	def run(self):
-		folder = time.strftime("%d-%m-%Y", time.localtime())
+		folder = time.strftime("[%H:%M](%d-%m-%Y)", time.localtime())
 
 		plams.init(path=self.run_path, folder=folder)
 
@@ -43,12 +43,12 @@ class JobQueue(list):
 
 
 class Job:
-	def __init__(self, mol_file, job_name, settings=None):
+	def __init__(self, mol_file, job_name, settings=None, geo_opt=False):
 		self.job_name = job_name
 		self.mol = plams.Molecule(mol_file)
 
 		self.settings = plams.Settings()
-		self._set_std_settings()
+		self._set_std_settings(geo_opt)
 
 		if settings is not None:
 			self.settings.update(settings)
@@ -60,16 +60,17 @@ class DFTJob(Job):
 	Class used for geometry optimization + frequency jobs using DFT
 	'''
 
-	def _set_std_settings(self):
+	def _set_std_settings(self, geo_opt=False):
 		'''
 		Method that specifies standard settings for a DFT geometry optimization + freqs job
 		'''
 
+		if geo_opt: self.settings.input.Geometry
+
 		self.settings.input.Basis.type = 'DZP'
 		self.settings.input.Basis.core = 'None'
-		self.settings.input.XC.GGA = 'PBE'
+		self.settings.input.XC.GGA = 'BP86'
 		self.settings.input['Relativistic Scalar'] = 'ZORA'
-		self.settings.input.Geometry
 		self.settings.input.AnalyticalFreq 
 		# self.settings.input.NumericalQuality = 'Excellent'
 		self.settings.input.SYMMETRY = 'NOSYM'
@@ -82,7 +83,7 @@ class DFTJob(Job):
 		'''
 		if init: 
 			if path is None:
-				plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+				plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("[%H:%M](%d-%m-%Y)", time.localtime()))
 			else:
 				plams.init(path=path)
 
@@ -94,9 +95,7 @@ class DFTJob(Job):
 
 		if init: plams.finish()
 
-		self.results = results
-
-		return results
+		return results._kfpath()
 
 
 
@@ -105,16 +104,17 @@ class DFTBJob(Job):
 	Class used for geometry optimization + frequency jobs using DF tight binding methods
 	'''
 
-	def _set_std_settings(self):
+	def _set_std_settings(self, geo_opt=False):
 		'''
 		Method that specifies standard settings for a DFTB geometry optimization + freqs job
 		'''
 
-		self.settings.input.ams.Task = 'GeometryOptimization'
+		if geo_opt: self.settings.input.ams.Task = 'GeometryOptimization'
+		else: self.settings.input.ams.Task = 'SinglePoint'
+
 		self.settings.input.ams.Properties.NormalModes = 'Yes'
 		self.settings.input.DFTB
 		self.settings.input.DFTB.Model = 'GFN1-xTB'
-		# self.settings.input.DFTB.ResourcesDir = 'DFTB.org/3ob-freq-1-2'
 		self.settings.input.DFTB.ResourcesDir = 'GFN1-xTB'
 		self.settings.input.DFTB.Properties.VCD = 'Yes'	
 
@@ -125,7 +125,7 @@ class DFTBJob(Job):
 		'''
 		if init: 
 			if path is None:
-				plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("%d-%m-%Y", time.localtime()))
+				plams.init(path=os.getcwd()+r'\RUNS', folder=time.strftime("[%H:%M](%d-%m-%Y)", time.localtime()))
 			else:
 				plams.init(path=path)
 
@@ -139,5 +139,5 @@ class DFTBJob(Job):
 
 		self.results = results
 
-		return results
+		return results.rkfpath('dftb')
 

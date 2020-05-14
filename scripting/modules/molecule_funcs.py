@@ -59,6 +59,26 @@ structures_folder = os.getcwd() + r'\structures\\'
 
 # 		return molecule
 
+def mult_coords(file, f, save_to=None):
+	'''
+	Multiplies all coordinates of a molecule by a given factor.
+	Useful for converting between units:
+
+	file - file name of molecule
+	f - factor to multiply coordinates with:
+		Bohr -> Angstrom: 0.52918
+	save_to - path to save new file to, set to None to overwrite
+	'''
+
+	mol = plams.Molecule(file)
+	for a in mol.atoms:
+		a.coords = f*np.asarray(a.coords)
+
+
+	if save_to is None: save_to = file
+	save_to_xyz(mol, save_to)
+
+
 
 
 def get_from_pubchem(name, path=structures_folder):
@@ -154,7 +174,6 @@ def mirror(mol):
 	for atom in molecule.atoms:
 		atom.x *= -1
 
-
 	return molecule
 
 
@@ -177,4 +196,5 @@ def save_to_xyz(mol, path, comment=''):
 		f.write('\n')
 		for i, e in enumerate(elements):
 			f.write(f'{e: <2} \t {coords[i][0]: >8.5f} \t {coords[i][1]: >8.5f} \t {coords[i][2]: >8.5f}\n')
+
 
