@@ -59,6 +59,10 @@ structures_folder = os.getcwd() + r'\structures\\'
 
 # 		return molecule
 
+
+
+
+
 def mult_coords(file, f, save_to=None):
 	'''
 	Multiplies all coordinates of a molecule by a given factor.

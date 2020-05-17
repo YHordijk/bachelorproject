@@ -25,9 +25,13 @@ def get_freqs_intens(kf):
 	#load kffile
 	kff = plams.KFFile(kf)
 	#read freqs and intens from kffile
-	freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
-	intens = kff.read_section('Vibrations')['Intensities[km/mol]']
-	
+	try:
+		freqs = kff.read_section('Freq Symmetry')['Frequencies_A']
+		intens = kff.read_section('Freq Symmetry')['IR intensities_A']
+	except:
+		freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
+		intens = kff.read_section('Vibrations')['Intensities[km/mol]']
+
 	return freqs, intens
 
 

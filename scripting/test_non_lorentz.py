@@ -12,17 +12,17 @@ import matplotlib.pyplot as plt
 
 
 #RANDOM COLLECTION OF MOLECULES
-# kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\AI1_DFT.t21",
-# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\butane_DFT.t21",
-# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\lactic acid.t21",
-# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\l-alanine.t21",
-# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21"]
+kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\AI1_DFT.t21",
+		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\butane_DFT.t21",
+		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\lactic acid.t21",
+		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\l-alanine.t21",
+		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21"]
 
-# kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\AI1_DFTB.rkf",
-# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\butane_DFTB.rkf",
-# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\lactic acid.rkf",
-# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\l-alanine.rkf",
-# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf"]
+kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\AI1_DFTB.rkf",
+		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\butane_DFTB.rkf",
+		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\lactic acid.rkf",
+		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\l-alanine.rkf",
+		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf"]
 
 
 
@@ -63,19 +63,19 @@ import matplotlib.pyplot as plt
 
 
 #SINGLEPOINT AMINO-INDAN CONFORMERS
-kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI2_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI3_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI4_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI5_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI6_DFT.t21"]
+# kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI2_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI3_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI4_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI5_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI6_DFT.t21"]
 
-kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI2_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI3_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI4_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI5_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI6_DFTB.rkf"]
+# kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI2_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI3_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI4_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI5_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI6_DFTB.rkf"]
 
 
 
@@ -108,7 +108,7 @@ for i in range(len(freq_dft)):
 		# ia = ia/np.sum(ia)
 		# ib = ib/np.sum(ib)
 
-		P = ot.unbalanced.sinkhorn_stabilized_unbalanced(ia, ib, C, 0.005, 10**-2)
+		P = ot.unbalanced.sinkhorn_unbalanced(ia, ib, C, 0.005, 10**-2)
 		d[i,j] = np.sum(P*C)
 
 

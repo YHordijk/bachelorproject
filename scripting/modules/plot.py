@@ -210,7 +210,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	plt.title('Coupling matrix with barycentric map ($P_\epsilon$)')
 	plt.xlabel('Bin in histogram b')
 	plt.ylabel('Bin in histogram a')
-	plt.imshow(np.log(P+1e-5), aspect='auto')
+	plt.imshow(P, aspect='auto')
 
 	#Plot baryocentric map:
 	# plt.plot(bc_map, range(len(a)), 'r', linewidth=3)

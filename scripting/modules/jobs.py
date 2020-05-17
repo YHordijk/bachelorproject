@@ -1,6 +1,6 @@
 import numpy as np
 import scm.plams as plams
-import modules.molecule_funcs as mf
+# import modules.molecule_funcs as mf
 import os, time
 
 
@@ -46,6 +46,8 @@ class Job:
 	def __init__(self, mol_file, job_name, settings=None, geo_opt=False):
 		self.job_name = job_name
 		self.mol = plams.Molecule(mol_file)
+		#sort atoms to prevent errors in ADF
+		self.mol.atoms.sort(key=lambda x: x.symbol)
 
 		self.settings = plams.Settings()
 		self._set_std_settings(geo_opt)
