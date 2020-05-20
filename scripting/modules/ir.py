@@ -25,6 +25,7 @@ def get_freqs_intens(kf):
 	#load kffile
 	kff = plams.KFFile(kf)
 	#read freqs and intens from kffile
+
 	try:
 		freqs = kff.read_section('Freq Symmetry')['Frequencies_A']
 		intens = kff.read_section('Freq Symmetry')['IR intensities_A']

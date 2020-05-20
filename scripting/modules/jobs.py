@@ -72,7 +72,7 @@ class DFTJob(Job):
 		self.settings.input.Basis.type = 'DZP'
 		self.settings.input.Basis.core = 'None'
 		self.settings.input.XC.GGA = 'BP86'
-		self.settings.input['Relativistic Scalar'] = 'ZORA'
+		# self.settings.input['Relativistic Scalar'] = 'ZORA'
 		self.settings.input.AnalyticalFreq 
 		# self.settings.input.NumericalQuality = 'Excellent'
 		self.settings.input.SYMMETRY = 'NOSYM'

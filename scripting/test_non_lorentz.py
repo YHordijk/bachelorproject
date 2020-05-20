@@ -12,17 +12,30 @@ import matplotlib.pyplot as plt
 
 
 #RANDOM COLLECTION OF MOLECULES
-kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\AI1_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\butane_DFT.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\lactic acid.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\l-alanine.t21",
-		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21"]
+# kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\AI1_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\butane_DFT.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\lactic acid.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\l-alanine.t21",
+# 		  r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\water.t21"]
 
-kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\AI1_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\butane_DFTB.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\lactic acid.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\l-alanine.rkf",
-		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf"]
+kf_dft = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\Aminoindan_CONF_1_DFT.t21",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\butane_DFT.t21",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\lactic acid.t21",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\l-alanine.t21",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\water.t21"]
+
+# kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\AI1_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\butane_DFTB.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\lactic acid.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\l-alanine.rkf",
+# 		   r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf"]
+
+
+kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\Aminoindan_CONF_1_DFTB.rkf",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\butane_DFTB.rkf",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\lactic acid.rkf",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\l-alanine.rkf",
+			r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set\water.rkf"]
 
 
 
@@ -79,12 +92,17 @@ kf_dftb = [r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\
 
 
 
+
+
+
+
 #get intensities and frequencies
 freq_dft = [ir.get_freqs_intens(f)[0] for f in kf_dft]
-ints_dft = [ir.get_freqs_intens(f)[1] for f in kf_dft]
+ints_dft = [np.ones(len(ir.get_freqs_intens(f)[1])) for f in kf_dft]
+
 
 freq_dftb = [ir.get_freqs_intens(f)[0] for f in kf_dftb]
-ints_dftb = [ir.get_freqs_intens(f)[1] for f in kf_dftb]
+ints_dftb = [np.ones(len(ir.get_freqs_intens(f)[1])) for f in kf_dftb]
 
 
 
@@ -110,6 +128,19 @@ for i in range(len(freq_dft)):
 
 		P = ot.unbalanced.sinkhorn_unbalanced(ia, ib, C, 0.005, 10**-2)
 		d[i,j] = np.sum(P*C)
+
+
+
+		if (i == 0 and j==0) or (i==1 and j==2):
+			plt.subplot(1,4,1)
+			plt.scatter(np.asarray(freq_dft[i]), ia)
+			plt.subplot(1,4,2)
+			plt.scatter(np.asarray(freq_dftb[j]), ib)
+			plt.subplot(1,4,3)
+			plt.imshow(C)
+			plt.subplot(1,4,4)
+			plt.imshow(P, aspect='auto')
+			plt.show()
 
 
 		# plt.subplot(1,4,1)
@@ -145,59 +176,63 @@ for i in range(len(freq_dft)):
 		ia = ia/np.sum(ia)
 		ib = ib/np.sum(ib)
 
+		# res = sink.sinkhorn_test(ia, ib, 0.005, converge_thresh=10**-6, max_iter=10000)
+
 		P = ot.bregman.sinkhorn(ia, ib, C, 0.005)
 		d[i,j] = np.sum(P*C)
 
 
-		# plt.subplot(1,4,1)
-		# plt.plot(np.asarray(freq_dft[i]), ia)
-		# plt.subplot(1,4,2)
-		# plt.plot(np.asarray(freq_dftb[j]), ib)
-		# plt.subplot(1,4,3)
-		# plt.imshow(C)
-		# plt.subplot(1,4,4)
-		# plt.imshow(P)
-		# plt.show()
+
+		if (i == 0 and j==0) or (i==1 and j==2):
+			plt.subplot(1,4,1)
+			plt.scatter(np.asarray(freq_dft[i]), ia)
+			plt.subplot(1,4,2)
+			plt.scatter(np.asarray(freq_dftb[j]), ib)
+			plt.subplot(1,4,3)
+			plt.imshow(C)
+			plt.subplot(1,4,4)
+			plt.imshow(P, aspect='auto')
+			plt.show()
 
 [print(*tuple(x)) for x in d]
 
 
 
 #cosine similarity
-def cossim(a,b):
-	return np.dot(a,b)/(np.sum(np.abs(a))*np.sum(np.abs(b)))
+# def cossim(a,b):
+# 	return np.dot(a,b)/(np.sum(np.abs(a))*np.sum(np.abs(b)))
 
-print('Case (cosine similarity)')
-d = np.zeros((len(freq_dft), len(freq_dftb)))
-for i in range(len(freq_dft)):
-	for j in range(len(freq_dftb)):
-		fa = np.asarray(freq_dft[i])
-		fb = np.asarray(freq_dftb[j])
+# print('Case (cosine similarity)')
+# d = np.zeros((len(freq_dft), len(freq_dftb)))
+# for i in range(len(freq_dft)):
+# 	for j in range(len(freq_dftb)):
+# 		fa = np.asarray(freq_dft[i])
+# 		fb = np.asarray(freq_dftb[j])
 
-		fa = fa/np.sum(fa)
-		fb = fb/np.sum(fb)
+# 		fa = fa/np.sum(fa)
+# 		fb = fb/np.sum(fb)
 
-		Y, X = np.meshgrid(fa, fb)
-		C = (abs(X-Y)**2).T
+# 		Y, X = np.meshgrid(fa, fb)
+# 		C = (abs(X-Y)**2).T
 
-		ia = np.asarray(ints_dft[i])
-		ib = np.asarray(ints_dftb[j])
+# 		ia = np.asarray(ints_dft[i])
+# 		ib = np.asarray(ints_dftb[j])
 
-		ia = ia/np.sum(ia)
-		ib = ib/np.sum(ib)
+# 		ia = ia/np.sum(ia)
+# 		ib = ib/np.sum(ib)
 
-		d[i,j] = cossim(ia, ib)
+# 		d[i,j] = cossim(ia, ib)
 
 
-		# plt.subplot(1,4,1)
-		# plt.plot(np.asarray(freq_dft[i]), ia)
-		# plt.subplot(1,4,2)
-		# plt.plot(np.asarray(freq_dftb[j]), ib)
-		# plt.subplot(1,4,3)
-		# plt.imshow(C)
-		# plt.subplot(1,4,4)
-		# plt.imshow(P)
-		# plt.show()
+# 		# plt.subplot(1,4,1)
+# 		# plt.plot(np.asarray(freq_dft[i]), ia)
+# 		# plt.subplot(1,4,2)
+# 		# plt.plot(np.asarray(freq_dftb[j]), ib)
+# 		# plt.subplot(1,4,3)
+# 		# plt.imshow(C)
+# 		# plt.subplot(1,4,4)
+# 		# plt.imshow(P)
+# 		# plt.show()
 
-[print(*tuple(x)) for x in d]
+# [print(*tuple(x)) for x in d]
 

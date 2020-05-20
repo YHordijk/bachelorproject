@@ -32,7 +32,7 @@ def func2(x):
 # a = hist.from_func(400, lambda x: x)
 # a = hist.dirac_delta(400, 0.5)
 # a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\lactic acid.t21", xlim=(0,4000), n=600)
-a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\[21-05](13-05-2020)\hydrocarbons_ethane_DFTB.rkf", xlim=(0,4000), n=600)
+a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\second_set\ISO34_E19_DFT.t21", xlim=(0,4000), n=600)
 
 # b = hist.gaussian(400, 0.3, 0.04, 0)
 # b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
@@ -44,7 +44,7 @@ a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorprojec
 # b = hist.from_func(400, lambda x: x**0)
 # b = hist.lorentzian(400, 0.5, 0.1)
 # b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\water.rkf", xlim=(0,4000), n=400)
-b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\[21-05](13-05-2020)\hydrocarbons_ethane_DFT.t21", xlim=(0,4000), n=600)
+b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\second_set\ISO34_E23_DFTB.rkf", xlim=(0,4000), n=600)
 
 
 
@@ -56,6 +56,8 @@ plot_subtitle = None
 converge_thresh = 10**-6
 
 
+
+# plot.plot_hist(ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\second_set\Aminoindan_CONF_1_DFT.t21", xlim=(0,4000), n=600), invert_xaxis=True)
 
 # barycenter = bc.barycenter(np.vstack((a,b)), (0,1))
 
