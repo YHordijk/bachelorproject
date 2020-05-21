@@ -1,13 +1,13 @@
 
 import numpy as np
 import ot
-import cv2
+import cv2 
 import scipy.spatial.distance as dist
 from scipy.stats import chisquare, entropy
 
 
 
-def wasserstein_distance(ir_dft, ir_dftb):
+def wasserstein_distance(ir_dft, ir_dftb, **kwargs):
 	#normalize spectra
 	ir_dft = [i/np.sum(i) for i in ir_dft]
 	ir_dftb = [i/np.sum(i) for i in ir_dftb]
@@ -20,13 +20,18 @@ def wasserstein_distance(ir_dft, ir_dftb):
 	d = np.zeros((len(ir_dft), len(ir_dftb)))
 	for i, a in enumerate(ir_dft):
 		for j, b in enumerate(ir_dftb):
+			print(i,j)
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.1)*C)
 			# d[i,j] = np.sum(ot.unbalanced.sinkhorn_stabilized_unbalanced(a,b,C,0.0005, 10**-1)*C)
 			d[i,j] = np.sum(ot.emd(a,b,C)*C)
 			# d[i,j] = sink.sinkhorn(a,b, 0.0005).W
 	return d
 
-def wasserstein_distance_unbalanced(ir_dft, ir_dftb):
+def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
+	reg_m = kwargs['reg_m'] if 'reg_m' in kwargs.keys() else 10**2
+	reg = kwargs['reg'] if 'reg' in kwargs.keys() else 0.004
+
+
 	Y, X = np.meshgrid(np.linspace(0,1,ir_dft[0].size), np.linspace(0,1,ir_dft[0].size))
 	C = abs(Y-X)**2
 
@@ -35,14 +40,14 @@ def wasserstein_distance_unbalanced(ir_dft, ir_dftb):
 	for i, a in enumerate(ir_dft):
 		for j, b in enumerate(ir_dftb):
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.0005)*C)
-			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,0.004, 10**2)*C)
+			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,reg, reg_m)*C)
 			# res = sink.sinkhorn(a,b, 0.001)
 			# d[i,j] = res.W
 			# plot.plot_sink_results(res, title=f'DFT {i+1} | DFTB {j+1}')
 	return d
 
 
-def l2(ir_dft, ir_dftb):
+def l2(ir_dft, ir_dftb, **kwargs):
 	#L2-norm
 	l2norm = lambda a, b: np.sqrt(np.sum((a*b)**2))
 
@@ -55,7 +60,7 @@ def l2(ir_dft, ir_dftb):
 
 
 
-def diagonality(ir_dft, ir_dftb):
+def diagonality(ir_dft, ir_dftb, **kwargs):
 	#normalize spectra
 	ir_dft = [i/np.sum(i) for i in ir_dft]
 	ir_dftb = [i/np.sum(i) for i in ir_dftb]
@@ -89,7 +94,7 @@ def diagonality(ir_dft, ir_dftb):
 	return d
 
 
-def diagonality_unbalanced(ir_dft, ir_dftb):
+def diagonality_unbalanced(ir_dft, ir_dftb, **kwargs):
 	#diagonality of P https://math.stackexchange.com/questions/1392491/measure-of-how-much-diagonal-a-matrix-is
 	Y, X = np.meshgrid(np.linspace(0,1,ir_dft[0].size), np.linspace(0,1,ir_dft[0].size))
 	C = abs(Y-X)**2
@@ -121,7 +126,7 @@ def diagonality_unbalanced(ir_dft, ir_dftb):
 
 
 
-def bhattacharyya(ir_dft, ir_dftb):
+def bhattacharyya(ir_dft, ir_dftb, **kwargs):
 	#normalize spectra
 	ir_dft = [i/np.sum(i) for i in ir_dft]
 	ir_dftb = [i/np.sum(i) for i in ir_dftb]
@@ -136,7 +141,7 @@ def bhattacharyya(ir_dft, ir_dftb):
 
 
 
-def correlation(ir_dft, ir_dftb):
+def correlation(ir_dft, ir_dftb, **kwargs):
 	#normalize spectra
 	ir_dft = [i/np.sum(i) for i in ir_dft]
 	ir_dftb = [i/np.sum(i) for i in ir_dftb]
@@ -150,7 +155,7 @@ def correlation(ir_dft, ir_dftb):
 
 
 
-def chi_square(ir_dft, ir_dftb):
+def chi_square(ir_dft, ir_dftb, **kwargs):
 	#normalize spectra
 	ir_dft = [i/np.sum(i) for i in ir_dft]
 	ir_dftb = [i/np.sum(i) for i in ir_dftb]
@@ -165,7 +170,7 @@ def chi_square(ir_dft, ir_dftb):
 
 
 
-def kl_divergence(ir_dft, ir_dftb):
+def kl_divergence(ir_dft, ir_dftb, **kwargs):
 	#normalize spectra
 	ir_dft = [i/np.sum(i) for i in ir_dft]
 	ir_dftb = [i/np.sum(i) for i in ir_dftb]

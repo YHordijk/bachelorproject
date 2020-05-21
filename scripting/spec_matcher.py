@@ -22,19 +22,16 @@ import modules.comp_funcs as comp_funcs
 ############################################ Comparison functions
 
 
-funcs = [comp_funcs.wasserstein_distance, 
-		 comp_funcs.wasserstein_distance_unbalanced, 
-		 comp_funcs.l2,
-		 comp_funcs.diagonality, 
-		 comp_funcs.bhattacharyya, 
-		 comp_funcs.correlation, 
-		 comp_funcs.chi_square, 
-		 comp_funcs.kl_divergence]
-
-# funcs = [comp_funcs.l2, 
+# funcs = [comp_funcs.wasserstein_distance, 
+# 		 comp_funcs.wasserstein_distance_unbalanced, 
+# 		 comp_funcs.l2,
 # 		 comp_funcs.diagonality, 
 # 		 comp_funcs.bhattacharyya, 
+# 		 comp_funcs.correlation, 
+# 		 comp_funcs.chi_square, 
 # 		 comp_funcs.kl_divergence]
+
+funcs = [comp_funcs.wasserstein_distance_unbalanced]
 
 ############################################ Colour map for data colouring
 
@@ -47,7 +44,7 @@ colour_map = cmap.WhiteGreen()
 
 kf_dir = r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\second_set"
 
-kf_dir = r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set"
+# kf_dir = r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\random_set"
 
 
 ############################################ Categories to split the KF files into
@@ -56,13 +53,19 @@ kf_dir = r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#K
 # categories = ['Aminoindan_CONF_', 'ISO34_E', 'ISO34_P', 'SCONF_']
 # categories = ['Aminoindan_CONF_']
 
-categories = ['']
+categories = ['ISO34_E']
+
+
+############################################ Sheet names
+
+
+sheet_names = categories
 
 
 ############################################ Path to save xl file to
 
 
-save_name = kf_dir.split('\\')[-1] + '_comparisons2'
+save_name = kf_dir.split('\\')[-1] + '_comparisons3'
 # save_name = kf_dir.split('\\')[-1] + '_comparisons'
 
 
@@ -70,10 +73,14 @@ save_name = kf_dir.split('\\')[-1] + '_comparisons2'
 
 
 
+
+
 		#####################
 		####  SETUP END  ####
 		#####################
 
+
+assert len(categories) == len(sheet_names)
 
 
 
@@ -124,7 +131,7 @@ bold_small = Font(bold=False, size=11)
 
 
 
-for cat in categories:
+for i_cat, s_name, cat in zip(range(len(categories)), sheet_names, categories):
 
 	#get the spectra
 	ir_dft = [ir.get_spectrum_from_kf(f,width=50) for f in kff_by_cat[cat] if f.endswith('.t21')]
@@ -135,9 +142,9 @@ for cat in categories:
 
 
 	#setup sheet
-	ws = wb.create_sheet(cat)
+	ws = wb.create_sheet(s_name)
 	wb.active = ws
-	ws['A1'] = cat
+	ws['A1'] = s_name
 	ws['A1'].font = bold_huge
 
 	data_col_offset = 5
@@ -168,11 +175,11 @@ for cat in categories:
 		ws.cell(row=i*(n+3)+4, column=data_col_offset).border = both_line
 		ws.cell(row=i*(n+3)+4, column=data_col_offset).font = bold_small
 
-		# print(type(ir_dft), type(ir_dftb))
-		d = func(ir_dft, ir_dftb)
-		print(d)
-		print(d.max(), d.min())
+		# kwargs = {'reg_m': np.linspace(-1,2,7)[i_cat]}
+
+		d = func(ir_dft, ir_dftb, reg_m=10**2)
 		
+
 		if func_best[func] is min:
 			dnorm = (d-d.min())/(d.max()-d.min())
 		if func_best[func] is max:
