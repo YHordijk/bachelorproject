@@ -161,7 +161,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 
 	### PLOTTING
 	fig = plt.figure(figsize=(16,9))
-	if title is None: title = f'Sinkhorn algorithm errors and coupling matrix for two histograms with $\epsilon={epsilon:.3f}$\nWasserstein distance $W_\epsilon={W:.2f}$; Converged after {len(error_a)} iterations with threshold$={converge_thresh}$'
+	if title is None: title = f'Sinkhorn algorithm errors and coupling matrix for two histograms with $\epsilon={epsilon:.3f}$\nWasserstein distance $W_\epsilon={W:.4f}$; Converged after {len(error_a)} iterations with threshold$={converge_thresh}$'
 	if plot_subtitle is None:
 		plt.suptitle(title)
 	else:
@@ -213,7 +213,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	plt.imshow(P, aspect='auto')
 
 	#Plot baryocentric map:
-	# plt.plot(bc_map, range(len(a)), 'r', linewidth=3)
+	plt.plot(bc_map, range(len(a)), 'r', linewidth=1)
 	plt.gca().invert_yaxis()
 
 	#save plot if a file path is given

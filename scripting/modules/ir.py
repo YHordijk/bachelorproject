@@ -28,10 +28,12 @@ def get_freqs_intens(kf):
 
 	try:
 		freqs = kff.read_section('Freq Symmetry')['Frequencies_A']
-		intens = kff.read_section('Freq Symmetry')['IR intensities_A']
+		# intens = kff.read_section('Freq Symmetry')['IR intensities_A']
+		intens = [1 for _ in freqs]
 	except:
 		freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
-		intens = kff.read_section('Vibrations')['Intensities[km/mol]']
+		# intens = kff.read_section('Vibrations')['Intensities[km/mol]']
+		intens = [1 for _ in freqs]
 
 	return freqs, intens
 

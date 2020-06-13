@@ -4,6 +4,7 @@ import ot
 import cv2 
 import scipy.spatial.distance as dist
 from scipy.stats import chisquare, entropy
+import modules.sinkhorn_algorithm as sink
 
 
 
@@ -20,15 +21,15 @@ def wasserstein_distance(ir_dft, ir_dftb, **kwargs):
 	d = np.zeros((len(ir_dft), len(ir_dftb)))
 	for i, a in enumerate(ir_dft):
 		for j, b in enumerate(ir_dftb):
-			print(i,j)
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.1)*C)
 			# d[i,j] = np.sum(ot.unbalanced.sinkhorn_stabilized_unbalanced(a,b,C,0.0005, 10**-1)*C)
 			d[i,j] = np.sum(ot.emd(a,b,C)*C)
-			# d[i,j] = sink.sinkhorn(a,b, 0.0005).W
+
+			# d[i,j] = np.sum(sink.sinkhorn(a,b, 0.0005).P*C)
 	return d
 
 def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
-	reg_m = kwargs['reg_m'] if 'reg_m' in kwargs.keys() else 10**2
+	reg_m = kwargs['reg_m'] if 'reg_m' in kwargs.keys() else 10**0
 	reg = kwargs['reg'] if 'reg' in kwargs.keys() else 0.004
 
 
@@ -40,7 +41,7 @@ def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
 	for i, a in enumerate(ir_dft):
 		for j, b in enumerate(ir_dftb):
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.0005)*C)
-			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,reg, reg_m)*C)
+			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,reg, 10**-3)*C)
 			# res = sink.sinkhorn(a,b, 0.001)
 			# d[i,j] = res.W
 			# plot.plot_sink_results(res, title=f'DFT {i+1} | DFTB {j+1}')
