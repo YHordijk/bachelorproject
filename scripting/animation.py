@@ -12,6 +12,7 @@ import modules.ir as ir
 import ot
 
 
+
 ## ================================================================= ##
 # ANIMATION
 #script used for generating frames of pyplot figures
@@ -66,7 +67,7 @@ def func2(x):
 
 #choose two histograms a and b:
 
-a = hist.gaussian(400, 0.7, 0.1, 0)
+# a = hist.gaussian(400, 0.7, 0.1, 0)
 # a = hist.gaussian(400, 0.7, 0.1, 0) + 0.1 * hist.gaussian(400, 0.5,0.03)
 # a = hist.gaussian(400, 0.2, 0.06) + hist.gaussian(400, 0.5, 0.06)*2 + hist.gaussian(400, 0.8, 0.06)
 # a = hist.slater(400, 0.5, 30, 0)
@@ -78,10 +79,10 @@ a = hist.gaussian(400, 0.7, 0.1, 0)
 # a = hist.dirac_delta(400, 0.5)
 # a = hist.from_func(400, lambda x: ((x-0.5)*10)**4) + 3*hist.gaussian(400, 0.7, 0.1)
 # r = jobs.DFTJob('l-alanine', job_name='l-alanine_DFT').run(); a = ir.get_spectrum(r, xlim=(0,2000), n=400)
-# a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
+a = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_4_LDA_DFT.t21", xlim=(0,4000), n=400)
 
 
-b = hist.gaussian(400, 0.3, 0.1, 0)
+# b = hist.gaussian(400, 0.3, 0.1, 0)
 # b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
 # b = hist.gaussian(400, 0.5, 0.05, 0)
 # b = hist.gaussian(400, 0.2, 0.06)*2 + hist.gaussian(400, 0.5, 0.06) + hist.gaussian(400, 0.8, 0.06)*2
@@ -92,7 +93,7 @@ b = hist.gaussian(400, 0.3, 0.1, 0)
 # b = hist.slater(400, 0.8, 30, 0)
 # b = hist.from_func(400, lambda x: np.cos(x*5*3.14)+1)
 # r = jobs.DFTBJob('l-alanine', job_name='l-alanine_DFT').run(); b = ir.get_spectrum(r, xlim=(0,2000), n=400)
-# b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\hydrocarbons\DFT\butane_DFT.t21", xlim=(0,4000), n=400)
+b = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_4_DFTB3_freq_DFTB.rkf", xlim=(0,4000), n=400)
 
 
 ## ======== FRAME GENERATION ======== ##
@@ -127,7 +128,7 @@ b = hist.gaussian(400, 0.3, 0.1, 0)
 setup('varying_reg_m')
 # a = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFT.t21", xlim=(0,4000), n=800)
 # b = ir.get_spectrum_from_kf(r"C:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\conf_unopt\AI1_DFTB.rkf", xlim=(0,4000), n=800)
-ran = (3,-3)
+ran = (1,-5)
 frames = []
 for i in np.linspace(*ran,100):
 	e = 0.004

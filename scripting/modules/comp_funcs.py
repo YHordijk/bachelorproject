@@ -29,9 +29,8 @@ def wasserstein_distance(ir_dft, ir_dftb, **kwargs):
 	return d
 
 def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
-	reg_m = kwargs['reg_m'] if 'reg_m' in kwargs.keys() else 10**0
+	reg_m = kwargs['reg_m'] if 'reg_m' in kwargs.keys() else 10**2
 	reg = kwargs['reg'] if 'reg' in kwargs.keys() else 0.004
-
 
 	Y, X = np.meshgrid(np.linspace(0,1,ir_dft[0].size), np.linspace(0,1,ir_dft[0].size))
 	C = abs(Y-X)**2
@@ -41,7 +40,7 @@ def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
 	for i, a in enumerate(ir_dft):
 		for j, b in enumerate(ir_dftb):
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.0005)*C)
-			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,reg, 10**-3)*C)
+			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,reg, reg_m)*C)
 			# res = sink.sinkhorn(a,b, 0.001)
 			# d[i,j] = res.W
 			# plot.plot_sink_results(res, title=f'DFT {i+1} | DFTB {j+1}')

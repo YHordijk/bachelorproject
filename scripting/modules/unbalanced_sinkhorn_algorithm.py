@@ -151,9 +151,9 @@ def sinkhorn(a, b, epsilon=0.4, tau=0.4, cost_fn=None, error_fn=None, max_iter=1
 
         #check if the algorithm has converged
         converged = error_a[-1] < converge_thresh and error_b[-1] < converge_thresh
+        # converged = error_a[-1] < converge_thresh
 
         i += 1
-        print(i)
 
 
     W = math.sqrt(inner_prod(C,P))

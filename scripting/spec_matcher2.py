@@ -4,10 +4,6 @@ import modules.sinkhorn_algorithm as sink
 import modules.colour_maps as cmap
 import os
 import numpy as np
-import ot
-import cv2
-import scipy.spatial.distance as dist
-from scipy.stats import chisquare, entropy
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.borders import Border, Side
@@ -16,7 +12,7 @@ import modules.comp_funcs as comp_funcs
 
 
 
-def main(functionals, bins=600):
+def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 
 			#####################
 			#### SETUP START ####
@@ -25,16 +21,17 @@ def main(functionals, bins=600):
 
 	############################################ Comparison functions
 
-	funcs = [comp_funcs.wasserstein_distance, 
+	funcs = [
+			 # comp_funcs.wasserstein_distance, 
 			 comp_funcs.wasserstein_distance_unbalanced, 
-			 comp_funcs.l2,
-			 comp_funcs.diagonality, 
-			 comp_funcs.bhattacharyya, 
-			 comp_funcs.correlation, 
-			 comp_funcs.chi_square, 
-			 comp_funcs.kl_divergence]
+			 # comp_funcs.l2,
+			 # comp_funcs.diagonality, 
+			 # comp_funcs.bhattacharyya, 
+			 # comp_funcs.correlation, 
+			 # comp_funcs.chi_square, 
+			 # comp_funcs.kl_divergence,
+			 ]
 
-	# funcs = [comp_funcs.wasserstein_distance_unbalanced]
 
 	############################################ Colour map for data colouring
 
@@ -73,8 +70,11 @@ def main(functionals, bins=600):
 
 	############################################ Path to save xl file to
 
+	if save_name is None: 
+		save_name = kf_dir.split('\\')[-1] + f'_comparisons_{functionals[0]}_{functionals[1]}'
+	else:
+		save_name = kf_dir.split('\\')[-1] + '_' + save_name
 
-	save_name = kf_dir.split('\\')[-1] + f'_comparisons_{functionals[0]}_{functionals[1]}'
 	# save_name = kf_dir.split('\\')[-1] + '_comparisons'
 
 
@@ -128,7 +128,12 @@ def main(functionals, bins=600):
 
 
 	#start writing
-	out_file = f"{save_name}_{bins}.xlsx"
+	out_file = f"excel_files/{sub_dir}/{save_name}_{bins}.xlsx"
+	try:
+		os.mkdir(f"excel_files/{sub_dir}")
+	except:
+		pass
+
 	wb = xl.Workbook()
 	ws0 = wb.active
 
@@ -187,7 +192,7 @@ def main(functionals, bins=600):
 
 			# kwargs = {'reg_m': np.linspace(-1,2,7)[i_cat]}
 
-			d = func(ir1, ir2, reg_m=10**2)
+			d = func(ir1, ir2, reg_m=reg_m)
 			
 
 			if func_best[func] is min:
@@ -227,7 +232,12 @@ def main(functionals, bins=600):
 
 
 
-main(['LDA_DFT','DFTB3_DFTB'],bins=600)
+# main(['LDA_DFT','DFTB3_DFTB'], bins=600)
 # main(['LDA_DFT','DFTB3_DFTB'],bins=2400)
 # main(['OLYP_DFT','DFTB3_DFTB'])
 # main(['OLYP_DFT','LDA_DFT'])
+
+ran = (1,-5)
+for reg_m in np.linspace(*ran, 10):
+	# print(reg_m)
+	main(['LDA_DFT','DFTB3_DFTB'], sub_dir='reg_m', save_name=str(reg_m), bins=600, reg_m=reg_m)

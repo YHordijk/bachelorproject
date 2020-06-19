@@ -15,7 +15,7 @@ except:
 
 
 
-def get_freqs_intens(kf):
+def get_freqs_intens(kf, set_intens_to_one=False):
 	'''
 	Function to get frequencies and intensities from result objects
 
@@ -28,17 +28,21 @@ def get_freqs_intens(kf):
 
 	try:
 		freqs = kff.read_section('Freq Symmetry')['Frequencies_A']
-		# intens = kff.read_section('Freq Symmetry')['IR intensities_A']
-		intens = [1 for _ in freqs]
+		if set_intens_to_one:
+			intens = [1 for _ in freqs]
+		else:
+			intens = kff.read_section('Freq Symmetry')['IR intensities_A']
 	except:
 		freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
-		# intens = kff.read_section('Vibrations')['Intensities[km/mol]']
-		intens = [1 for _ in freqs]
+		if set_intens_to_one:
+			intens = [1 for _ in freqs]
+		else:
+			intens = kff.read_section('Vibrations')['Intensities[km/mol]']
 
-	return freqs, intens
+	return np.asarray(freqs), np.asarray(intens)
 
 
-def get_spectrum(result, n=600, xlim=(0,4000), width=50):
+def get_spectrum(result, n=300, xlim=(0,4000), width=50):
 	'''
 	Function to generate a spectrum histogram from results using
 	lorentzian line shape.
@@ -67,12 +71,21 @@ def get_spectrum(result, n=600, xlim=(0,4000), width=50):
 	return spectrum
 
 
-def get_spectrum_from_kf(kf, n=600, xlim=(0,4000), width=50):
+def get_spectrum_from_kf(kf, n=300, xlim=(0,4000), width=50):
 	'''
 	Same function as above but for paths to kf files.
 	'''
 	
 	freqs, intens = get_freqs_intens(kf)
+	return get_spectrum_from_freqs_intens(freqs, intens, n, xlim, width)
+
+
+
+def get_spectrum_from_freqs_intens(freqs, intens, n=300, xlim=(0,4000), width=50):
+	'''
+	Same function as above but for paths to kf files.
+	'''
+
 	spectrum = np.zeros(n)
 
 	#project width onto new range

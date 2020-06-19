@@ -36,7 +36,7 @@ class Results:
         self.bc_map = np.dot(K, v*np.arange(len(b))) * u / a
 
 
-def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6):
+def sinkhorn(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6):
     '''
     Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
     between two distributions a and b (in this case normalized histograms).
@@ -133,12 +133,12 @@ def sinkhorn(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, co
 
 
     P = np.diag(u) @ K @ np.diag(v)
-    W = np.sum(P*C)
+    W = np.sum(P.T*C)
     return Results(a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh, C)
 
 
 
-def sinkhorn_test(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6, reg_m=100):
+def sinkhorn_test(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6, reg_m=1000):
     '''
     Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
     between two distributions a and b (in this case normalized histograms).
@@ -192,7 +192,7 @@ def sinkhorn_test(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=10000
     C = cost_fn(X,Y)
 
     #calculate the gibbs kernel:
-    # K = np.exp(-C/epsilon).T
+    K = np.exp(-C/epsilon).T
 
     
 
@@ -200,14 +200,14 @@ def sinkhorn_test(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=10000
     #algorithm part
 
     #initialize v as identity vector. We get u from v later
-    # Im = np.ones(len(a))
-    # In = np.ones(len(b))
-    # v = In/len(b)
-    # u = Im/len(a)
+    Im = np.ones(len(a))
+    In = np.ones(len(b))
+    v = In/len(b)
+    u = Im/len(a)
 
     #follow deviations during iterations
-    # error_a = []
-    # error_b = []
+    error_a = []
+    error_b = []
 
     # converged = False
     # i = 0
@@ -235,7 +235,9 @@ def sinkhorn_test(a, b, epsilon=0.4, cost_fn=None, error_fn=None, max_iter=10000
 
 
     import ot
-    # P = ot.unbalanced.sinkhorn_unbalanced(a, b, C, epsilon, reg_m)
+    # P = ot.unbalanced.sinkhorn_unbalanced(a, b, C, 0.0004, 10000)
+    a = a/a.sum()
+    b = b/b.sum()
     P = ot.emd(a,b,C)
     W = math.sqrt(inner_prod(C,P))
 

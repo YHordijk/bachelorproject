@@ -13,15 +13,16 @@ import time
 
 def plot_hists(hists, labels=None, axislabels=('Bins', 'Mass'), xlim=None,
 			   title='Histogram h', invert_xaxis=False, invert_yaxis=False,
-			   save_to=None, show_plot=True, shade=False, scatter=False):
+			   save_to=None, show_plot=True, shade=False, scatter=False,
+			   line=True):
 	'''
 	Function that plots multiple histograms
 
 	hists - histograms
 	'''
 
-	for h in hists:
-		h /= np.sum(np.absolute(h))
+	# for h in hists:
+	# 	h /= np.sum(np.absolute(h))
 
 
 	plt.figure(figsize=(16,9))
@@ -37,10 +38,14 @@ def plot_hists(hists, labels=None, axislabels=('Bins', 'Mass'), xlim=None,
 	# color_array = clr.makeMappingArray(len(h), np.linspace(0,1,len(h)))
 
 	for h, l in zip_longest(hists, labels):
-		if scatter:
-			plt.scatter(np.linspace(xlim[0],xlim[1],len(h)), h, linewidth=2, label=l, s=0.5)
-		else:
+		if scatter and line:
+			plt.scatter(np.linspace(xlim[0],xlim[1],len(h)), h, linewidth=2, s=scatter)
 			plt.plot(np.linspace(xlim[0],xlim[1],len(h)), h, linewidth=2, label=l)
+		elif scatter:
+			plt.scatter(np.linspace(xlim[0],xlim[1],len(h)), h, linewidth=2, label=l, s=scatter)
+		elif line:
+			plt.plot(np.linspace(xlim[0],xlim[1],len(h)), h, linewidth=2, label=l)
+
 		if shade: plt.fill_between(np.linspace(xlim[0],xlim[1],len(h)), h)
 
 	plt.legend()
@@ -150,6 +155,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	#get results
 	a, b = res.a, res.b
 	P = res.P
+
 	v, u = res.v, res.u
 	error_a, error_b = res.error_a, res.error_b
 	W = res.W
@@ -158,6 +164,8 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	converge_thresh = res.converge_thresh
 	In = np.ones((len(a),1))
 	Im = np.ones((len(b),1))
+
+
 
 	### PLOTTING
 	fig = plt.figure(figsize=(16,9))
@@ -175,12 +183,12 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	plt.xlabel(labels[0])
 	plt.ylabel(labels[1])
 	plt.plot(range(len(a)), a, 'blue', linewidth=2, label='$a$')
-	plt.plot(range(len(a)), P@In/np.sum(P@In), 'red', linewidth=1, label='$P_\epsilon I_n$')
+	plt.plot(range(len(a)), P@Im/np.sum(P@Im), 'red', linewidth=1, label='$P_\epsilon I_n$')
 	# plt.plot(range(len(a)), P@b/np.sum(P@b), 'red', linewidth=1, label='$P_\epsilon b$')
 	plt.fill_between(range(len(a)), a, facecolor='lightblue')
 	plt.yticks([])
 	plt.xlim(0,len(a))
-	plt.ylim(0,max(max(P@In/np.sum(P@In)), max(a))*1.1)
+	plt.ylim(0,max(max(P@Im/np.sum(P@Im)), max(a))*1.1)
 	plt.legend()
 
 	#histogram b
@@ -189,11 +197,11 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 	plt.xlabel('Bin')
 	plt.ylabel('Mass')
 	plt.plot(range(len(b)), b, 'blue', linewidth=2, label='$b$')
-	plt.plot(range(len(b)), P.T@Im/np.sum(P.T@Im), 'red', linewidth=1, label='$P_\epsilon^⊤ I_m$')
+	plt.plot(range(len(b)), P.T@In/np.sum(P.T@In), 'red', linewidth=1, label='$P_\epsilon^⊤ I_m$')
 	plt.fill_between(range(len(b)), b, facecolor='lightblue')
 	plt.yticks([])
 	plt.xlim(0,len(b))
-	plt.ylim(0,max(max(P.T@Im/np.sum(P.T@Im)), max(b))*1.1)
+	plt.ylim(0,max(max(P.T@In/np.sum(P.T@In)), max(b))*1.1)
 	plt.legend()
 
 	#Plot error
