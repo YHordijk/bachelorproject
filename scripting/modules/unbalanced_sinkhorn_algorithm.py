@@ -117,9 +117,8 @@ def sinkhorn(a, b, epsilon=0.4, tau=0.4, cost_fn=None, error_fn=None, max_iter=1
     scale_factor = (eta*tau) / (eta+tau)
 
     #initialize f and g as identity vectors
-    I = np.zeros(n)
-    f = I.copy()
-    g = I.copy()
+    f = np.zeros_like(a)
+    g = np.zeros_like(b)
 
     P = np.diag(np.exp(f/eta)) @ K @ np.diag(np.exp(g/eta))
 
