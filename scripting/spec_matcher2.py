@@ -23,7 +23,8 @@ def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 
 	funcs = [
 			 # comp_funcs.wasserstein_distance, 
-			 comp_funcs.wasserstein_distance_unbalanced, 
+			 # comp_funcs.wasserstein_distance_unbalanced, 
+			 comp_funcs.freq_int_wasserstein,
 			 # comp_funcs.l2,
 			 # comp_funcs.diagonality, 
 			 # comp_funcs.bhattacharyya, 
@@ -52,7 +53,8 @@ def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 
 	# categories = ['Aminoindan_CONF_', 'ISO34_E', 'ISO34_P', 'SCONF']
 	# categories = ['Aminoindan_CONF_', 'ISO34_E', 'SCONF']
-	categories = ['Aminoindan_CONF_']
+	# categories = ['Aminoindan_CONF_']
+	categories = [''] 
 
 
 	############################################ Sheet names
@@ -95,6 +97,7 @@ def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 
 	func_best = {comp_funcs.wasserstein_distance: 				min, 
 				 comp_funcs.wasserstein_distance_unbalanced: 	min, 
+				 comp_funcs.freq_int_wasserstein:				min,
 				 comp_funcs.l2:									min, 
 				 comp_funcs.diagonality: 						max, 
 				 comp_funcs.bhattacharyya: 						min, 
@@ -155,6 +158,14 @@ def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 		ir1 = [ir.get_spectrum_from_kf(f,width=50,n=bins) for f in kff_by_cat[cat] if functionals[0] in f]
 		ir2 = [ir.get_spectrum_from_kf(f,width=50,n=bins) for f in kff_by_cat[cat] if functionals[1] in f]
 
+		peaksa = [ir.get_freqs_intens(f) for f in kff_by_cat[cat] if functionals[0] in f]
+		freqsa, intensa = [list(c) for c in zip(*peaksa)]
+		peaksa = [list(zip(freqsa[i], intensa[i])) for i in range(len(freqsa))]
+
+		peaksb = [ir.get_freqs_intens(f) for f in kff_by_cat[cat] if functionals[1] in f]
+		freqsb, intensb = [list(c) for c in zip(*peaksb)]
+		peaksb = [list(zip(freqsb[i], intensb[i])) for i in range(len(freqsb))]
+
 
 		#setup sheet
 		ws = wb.create_sheet(s_name)
@@ -192,7 +203,7 @@ def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 
 			# kwargs = {'reg_m': np.linspace(-1,2,7)[i_cat]}
 
-			d = func(ir1, ir2, reg_m=reg_m)
+			d = func(ir1, ir2, reg_m=reg_m, peaksa=peaksa, peaksb=peaksb)
 			
 
 			if func_best[func] is min:
@@ -232,12 +243,14 @@ def main(functionals, save_name=None, sub_dir='', bins=600, reg_m=10**2):
 
 
 
-# main(['LDA_DFT','DFTB3_DFTB'], bins=600)
+# main(['LDA_DFT','DFTB3_DFTB'], bins=601)
 # main(['LDA_DFT','DFTB3_DFTB'],bins=2400)
 # main(['OLYP_DFT','DFTB3_DFTB'])
-# main(['OLYP_DFT','LDA_DFT'])
+main(['OLYP_DFT','LDA_DFT'])
 
-ran = (1,-5)
-for reg_m in np.linspace(*ran, 10):
-	# print(reg_m)
-	main(['LDA_DFT','DFTB3_DFTB'], sub_dir='reg_m', save_name=str(reg_m), bins=600, reg_m=reg_m)
+# ran = (1,-5)
+# for reg_m in np.linspace(*ran, 10):
+# 	# print(reg_m)
+# 	main(['LDA_DFT','DFTB3_DFTB'], sub_dir='reg_m', save_name=str(reg_m), bins=600, reg_m=reg_m)
+
+# main(['LDA_DFT','DFTB3_DFTB'], sub_dir='reg_m', save_name=str(reg_m), bins=600, reg_m=reg_m)

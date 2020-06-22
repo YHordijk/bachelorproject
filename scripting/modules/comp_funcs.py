@@ -1,11 +1,72 @@
-
+import matplotlib.pyplot as plt
 import numpy as np
-import ot
+import ot, math
 import cv2 
 import scipy.spatial.distance as dist
 from scipy.stats import chisquare, entropy
 import modules.sinkhorn_algorithm as sink
 
+
+
+def freq_int_wasserstein(_, __, **kwargs):
+	peaksa = kwargs['peaksa']
+	peaksb = kwargs['peaksb']
+	int_weight = kwargs['int_weight']
+	freq_exp = kwargs['freq_exp']
+	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else False
+
+	n = len(peaksa)
+	d = np.zeros((n, n))
+
+	for i, pa in enumerate(peaksa):
+		for j, pb in enumerate(peaksb):
+			fa, ia = list(zip(*pa))
+			fb, ib = list(zip(*pb))
+
+			fa = np.asarray(fa)
+			fb = np.asarray(fb)
+			ia = np.asarray(ia)
+			ib = np.asarray(ib)
+
+			fmax = max(fa.max(), fb.max())
+			imax = max(ia.max(), ib.max())
+			# fa = fa/fmax
+			# fb = fb/fmax
+			# ia = ia/imax
+			# ib = ib/imax
+
+			Fa, Fb = np.meshgrid(fa, fb)
+			Ia, Ib = np.meshgrid(ia, ib)
+
+
+			C = (abs(Fa-Fb)**freq_exp + int_weight * abs(Ia-Ib)**2).T
+			# C = ((Fa-Fb)**2).T
+			C = C.copy(order='C')
+			pa = np.vstack((fa, ia)).T
+			pb = np.vstack((fb, ib)).T
+
+
+			# plt.figure(1)
+			# plt.imshow(C)
+
+			
+			# C = ot.dist(np.asarray(pa),np.asarray(pb))
+			# plt.figure(2)
+			# plt.imshow(C)
+
+			# plt.show()
+
+			a = np.ones(pa.size//2)/pa.size/2
+			b = np.ones(pb.size//2)/pb.size/2
+			P = ot.emd(a,b,C)
+			# P = ot.bregman.empirical_sinkhorn(np.asarray(pa), np.asarray(pb), 10**-3)
+			# Pi = sink.sinkhorn(pa, pb, cost_mat=C).P
+			# Pf = sink.sinkhorn(fa, fb, cost_mat=C).P
+
+			# d[i,j] = np.sum((weight*Pi + (1-weight)*Pf)*C.T)
+			d[i,j] = math.sqrt(np.sum(P*C))
+
+	return d
 
 
 def wasserstein_distance(ir_dft, ir_dftb, **kwargs):
@@ -27,6 +88,7 @@ def wasserstein_distance(ir_dft, ir_dftb, **kwargs):
 
 			# d[i,j] = np.sum(sink.sinkhorn(a,b, 0.0005).P*C)
 	return d
+
 
 def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
 	reg_m = kwargs['reg_m'] if 'reg_m' in kwargs.keys() else 10**2

@@ -35,8 +35,8 @@ def lp(Fa, Ia, Fb, Ib, C):
 
 
 
-a = r"C:\Users\Yuman Hordijk\Desktop\Scripts\bachelorproject\scripting\RUNS\KFFiles\l-alanine.t21"
-b = r"C:\Users\Yuman Hordijk\Desktop\Scripts\bachelorproject\scripting\RUNS\KFFiles\dftb_l_alanine.rkf"
+a = r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E7_LDA_DFT.t21"
+b = r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E7_DFTB3_freq_DFTB.rkf"
 
 fa, ia = ir.get_freqs_intens(a)
 fb, ib = ir.get_freqs_intens(b)

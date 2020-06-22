@@ -34,6 +34,7 @@ def get_freqs_intens(kf, set_intens_to_one=False):
 			intens = kff.read_section('Freq Symmetry')['IR intensities_A']
 	except:
 		freqs = kff.read_section('Vibrations')['Frequencies[cm-1]']
+
 		if set_intens_to_one:
 			intens = [1 for _ in freqs]
 		else:

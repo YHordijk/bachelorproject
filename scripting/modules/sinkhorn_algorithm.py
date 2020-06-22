@@ -16,7 +16,6 @@ def entropy(a):
 
 
 
-
 class Results:
     def __init__(self, a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh, C):
         self.a = a 
@@ -34,6 +33,7 @@ class Results:
 
         #calculate barycentric map
         self.bc_map = np.dot(K, v*np.arange(len(b))) * u / a
+
 
 
 def sinkhorn(a, b, epsilon=0.004, cost_mat=None, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6):
