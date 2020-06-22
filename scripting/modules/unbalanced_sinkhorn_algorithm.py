@@ -38,7 +38,7 @@ class Results:
 
 
 
-def sinkhorn(a, b, epsilon=0.4, tau=0.4, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-10, print_complexity=True):
+def sinkhorn(a, b, epsilon=0.4, tau=0.4, cost_mat=None, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-10, print_complexity=True):
     '''
     Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
     between two distributions a and b (in this case un-normalized histograms).
@@ -86,6 +86,9 @@ def sinkhorn(a, b, epsilon=0.4, tau=0.4, cost_fn=None, error_fn=None, max_iter=1
     Y, X = np.meshgrid(np.linspace(0,1,len(a)), np.linspace(0,1,len(b)))
     C = cost_fn(X,Y)
 
+    if cost_mat is not None:
+        C = cost_mat
+
     
 
 
@@ -97,7 +100,7 @@ def sinkhorn(a, b, epsilon=0.4, tau=0.4, cost_fn=None, error_fn=None, max_iter=1
     a_log = np.log(a)
     b_log = np.log(b)
 
-    assert a.size == b.size
+    # assert a.size == b.size
 
     n = a.size
 

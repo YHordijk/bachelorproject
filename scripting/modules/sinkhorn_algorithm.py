@@ -36,7 +36,7 @@ class Results:
         self.bc_map = np.dot(K, v*np.arange(len(b))) * u / a
 
 
-def sinkhorn(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6):
+def sinkhorn(a, b, epsilon=0.004, cost_mat=None, cost_fn=None, error_fn=None, max_iter=100000, converge_thresh=10**-6):
     '''
     Function that implements the Sinkhorn algorithm to obtain the optimal coupling matrix P
     between two distributions a and b (in this case normalized histograms).
@@ -88,6 +88,9 @@ def sinkhorn(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=100000, c
     #we use the function specified in the args to calculate the cost matrix
     Y, X = np.meshgrid(np.linspace(0,1,len(a)), np.linspace(0,1,len(b)))
     C = cost_fn(X,Y)
+
+    if cost_mat is not None:
+        C = cost_mat
 
     #calculate the gibbs kernel:
     K = np.exp(-C/epsilon).T

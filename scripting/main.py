@@ -9,6 +9,7 @@ import modules.ir as ir
 from scipy.stats import entropy
 from time import perf_counter
 import matplotlib.pyplot as plt
+import ot
 
 
 ## ================================================================= ##
@@ -30,7 +31,7 @@ def func3(x):
 
 ### SETUP
 #choose two histograms a and b:
-# a = hist.gaussian(100, 0., 0.15, 0) + hist.gaussian(100, 1, 0.15, 0)
+a = hist.gaussian(20, 0., 0.15, 0) + hist.gaussian(20, 1, 0.15, 0)
 # a = hist.gaussian(200, 0.8, 0.06)
 # a = hist.from_func(400, func3)
 # a = hist.gaussian(400, 0.2, 0.06) + hist.gaussian(400, 0.5, 0.06)*2 + hist.gaussian(400, 0.8, 0.06)
@@ -42,9 +43,9 @@ def func3(x):
 # a = hist.from_func(400, lambda x: x)
 # a = hist.dirac_delta(400, 0.5)
 # a = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_2_LDA_DFT.t21", xlim=(0,4000), n=600)
-a = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_4_LDA_DFT.t21", xlim=(0,4000), n=200)
+# a = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_4_LDA_DFT.t21", xlim=(0,4000), n=200)
 
-# b = hist.gaussian(100, 0.5, 0.15, 0)
+b = hist.gaussian(5, 0.5, 0.15, 0)
 # b = hist.gaussian(200, 0.25, 0.06)
 # b = hist.from_func(400, func3)
 # b = hist.gaussian(400, 0.8, 0.05, 0) + hist.gaussian(400, 0.2, 0.05, 0)
@@ -56,7 +57,7 @@ a = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorprojec
 # b = hist.from_func(400, lambda x: x**0)
 # b = hist.lorentzian(400, 0.5, 0.1)
 # b = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_2_OLYP_DFT.t21", xlim=(0,4000), n=600)
-b = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_4_DFTB3_freq_DFTB.rkf", xlim=(0,4000), n=200)
+# b = ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\Aminoindan_CONF_4_DFTB3_freq_DFTB.rkf", xlim=(0,4000), n=200)
 
 
 
@@ -70,6 +71,13 @@ converge_thresh = 10**-10
 
 
 
+Y, X = np.meshgrid(np.linspace(0,1,len(a)), np.linspace(0,1,len(b)))
+C = cost_fn(X,Y)
+print(a/a.sum())
+P = ot.emd(a/a.sum(),b/b.sum(),C)
+# print(P)
+plt.imshow(P)
+plt.show()
 
 
 
@@ -81,7 +89,7 @@ converge_thresh = 10**-10
 
 
 #sinkhorn
-res = sink.sinkhorn_test(a, b, converge_thresh=converge_thresh, max_iter=1000)
+res = sink.sinkhorn(a, b, converge_thresh=converge_thresh, max_iter=1000)
 plt.imshow(res.P) # show P
 plt.show()
 print(res.W) # print W

@@ -35,8 +35,8 @@ def lp(Fa, Ia, Fb, Ib, C):
 
 
 
-a = r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFT\l-alanine.t21"
-b = r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\DFTB\l-alanine.rkf"
+a = r"C:\Users\Yuman Hordijk\Desktop\Scripts\bachelorproject\scripting\RUNS\KFFiles\l-alanine.t21"
+b = r"C:\Users\Yuman Hordijk\Desktop\Scripts\bachelorproject\scripting\RUNS\KFFiles\dftb_l_alanine.rkf"
 
 fa, ia = ir.get_freqs_intens(a)
 fb, ib = ir.get_freqs_intens(b)
@@ -51,18 +51,51 @@ ib = ib/imax
 Fa, Fb = np.meshgrid(fa, fb)
 Ia, Ib = np.meshgrid(ia, ib)
 
-C = C_L1L1(Fa, Ia, Fb, Ib)
+C = C_prod(Fa, Ia, Fb, Ib)
 
 
-plt.imshow(-np.log(C), aspect='auto')
-plt.gca().invert_yaxis()
-plt.show()
+# plt.imshow(-np.log(C), aspect='auto')
+# plt.gca().invert_yaxis()
+# plt.show()
 
 
 
 a = np.vstack((fa, ia))
 b = np.vstack((fb, ib))
 
-P = ot.emd(ia,ib,C)
-plt.imshow(P)
+# P = ot.emd(ia/ia.sum(),ib/ib.sum(),C)
+res = sink.sinkhorn(ia, ib, cost_mat=C)
+Pi = res.P 
+
+# P = ot.emd(ia, ib, C)
+Wi = np.sum(Pi*C)
+
+
+# plt.imshow(Pi)
+# plt.gca().invert_yaxis()
+# plt.show()
+
+
+# P = ot.emd(ia/ia.sum(),ib/ib.sum(),C)
+res = sink.sinkhorn(fa, fb, cost_mat=C)
+Pf = res.P 
+
+# P = ot.emd(ia, ib, C)
+Wf = np.sum(Pf*C)
+
+# plt.imshow(Pf)
+# plt.gca().invert_yaxis()
+# plt.show()
+
+
+print(math.sqrt(Wi), math.sqrt(Wf), math.sqrt(Wi+Wf))
+
+
+plt.subplot(1,2,1)
+plt.imshow(Pf+Pi)
+plt.gca().invert_yaxis()
+
+plt.subplot(1,2,2)
+plt.imshow(Pf*Pi)
+plt.gca().invert_yaxis()
 plt.show()
