@@ -2,11 +2,27 @@ import modules.ir as ir
 import modules.plot as plot
 import modules.sinkhorn_algorithm as sink
 import modules.colour_maps as cmap
-import os
+import os, time
 import numpy as np
 import modules.comp_funcs as comp_funcs
 import matplotlib.pyplot as plt 
 import moviepy.editor as mvp
+
+
+
+def dist(P):
+	j = np.ones(P.shape[0])
+	r = np.arange(P.shape[0])
+	r2 = r**2
+
+	n = j@P@j.T
+	sum_x = r@P@j.T
+	sum_y = j@P@r.T
+	sum_x2 = r2@P@j.T
+	sum_y2 = j@P@r2.T 
+	sum_xy = r@P@r.T
+
+	return (n*sum_xy - sum_x*sum_y)/(np.sqrt(n*sum_x2 - sum_x**2) * np.sqrt(n*sum_y2 - sum_y**2))
 
 
 
@@ -133,6 +149,7 @@ category = ''
 # category = 'ISO34_E'
 # category = 'ISO34_P'
 # category = 'SCONF'
+# category = 'ISO34'
 
 
 # func = comp_funcs.wasserstein_distance
@@ -152,28 +169,99 @@ title = category + '_' + str(func).split()[1]
 
 
 
+# d = main(['LDA_DFT','DFTB3_DFTB'], func=func, category=category, bins=601, int_weight=0, freq_exp=1.241)
+# plt.imshow(d.max()-d)
+# print(dist(d.max()-d))
+# plt.show()
+
+# d = np.eye(10)
+# print(dist(d))
+# plt.imshow(d)
+# # plt.show()
+
+
+# import sys
+# sys.exit()
 
 
 
 global name
 name = 'spec_match_reg_m'
 setup()
-ran = (0, 4)
+ran1 = (0.75, 1.25)
+ran2 = (-1, 2.5)
+steps = 10
 titles = []
 ds = []
-for param in np.linspace(*ran, 75):
-	print(param)
-	d = main(['LDA_DFT','DFTB3_DFTB'], func=func, category=category, bins=601, int_weight=0, freq_exp=param)
-	# d = 
+start = time.perf_counter()
+for i, param in enumerate(np.linspace(*ran1, steps)):
+	ds2 = []
+	for j, param2 in enumerate(np.linspace(*ran2, steps)):
+		steps_taken = i*steps + j + 1
+		
+		d = main(['LDA_DFT','DFTB3_DFTB'], func=func, category=category, bins=601, int_weight=1, freq_exp=param, int_exp=param2)
+		print(f'Current step = {steps_taken}, Time per step = {(time.perf_counter()-start)/steps_taken:.2f}s, Time left = {(steps**2 - steps_taken)*(time.perf_counter()-start)/steps_taken:.2f}s')
 
-	titles.append(f'{title}\nparam={param:.2f}')
-	ds.append(d)
+
+		titles.append(f'{title}\nparam={param:.2f}')
+		ds2.append(d)
+	ds.append(ds2)
 
 
-make_gif(ds, titles)
+# make_gif(ds, titles)
+
 
 # plt.figure(1)
 # plt.imshow(ds[0])
 # plt.gca().invert_yaxis()
 # plt.colorbar()
 # plt.show()
+
+
+
+
+diags1 = []
+diags2 = []
+diags3 = []
+for ds2 in ds:
+	diags12 = []
+	diags22 = []
+	diags32 = []
+	for d in ds2:
+		b = np.zeros_like(d)
+		b[np.arange(len(d)), d.argmin(1)] = 1
+
+		diags12.append(np.sum(d*np.eye(d.shape[0]))/np.sum(d))
+		diags22.append(dist(d))
+		diags32.append(dist(b))
+
+	diags1.append(diags12)
+	diags2.append(diags22)
+	diags3.append(diags32)
+
+	# plt.imshow(d)
+	# plt.title(diags[-1])
+	# plt.show()
+
+def normalize(y): 
+	y = np.asarray(y)
+	return (y-y.min())/(y-y.min()).max()
+
+
+plt.subplot(2,2,1)
+plt.gca().set_title('Distance to identity matrix')
+plt.imshow(normalize(diags1), extent=[*ran1, *ran2], aspect="auto")
+plt.colorbar()
+
+plt.subplot(2,2,2)
+plt.gca().set_title('Diagonality of d')
+plt.imshow(normalize(diags2), extent=[*ran1, *ran2], aspect="auto")
+plt.colorbar()
+
+plt.subplot(2,2,3)
+plt.gca().set_title('Diagonality of b')
+plt.imshow(diags3, extent=[*ran1, *ran2], aspect="auto")
+plt.colorbar()
+
+plt.show()
+

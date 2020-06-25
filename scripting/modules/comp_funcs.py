@@ -5,6 +5,51 @@ import cv2
 import scipy.spatial.distance as dist
 from scipy.stats import chisquare, entropy
 import modules.sinkhorn_algorithm as sink
+import scipy.signal as sig
+
+
+
+def freq_int_wasserstein2(ir_dft, ir_dftb, **kwargs):
+	int_weight = kwargs['int_weight']
+	int_exp = kwargs['int_exp']
+	freq_weight = kwargs['freq_weight']
+	freq_exp = kwargs['freq_exp']
+	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else True
+
+
+	d = np.zeros((len(ir_dft), len(ir_dftb)))
+	for i, a in enumerate(ir_dft):
+		fa = sig.argrelmax(a)[0]
+		ia = a[fa]
+		for j, b in enumerate(ir_dftb):
+			fb = sig.argrelmax(b)[0]
+			ib = b[fb]
+
+			fmax = max(fa.max(), fb.max())
+			imax = max(ia.max(), ib.max())
+
+			fa = fa/fmax
+			fb = fb/fmax
+			ia = ia/imax
+			ib = ib/imax
+
+			Fa, Fb = np.meshgrid(fa, fb)
+			Ia, Ib = np.meshgrid(ia, ib)
+
+			C = (freq_weight * abs(Fa-Fb)**freq_exp + int_weight * abs(Ia-Ib)**int_exp).T
+			C = C.copy(order='C')
+			pa = np.vstack((fa, ia)).T
+			pb = np.vstack((fb, ib)).T
+
+			weightsa = np.ones(pa.size//2)/pa.size/2
+			weightsb = np.ones(pb.size//2)/pb.size/2
+			P = ot.emd(weightsa,weightsb,C)
+
+			d[i,j] = np.sum(P*C)
+
+	if return_C:
+		return d, C
+	return d
 
 
 
@@ -12,8 +57,10 @@ def freq_int_wasserstein(_, __, **kwargs):
 	peaksa = kwargs['peaksa']
 	peaksb = kwargs['peaksb']
 	int_weight = kwargs['int_weight']
+	int_exp = kwargs['int_exp']
+	freq_weight = kwargs['freq_weight']
 	freq_exp = kwargs['freq_exp']
-	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else False
+	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else True
 
 	n = len(peaksa)
 	d = np.zeros((n, n))
@@ -39,33 +86,19 @@ def freq_int_wasserstein(_, __, **kwargs):
 			Ia, Ib = np.meshgrid(ia, ib)
 
 
-			C = (abs(Fa-Fb)**freq_exp + int_weight * abs(Ia-Ib)**2).T
-			# C = ((Fa-Fb)**2).T
+			C = (freq_weight * abs(Fa-Fb)**freq_exp + int_weight * abs(Ia-Ib)**int_exp).T
 			C = C.copy(order='C')
 			pa = np.vstack((fa, ia)).T
 			pb = np.vstack((fb, ib)).T
 
-
-			# plt.figure(1)
-			# plt.imshow(C)
-
-			
-			# C = ot.dist(np.asarray(pa),np.asarray(pb))
-			# plt.figure(2)
-			# plt.imshow(C)
-
-			# plt.show()
-
 			a = np.ones(pa.size//2)/pa.size/2
 			b = np.ones(pb.size//2)/pb.size/2
 			P = ot.emd(a,b,C)
-			# P = ot.bregman.empirical_sinkhorn(np.asarray(pa), np.asarray(pb), 10**-3)
-			# Pi = sink.sinkhorn(pa, pb, cost_mat=C).P
-			# Pf = sink.sinkhorn(fa, fb, cost_mat=C).P
 
-			# d[i,j] = np.sum((weight*Pi + (1-weight)*Pf)*C.T)
-			d[i,j] = math.sqrt(np.sum(P*C))
+			d[i,j] = np.sum(P*C)
 
+	if return_C:
+		return d, C
 	return d
 
 
