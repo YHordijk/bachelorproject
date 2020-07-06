@@ -1,5 +1,5 @@
 import numpy as np 
-import math
+import math, ot
 
 
 ## ================================================================= ##
@@ -103,8 +103,8 @@ def sinkhorn(a, b, epsilon=0.004, cost_mat=None, cost_fn=None, error_fn=None, ma
     #initialize v as identity vector. We get u from v later
     Im = np.ones(len(a))
     In = np.ones(len(b))
-    v = In/len(b)
-    u = Im/len(a)
+    v = In/len(a)
+    u = Im/len(b)
 
     #follow deviations during iterations
     error_a = []
@@ -115,7 +115,14 @@ def sinkhorn(a, b, epsilon=0.004, cost_mat=None, cost_fn=None, error_fn=None, ma
     while i < max_iter and not converged:
         ## =========== ##
         #iteration part one
-        u = a/(K @ v)
+        
+        try:
+            u = a/(K @ v)
+        except:
+            print(u.shape)
+            print(a.shape)
+            print(K.shape)
+            print(v.shape)
         #Calculate error
         # P = np.diag(u) @ K @ np.diag(v)
         
@@ -182,11 +189,6 @@ def sinkhorn_test(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=1000
     if cost_fn is None:
         cost_fn = lambda x1, x2: abs(x1-x2)**2
 
-    ## =========== ##
-    #make sure a and b are normalized:
-    # a /= np.sum(a)
-    # b /= np.sum(b)
-
 
     ## =========== ##
     #calculate ground-cost-matrix
@@ -196,7 +198,6 @@ def sinkhorn_test(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=1000
 
     #calculate the gibbs kernel:
     K = np.exp(-C/epsilon).T
-
     
 
     ## =========== ##
@@ -212,32 +213,7 @@ def sinkhorn_test(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=1000
     error_a = []
     error_b = []
 
-    # converged = False
-    # i = 0
-    # while i < max_iter and not converged:
-    #     ## =========== ##
-    #     #iteration part one
-    #     u = a/(K @ v)
-    #     #Calculate error
-    #     # P = np.diag(u) @ K @ np.diag(v)
-        
-    #     approx_b = v * (np.dot(K.T, u))
-    #     error_b.append(error_fn(b, approx_b))
 
-    #     ## =========== ##
-    #     #iteration part two
-    #     v = b/(K.T @ u)
-    #     #calculate error
-    #     approx_a = u * (np.dot(K, v))
-    #     error_a.append(error_fn(a, approx_a))
-
-    #     #check if the algorithm has converged
-    #     converged = error_a[-1] < converge_thresh and error_b[-1] < converge_thresh
-
-    #     i += 1
-
-
-    import ot
     # P = ot.unbalanced.sinkhorn_unbalanced(a, b, C, 0.0004, 10000)
     a = a/a.sum()
     b = b/b.sum()
@@ -246,3 +222,6 @@ def sinkhorn_test(a, b, epsilon=0.04, cost_fn=None, error_fn=None, max_iter=1000
 
 
     return Results(a, b, K, v, u, P, W, error_a, error_b, epsilon, converge_thresh, C)
+
+
+

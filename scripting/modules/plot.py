@@ -215,7 +215,7 @@ def plot_sink_results(res, labels=('Bins', 'Mass'), xlim=None, save_to=None, sho
 
 	#Plot coupling matrix
 	plt.subplot(2,2,4)
-	plt.title('Coupling matrix with barycentric map ($P_\epsilon$)')
+	plt.title('Coupling matrix ($P_\epsilon$) with barycentric map')
 	plt.xlabel('Bin in histogram b')
 	plt.ylabel('Bin in histogram a')
 	plt.imshow(P, aspect='auto')

@@ -136,7 +136,7 @@ def main(functionals, func, category='Aminoindan', bins=600, reg_m=10**2, **kwar
 	freqsb, intensb = [list(c) for c in zip(*peaksb)]
 	peaksb = [list(zip(freqsb[i], intensb[i])) for i in range(len(freqsb))]
 
-
+	print(peaksa)
 	d = func(ir1, ir2, reg_m=reg_m, peaksa=peaksa, peaksb=peaksb, **kwargs)
 	return d.astype(float)
 

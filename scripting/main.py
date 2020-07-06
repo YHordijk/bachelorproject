@@ -9,7 +9,7 @@ import modules.ir as ir
 from scipy.stats import entropy
 from time import perf_counter
 import matplotlib.pyplot as plt
-import ot
+import ot, sys
 
 
 ## ================================================================= ##
@@ -32,7 +32,7 @@ def func3(x):
 ### SETUP
 #choose two histograms a and b:
 a = hist.gaussian(20, 0., 0.15, 0) + hist.gaussian(20, 1, 0.15, 0)
-# a = hist.gaussian(200, 0.8, 0.06)
+a = hist.gaussian(200, 0.2, 0.06)
 # a = hist.from_func(400, func3)
 # a = hist.gaussian(400, 0.2, 0.06) + hist.gaussian(400, 0.5, 0.06)*2 + hist.gaussian(400, 0.8, 0.06)
 # a = hist.slater(400, 0.5, 30, 0)
@@ -70,6 +70,54 @@ plot_subtitle = None
 converge_thresh = 10**-10
 
 
+specs = [
+	ir.get_freqs_intens(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E12_DFTB3_DFTB.rkf"),
+	ir.get_freqs_intens(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E22_LDA_DFT.t21"),
+	]
+
+
+plot.plot_hist(a)
+
+peaksa = list(zip(*specs[0]))
+peaksb = list(zip(*specs[1]))
+
+
+
+P = np.load('array.npy')
+P = P/P.max()
+for i, p1 in enumerate(peaksa):
+	for j, p2 in enumerate(peaksb):
+		plt.plot((p1[0],p2[0]), (p1[1],p2[1]), alpha=P[j,i], color='grey')
+
+plt.scatter(specs[0][0], specs[0][1], label='ISO34_E12_DFTB3_DFTB')
+plt.scatter(specs[1][0], specs[1][1], label='ISO34_E22_LDA_DFT')
+
+plt.legend()
+plt.show()
+
+# plot.plot_hists(specs, ('mol1 - DFTB3', 'mol2 - LDA'), line=False, scatter=True)
+
+sys.exit()
+
+
+specs = tuple([s/np.sum(s) for s in specs])
+res = sink.sinkhorn(*specs, converge_thresh=converge_thresh, max_iter=1000)
+plot.plot_sink_results(res)
+plot.plot_hists(specs, ('mol1 - DFTB3', 'mol2 - LDA'))
+
+specs = [
+	ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E22_DFTB3_DFTB.rkf", xlim=(0,4000), n=600),
+	ir.get_spectrum_from_kf(r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E22_LDA_DFT.t21", xlim=(0,4000), n=600),
+	]
+specs = tuple([s/np.sum(s) for s in specs])
+res = sink.sinkhorn(*specs, converge_thresh=converge_thresh, max_iter=1000)
+plot.plot_sink_results(res)
+plot.plot_hists(specs, ('mol1 - DFTB3', 'mol1 - LDA'))
+
+
+sys.exit()
+
+
 
 Y, X = np.meshgrid(np.linspace(0,1,len(a)), np.linspace(0,1,len(b)))
 C = cost_fn(X,Y)
@@ -95,6 +143,11 @@ plt.show()
 print(res.W) # print W
 
 print(str(usink.sinkhorn(a, b, 10**0.6, 10**20, converge_thresh=converge_thresh, max_iter=1000).W))
+
+
+
+
+
  
 # res = sink.sinkhorn_test(a, b, epsilon, converge_thresh=converge_thresh, max_iter=1000)
 # plt.imshow(res.P) # show P

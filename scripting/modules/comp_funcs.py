@@ -9,6 +9,47 @@ import scipy.signal as sig
 
 
 
+def freq_int_wasserstein3(ir_dft, ir_dftb, **kwargs):
+	int_weight = kwargs['int_weight']
+	int_exp = kwargs['int_exp']
+	freq_weight = kwargs['freq_weight']
+	freq_exp = kwargs['freq_exp']
+	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else True
+
+
+	d = np.zeros((len(ir_dft), len(ir_dftb)))
+	for i, a in enumerate(ir_dft):
+		fa = sig.argrelmax(a)[0]
+		ia = a[fa]
+		for j, b in enumerate(ir_dftb):
+			fb = sig.argrelmax(b)[0]
+			ib = b[fb]
+
+			fmax = max(fa.max(), fb.max())
+			imax = max(ia.max(), ib.max())
+
+			fa = fa/fmax
+			fb = fb/fmax
+			ia = ia/imax
+			ib = ib/imax
+
+			Fa, Fb = np.meshgrid(fa, fb)
+			Ia, Ib = np.meshgrid(ia, ib)
+
+			C = (freq_weight * abs(Fa-Fb)**freq_exp + int_weight * abs(Ia-Ib)**int_exp).T
+			C = C.copy(order='C')
+			pa = np.vstack((fa, ia)).T
+			pb = np.vstack((fb, ib)).T
+
+			P = ot.emd(ia,ib,C)
+
+			d[i,j] = np.sum(P*C)
+
+	if return_C:
+		return d, C
+	return d
+
+
 def freq_int_wasserstein2(ir_dft, ir_dftb, **kwargs):
 	int_weight = kwargs['int_weight']
 	int_exp = kwargs['int_exp']
@@ -53,17 +94,18 @@ def freq_int_wasserstein2(ir_dft, ir_dftb, **kwargs):
 
 
 
-def freq_int_wasserstein(_, __, **kwargs):
-	peaksa = kwargs['peaksa']
-	peaksb = kwargs['peaksb']
-	int_weight = kwargs['int_weight']
-	int_exp = kwargs['int_exp']
-	freq_weight = kwargs['freq_weight']
-	freq_exp = kwargs['freq_exp']
-	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else True
+def freq_int_wasserstein(_=[], __=[], **kwargs):
+	peaksa = kwargs['peaksa'] 
+	peaksb = kwargs['peaksb'] 
+	int_weight = kwargs['int_weight'] if 'int_weight' in kwargs.keys() else 0.000040
+	int_exp = kwargs['int_exp'] if 'int_exp' in kwargs.keys() else 1.955098
+	freq_weight = kwargs['freq_weight'] if 'freq_weight' in kwargs.keys() else 0.000282
+	freq_exp = kwargs['freq_exp'] if 'freq_exp' in kwargs.keys() else 1.990915
+	return_C = kwargs['return_C'] if 'return_C' in kwargs.keys() else False
 
 	n = len(peaksa)
-	d = np.zeros((n, n))
+	m = len(peaksb)
+	d = np.zeros((n, m))
 
 	for i, pa in enumerate(peaksa):
 		for j, pb in enumerate(peaksb):
@@ -93,12 +135,12 @@ def freq_int_wasserstein(_, __, **kwargs):
 
 			a = np.ones(pa.size//2)/pa.size/2
 			b = np.ones(pb.size//2)/pb.size/2
-			P = ot.emd(a,b,C)
+			P = ot.emd(fa/np.sum(fa),fb/np.sum(fb),C)
 
 			d[i,j] = np.sum(P*C)
 
 	if return_C:
-		return d, C
+		return d, C, P
 	return d
 
 
@@ -114,6 +156,7 @@ def wasserstein_distance(ir_dft, ir_dftb, **kwargs):
 	# print('Case (Balanced Wasserstein)')
 	d = np.zeros((len(ir_dft), len(ir_dftb)))
 	for i, a in enumerate(ir_dft):
+		print(i)
 		for j, b in enumerate(ir_dftb):
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.1)*C)
 			# d[i,j] = np.sum(ot.unbalanced.sinkhorn_stabilized_unbalanced(a,b,C,0.0005, 10**-1)*C)
@@ -133,6 +176,7 @@ def wasserstein_distance_unbalanced(ir_dft, ir_dftb, **kwargs):
 	# print('Case (Unbalanced Wasserstein, reg_m=10**3)')
 	d = np.zeros((len(ir_dft), len(ir_dftb)))
 	for i, a in enumerate(ir_dft):
+		print(i)
 		for j, b in enumerate(ir_dftb):
 			# d[i,j] = np.sum(ot.bregman.sinkhorn(a,b,C, 0.0005)*C)
 			d[i,j] = np.sum(ot.unbalanced.sinkhorn_unbalanced(a,b,C,reg, reg_m)*C)

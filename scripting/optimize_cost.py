@@ -17,13 +17,15 @@ category = ''
 # category = 'Aminoindan'
 # category = 'ISO34_E'
 # category = 'ISO34_P'
-# category = 'SCONF'
+# category = 'SCONF_C15'
 # category = 'ISO34'
 
 
 # func = comp_funcs.wasserstein_distance
 # func = comp_funcs.wasserstein_distance_unbalanced
 func = comp_funcs.freq_int_wasserstein
+# func = comp_funcs.freq_int_wasserstein2
+# func = comp_funcs.freq_int_wasserstein3
 # func = comp_funcs.l2
 # func = comp_funcs.diagonality
 # func = comp_funcs.bhattacharyya
@@ -33,9 +35,9 @@ func = comp_funcs.freq_int_wasserstein
 
 
 functionals = ['LDA_DFT', 'DFTB3_DFTB']
+# functionals = ['LDA_DFT', 'OLYP_DFT']
 
-
-bins = 20
+bins = 500
 
 
 title = category + '_' + str(func).split()[1] 
@@ -61,6 +63,8 @@ kf_dir = r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#K
 func_best = {comp_funcs.wasserstein_distance: 				min, 
 			 comp_funcs.wasserstein_distance_unbalanced: 	min, 
 			 comp_funcs.freq_int_wasserstein:				min,
+			 comp_funcs.freq_int_wasserstein2:				min,
+			 comp_funcs.freq_int_wasserstein3:				min,
 			 comp_funcs.l2:									min, 
 			 comp_funcs.diagonality: 						max, 
 			 comp_funcs.bhattacharyya: 						min, 
@@ -74,18 +78,27 @@ kff = [f for f in os.listdir(kf_dir)]
 kff = list(filter(lambda x: functionals[0] in x or functionals[1] in x, kff))
 
 
-kff_of_cat = [kf_dir + '\\' + f for f in kff if f.startswith(category)]
+kff_list = [kf_dir + '\\' + f for f in kff if f.startswith(category)]
 
+# kff_list = [
+# 	r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E8_DFTB3_DFTB.rkf",
+# 	r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E7_LDA_DFT.t21",
+# 	]
+
+kff_list = [
+	r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E12_DFTB3_DFTB.rkf",
+	r"D:\Users\Yuman\Desktop\Programmeren\bachelorproject\scripting\RUNS\#KFFiles\functionals\ISO34_E22_LDA_DFT.t21",
+	]
 
 #get the spectra
-ir1 = [ir.get_spectrum_from_kf(f,width=50,n=bins) for f in kff_of_cat if functionals[0] in f]
-ir2 = [ir.get_spectrum_from_kf(f,width=50,n=bins) for f in kff_of_cat if functionals[1] in f]
+ir1 = [ir.get_spectrum_from_kf(f,width=50,n=bins) for f in kff_list if functionals[0] in f]
+ir2 = [ir.get_spectrum_from_kf(f,width=50,n=bins) for f in kff_list if functionals[1] in f]
 
-peaksa = [ir.get_freqs_intens(f) for f in kff_of_cat if functionals[0] in f]
+peaksa = [ir.get_freqs_intens(f) for f in kff_list if functionals[0] in f]
 freqsa, intensa = [list(c) for c in zip(*peaksa)]
 peaksa = [list(zip(freqsa[i], intensa[i])) for i in range(len(freqsa))]
 
-peaksb = [ir.get_freqs_intens(f) for f in kff_of_cat if functionals[1] in f]
+peaksb = [ir.get_freqs_intens(f) for f in kff_list if functionals[1] in f]
 freqsb, intensb = [list(c) for c in zip(*peaksb)]
 peaksb = [list(zip(freqsb[i], intensb[i])) for i in range(len(freqsb))]
 
@@ -144,37 +157,55 @@ def dist(P):
 
 i = 0
 
-def objective(x, plot=True):
+def objective(x=None, plot=True):
 	global i 
 	i += 1
-	d, C = func(ir1, ir2, peaksa=peaksa, peaksb=peaksb, freq_weight=x[0], freq_exp=x[1], int_weight=x[2], int_exp=x[3])
+	if x is not None:
+		res = func(ir1, ir2, peaksa=peaksa, peaksb=peaksb, freq_weight=x[0], freq_exp=x[1], int_weight=x[2], int_exp=x[3], return_C=True)
+	else:
+		res = func(ir1, ir2, peaksa=peaksa, peaksb=peaksb, return_C=True)
+
+	try:
+		d, C, P = res
+		obtained_C = True
+		np.save('array', P)
+	except:
+		d = res
+		obtained_C = False
+
 	d_new = (1 - d)/np.sum(1 - d)
 
 	b = np.zeros_like(d)
 	b[np.arange(len(d)), d.argmin(1)] = 1
 
-	if plot:
-		plt.figure()
-		plt.suptitle(rf'a={x[0]:.6f}, b={x[2]:.6f}' + '\n' + rf'$\alpha$={x[1]:.6f}, $\beta$={x[3]:.6f}')
-		plt.subplot(2,2,1)
-		plt.imshow(d)
-		plt.gca().set_title('Distance matrix')
-		# plt.colorbar()
+	print(np.sum(b*np.eye(b.shape[0]))/b.shape[0])
 
-		plt.subplot(2,2,2)
-		plt.gca().set_title('Compressed distance matrix')
+	if plot:
+		plt.figure(1)
+		# plt.suptitle(rf'a={x[0]:.6f}, b={x[2]:.6f}' + '\n' + rf'$\alpha$={x[1]:.6f}, $\beta$={x[3]:.6f}')
+		plt.suptitle(f'Distance matrix: {str(func).split()[1]}')
+		plt.imshow(d)
+
+		plt.figure(2)
+		plt.suptitle(f'Compressed distance matrix: {str(func).split()[1]}')
 		plt.imshow(b)
 
-		plt.subplot(2,2,3)
-		plt.gca().set_title('Example Cost matrix')
-		plt.imshow(C)
+		if obtained_C:
+			plt.figure(3)
+			plt.gca().set_title('log Example Cost matrix')
+			plt.imshow(np.log(C))
+
+			plt.figure(4)
+			plt.gca().set_title('Example Coupling matrix')
+			plt.imshow(P)
+
 		plt.show()
 
 		plt.savefig(frames_folder + f'{i}.png')
 
 		global frames
 		frames.append(frames_folder + f'{i}.png')
-	# fun = 1-dist(b)
+
 
 	fun = np.sum(np.eye(d.shape[0]) * (d_new))
 
